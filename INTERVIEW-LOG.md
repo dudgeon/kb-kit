@@ -23,6 +23,13 @@ forked), and adds types as needed. The infrastructure for typing should exist,
 but typing itself stays minimal; any typing added for illustrative purposes
 must be catalogued and removable via the setup skill.
 
+### Q2 — Schema file: AGENTS.md-canonical or CLAUDE.md-canonical? (2026-07-18)
+
+**A:** Follow the agent-agnostic best practice — AGENTS.md canonical with
+CLAUDE.md as a thin shim — and the same for skills (agent-agnostic skill
+layout per the open Agent Skills spec, e.g. skills/ referenced from AGENTS.md
+with per-tool discovery shims like .claude/skills as needed).
+
 ## Research notes / decisions pending interview
 
 - Repo was near-empty at session start (README only); `main` and
