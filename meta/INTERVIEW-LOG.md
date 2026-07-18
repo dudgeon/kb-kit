@@ -111,3 +111,18 @@ plus demo decision/source entities, index + log).
   `index.md`, so the index sorts first in file navigators. (Matches duo's
   ENH-245 default; we assume paired `_log.md` per duo's never-mixed rule —
   to confirm.) Document this as an explicit deviation in the kit.
+
+### Q8 — Housekeeping: _log.md, license, marketing tone (2026-07-18)
+
+**A:**
+1. Yes — `_log.md` pairs with `_index.md`.
+2. License: corporate-friendly, no restrictions on company adoption;
+   attribution would be nice → MIT chosen.
+3. Marketing tone approved: educational, PM-first, vendor-neutral,
+   fork-in-minutes CTA, links into the live demo KB.
+
+### Interview status
+
+Core decisions locked; build phase begins. Remaining choices (folder
+categories, pill design details, exact type set for demo content) made
+autonomously by the build agent and recorded in meta/ ADRs.
