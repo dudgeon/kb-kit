@@ -56,3 +56,11 @@ as bundle.
 okf_version); kit machinery (site, README, kb-card.md, skills, actions) at repo
 root. Process note: maintainer wants AskUserQuestion used for this type of
 multiple-choice question going forward.
+
+### Q4 — Which skills ship? (2026-07-18)
+
+Options: core four (setup/ingest/query/lint) + sync; core four only; core four
++ sync + dedicated card skill.
+
+**A:** Core four only. kb-card updating happens as part of linting (when there
+are substantial changes) and during setup. No sync skill for now.
