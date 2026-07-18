@@ -64,3 +64,13 @@ Options: core four (setup/ingest/query/lint) + sync; core four only; core four
 
 **A:** Core four only. kb-card updating happens as part of linting (when there
 are substantial changes) and during setup. No sync skill for now.
+
+### Q5 — kb-card ambition (2026-07-18)
+
+Multi-select over: taxonomy self-assessment, crawler/discovery affordances,
+auto-computed stats, keep minimal.
+
+**A:** Mandatory minimal core including scope and owning team; PLUS optional
+additional traits (e.g. typed-entity census, taxonomy assessment) — and these
+optional traits must be **inferred from linting analysis, not declared by the
+user**. (So: humans author the small descriptive core; lint computes the rest.)
