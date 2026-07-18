@@ -149,7 +149,10 @@ function resolveRelative(pagePath, href) {
 function makeResolvers(pagePath) {
   return {
     resolveLink(href) {
-      if (/^(https?:|mailto:)/i.test(href) || href.startsWith("#")) return href;
+      if (/^(https?:|mailto:)/i.test(href)) return href;
+      // Pure in-page anchors (#section) must stay on this page's route —
+      // a bare "#section" hash would be misread as an app route.
+      if (href.startsWith("#")) return routes.page(pagePath) + href;
       const [file, anchor] = href.split("#");
       if (/\.md$/i.test(file)) {
         const resolved = resolveRelative(pagePath, file);
