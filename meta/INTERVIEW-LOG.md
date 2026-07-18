@@ -126,3 +126,16 @@ plus demo decision/source entities, index + log).
 Core decisions locked; build phase begins. Remaining choices (folder
 categories, pill design details, exact type set for demo content) made
 autonomously by the build agent and recorded in meta/ ADRs.
+
+### Incident — 2026-07-18: unflagged retrieval failure
+
+Maintainer flagged (correctly) that the Cerebras article scrape failure was
+not surfaced in chat when research was reported — the caveat existed in the
+KB page and research notes but the chat summary presented findings as if
+retrieval succeeded. Corrections: (1) `retrieval:` frontmatter key added to
+secondary-sourced pages (cerebras, prukalpa); (2) ingest skill now REQUIRES
+retrieval failures to be stated in the report to the human AND recorded in
+frontmatter; (3) re-fetch attempted from main context — cerebras.ai is 403
+at the proxy on all paths; article remains unretrievable from this
+environment. Rule going forward: evidence problems lead the summary, never
+trail it.

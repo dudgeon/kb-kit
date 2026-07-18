@@ -6,6 +6,7 @@ source: https://www.cerebras.ai/blog/how-we-built-our-knowledge-base
 url: https://www.cerebras.ai/blog/how-we-built-our-knowledge-base
 date: 2026-07-16
 status: processed
+retrieval: failed - reconstructed from secondary coverage only
 tags: [cerebras, company-kb, unverified]
 ---
 

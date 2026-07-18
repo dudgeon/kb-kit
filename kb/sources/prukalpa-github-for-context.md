@@ -6,6 +6,7 @@ source: https://contextandchaos.substack.com/p/the-github-for-context-doesnt-exi
 url: https://contextandchaos.substack.com/p/the-github-for-context-doesnt-exist
 date: 2026-07-16
 status: processed
+retrieval: secondary - reconstructed from search snippets and mirrors
 tags: [prukalpa, decoupling, governance, kb-card]
 ---
 

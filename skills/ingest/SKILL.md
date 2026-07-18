@@ -8,6 +8,14 @@ description: Add a source or fact to this knowledge base and propagate it — wr
 Read the root [AGENTS.md](../../AGENTS.md) conventions first. The unit of
 work is: **capture verbatim → distill → propagate → record.**
 
+0. **Fetch honestly.** If you cannot retrieve the source itself — paywall,
+   network block, dead link — and are working from snippets, mirrors, or
+   summaries instead, you MUST (a) say so **in your report to the human, up
+   front, not buried**, and (b) record it in the page's frontmatter:
+   `retrieval: secondary - <how it was reconstructed>` or
+   `retrieval: failed - <what is actually known>`. A reconstructed source
+   presented as a scraped one poisons every page that cites it. Never let an
+   evidence problem live only in the page body.
 1. **Capture.** Create one `type: source` page (template:
    `kb/templates/source.md`) in the right folder: frontmatter `type`,
    `summary`, `source` (the URL or provenance), `url`, `date`; body =

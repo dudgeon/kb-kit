@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-18T18:34:23.227Z",
+  "generated_at": "2026-07-18T18:40:46.910Z",
   "repo": {
     "kb_dir": "kb",
     "default_branch": "main"
@@ -212,6 +212,7 @@
         "url": "https://www.cerebras.ai/blog/how-we-built-our-knowledge-base",
         "date": "2026-07-16",
         "status": "processed",
+        "retrieval": "failed - reconstructed from secondary coverage only",
         "tags": [
           "cerebras",
           "company-kb",
@@ -222,7 +223,7 @@
         "Key excerpts"
       ],
       "excerpt": "Cerebras — \"How We Built Our Knowledge Base\" Retrieval caveat, up front: the underlying blog post was not retrievable during research (egress-blocked, and only two days old at survey time, 2026-07-18). Everything on this page comes from the promotional X…",
-      "modified": "2026-07-18T15:10:45.453Z"
+      "modified": "2026-07-18T18:40:31.927Z"
     },
     {
       "path": "kb/sources/karpathy-llm-wiki-gist.md",
@@ -337,6 +338,7 @@
         "url": "https://contextandchaos.substack.com/p/the-github-for-context-doesnt-exist",
         "date": "2026-07-16",
         "status": "processed",
+        "retrieval": "secondary - reconstructed from search snippets and mirrors",
         "tags": [
           "prukalpa",
           "decoupling",
@@ -348,7 +350,7 @@
         "Key excerpts"
       ],
       "excerpt": "Prukalpa Sankar — \"The GitHub for Context Doesn't Exist Yet\" Essay by Prukalpa Sankar (Atlan co-CEO, \"Context & Chaos\" Substack), announced on X 2026-07-16. Retrieval caveat: x.com was egress-blocked during research; the essay was reconstructed via search snippets and mirrors…",
-      "modified": "2026-07-18T15:10:22.813Z"
+      "modified": "2026-07-18T18:40:31.927Z"
     },
     {
       "path": "kb/standards/_index.md",
