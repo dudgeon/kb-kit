@@ -91,3 +91,23 @@ Options: (a) client-side app + Action-built JSON; (b) full static pre-render;
 - The html files must be really well documented and agent-friendly, so a user
   (and their agent) can easily imagine what the page could become and customize
   it without breaking things.
+
+### Q7 — Placeholder KB scope (2026-07-18)
+
+Proposed ~18–22 pages from the landscape research (topics, standards, tools,
+plus demo decision/source entities, index + log).
+
+**A:** Scope approved, plus:
+- Scrape and ingest three X threads (and read for ideas worth adopting):
+  - https://x.com/prukalpa/status/2077772169455530152
+  - https://x.com/bracesproul/status/2072375136368660515
+  - https://x.com/cerebras/status/2077822555159945507
+- New structural rule: root `meta/` folder holds everything related to
+  *building this project* (ADRs, plan, research, this log, and a CLAUDE.md for
+  build-oriented sessions). Everything outside `meta/` is for future users of
+  the kit.
+- **Deliberate OKF deviation:** maintainer prefers `_index.md` (wrote
+  "_index.html", clearly meaning the index file) over Google-reserved
+  `index.md`, so the index sorts first in file navigators. (Matches duo's
+  ENH-245 default; we assume paired `_log.md` per duo's never-mixed rule —
+  to confirm.) Document this as an explicit deviation in the kit.
