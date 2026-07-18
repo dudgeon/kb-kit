@@ -1,0 +1,453 @@
+{
+  "generated_at": "2026-07-18T15:07:58.849Z",
+  "repo": {
+    "kb_dir": "kb",
+    "default_branch": "main"
+  },
+  "page_count": 19,
+  "warning_count": 0,
+  "pages": [
+    {
+      "path": "kb/_index.md",
+      "title": "Knowledge base — index",
+      "type": "index",
+      "summary": null,
+      "tags": [],
+      "reserved": true,
+      "frontmatter": {
+        "okf_version": "0.1",
+        "type": "index",
+        "title": "Knowledge base — index"
+      },
+      "headings": [
+        "Start here",
+        "Topics",
+        "Standards",
+        "Tools & systems",
+        "Sources",
+        "Decisions",
+        "Templates"
+      ],
+      "excerpt": "Knowledge base A survey of the context-management and context-repo landscape (mid-2026). What this KB is and who owns it: kb-card.md. How to work here: AGENTS.md. Start here The context repo — the idea this whole KB (and kit) is about.…",
+      "modified": "2026-07-18T15:03:02.117Z"
+    },
+    {
+      "path": "kb/_log.md",
+      "title": "Knowledge base — change log",
+      "type": "log",
+      "summary": null,
+      "tags": [],
+      "reserved": true,
+      "frontmatter": {
+        "type": "log",
+        "title": "Knowledge base — change log"
+      },
+      "headings": [
+        "2026-07-18"
+      ],
+      "excerpt": "Change log Newest first. Entry format: ## YYYY-MM-DD heading, bulleted changes, each naming the operation (ingest lint setup edit) and the pages touched. 2026-07-18 setup Bundle scaffolded: index.md, log.md, type templates (note, source, decision, topic, standard, tool).",
+      "modified": "2026-07-18T15:03:25.264Z"
+    },
+    {
+      "path": "kb/standards/open-knowledge-format.md",
+      "title": "Open Knowledge Format (OKF)",
+      "type": "standard",
+      "summary": "Google's v0.1 draft spec for knowledge bundles — markdown + YAML frontmatter, type as the only required key.",
+      "tags": [
+        "okf",
+        "format",
+        "bundle",
+        "frontmatter"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "standard",
+        "title": "Open Knowledge Format (OKF)",
+        "summary": "Google's v0.1 draft spec for knowledge bundles — markdown + YAML frontmatter, type as the only required key.",
+        "source": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md",
+        "steward": "Google (GoogleCloudPlatform/knowledge-catalog, Apache 2.0)",
+        "status_note": "v0.1 draft, published ~2026-06-12",
+        "url": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md",
+        "tags": [
+          "okf",
+          "format",
+          "bundle",
+          "frontmatter"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Open Knowledge Format (OKF) OKF is the format anchor of this kit. It specifies a knowledge bundle: a directory of markdown files with YAML frontmatter, where type is the only required key. \"Format, not platform\" — no schema registry, no…",
+      "modified": "2026-07-18T15:07:51.709Z"
+    },
+    {
+      "path": "kb/templates/_index.md",
+      "title": "Templates — index",
+      "type": "index",
+      "summary": null,
+      "tags": [],
+      "reserved": true,
+      "frontmatter": {
+        "type": "index",
+        "title": "Templates — index"
+      },
+      "headings": [],
+      "excerpt": "Entity types One file per type; the file both defines the type and serves as its template. Types are grown, not designed: add one only when ingestion keeps producing pages that don't fit. Adding a type = add a file…",
+      "modified": "2026-07-18T15:03:25.266Z"
+    },
+    {
+      "path": "kb/templates/decision.md",
+      "title": "decision",
+      "type": "decision",
+      "summary": "A choice that was made — what, why, what was rejected.",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "decision",
+        "summary": "A choice that was made — what, why, what was rejected."
+      },
+      "headings": [],
+      "excerpt": "decision Capture decisions where they happened, not in slide decks. Frontmatter should carry date and, when known, owner. Body: context, the decision, options rejected and why, and links to affected pages. Decisions are immutable once made — a reversal is…",
+      "modified": "2026-07-18T15:03:25.269Z"
+    },
+    {
+      "path": "kb/templates/note.md",
+      "title": "note",
+      "type": "note",
+      "summary": "Default type — one distilled piece of knowledge, one file.",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "note",
+        "summary": "Default type — one distilled piece of knowledge, one file.",
+        "statuses": [
+          "draft",
+          "solid"
+        ]
+      },
+      "headings": [],
+      "excerpt": "note The default. Use when nothing more specific fits. One topic per file; if a note grows two topics, split it and keep the links. A draft note is a placeholder someone should improve; solid means a human stands behind…",
+      "modified": "2026-07-18T15:03:25.267Z"
+    },
+    {
+      "path": "kb/templates/source.md",
+      "title": "source",
+      "type": "source",
+      "summary": "An external artifact (article, thread, spec, paper) ingested into this KB.",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "source",
+        "summary": "An external artifact (article, thread, spec, paper) ingested into this KB.",
+        "statuses": [
+          "unread",
+          "read",
+          "processed"
+        ]
+      },
+      "headings": [],
+      "excerpt": "source One page per ingested artifact. Frontmatter should carry url and date (of the artifact, not the ingest). Body: a distilled summary first, then a ## Raw or ## Key excerpts section with verbatim material — never edit inside that…",
+      "modified": "2026-07-18T15:03:25.269Z"
+    },
+    {
+      "path": "kb/templates/standard.md",
+      "title": "standard",
+      "type": "standard",
+      "summary": "A published spec or convention (demo type — remove via setup if unneeded).",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "standard",
+        "summary": "A published spec or convention (demo type — remove via setup if unneeded)."
+      },
+      "headings": [],
+      "excerpt": "standard For specs, formats, and conventions. Frontmatter should carry steward (who governs it), statusnote (draft/stable/adopted), and url. Body: what it specifies, adoption reality vs claims, and how it relates to neighboring standards (links).",
+      "modified": "2026-07-18T15:03:25.274Z"
+    },
+    {
+      "path": "kb/templates/tool.md",
+      "title": "tool",
+      "type": "tool",
+      "summary": "A product or system in the landscape (demo type — remove via setup if unneeded).",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "tool",
+        "summary": "A product or system in the landscape (demo type — remove via setup if unneeded)."
+      },
+      "headings": [],
+      "excerpt": "tool For products, platforms, and systems. Frontmatter should carry maker and url. Body: what it does, the idea it embodies (link the topic page), and its relationship to the standards it implements or ignores.",
+      "modified": "2026-07-18T15:03:25.276Z"
+    },
+    {
+      "path": "kb/templates/topic.md",
+      "title": "topic",
+      "type": "topic",
+      "summary": "A concept page synthesizing what this KB knows about one idea.",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "summary": "A concept page synthesizing what this KB knows about one idea."
+      },
+      "headings": [],
+      "excerpt": "topic The synthesis layer: written from multiple sources, linking to each. A topic page answers \"what do we know about X and how sure are we?\" — cite sources inline, surface disagreements between them as content. Update topic pages on…",
+      "modified": "2026-07-18T15:03:25.272Z"
+    },
+    {
+      "path": "kb/topics/agent-memory.md",
+      "title": "Agent memory vs. knowledge bases",
+      "type": "topic",
+      "summary": "Memory systems and KBs are merging into context repos; ChatGPT's opaque memory is the philosophical outlier.",
+      "tags": [
+        "memory",
+        "letta",
+        "mem0",
+        "convergence"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "title": "Agent memory vs. knowledge bases",
+        "summary": "Memory systems and KBs are merging into context repos; ChatGPT's opaque memory is the philosophical outlier.",
+        "source": "synthesized from linked sources, 2026-07-18",
+        "tags": [
+          "memory",
+          "letta",
+          "mem0",
+          "convergence"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Agent memory vs. knowledge bases Agent memory systems (what an agent remembers across sessions) and knowledge bases (curated, shared knowledge) started as separate product categories. The mid-2026 signal is that they are merging — into context repos. The clearest evidence…",
+      "modified": "2026-07-18T15:07:29.013Z"
+    },
+    {
+      "path": "kb/topics/context-engineering.md",
+      "title": "Context engineering",
+      "type": "topic",
+      "summary": "The discipline of filling the context window with the right information — the frame that displaced prompt engineering.",
+      "tags": [
+        "context-engineering",
+        "discipline",
+        "terminology"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "title": "Context engineering",
+        "summary": "The discipline of filling the context window with the right information — the frame that displaced prompt engineering.",
+        "source": "synthesized from linked sources, 2026-07-18",
+        "tags": [
+          "context-engineering",
+          "discipline",
+          "terminology"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Context engineering Context engineering is the umbrella discipline this KB's whole subject sits under. Karpathy's June 2025 framing named it: \"the delicate art and science of filling the context window with just the right information\" — and the term displaced…",
+      "modified": "2026-07-18T15:06:57.837Z"
+    },
+    {
+      "path": "kb/topics/context-repo.md",
+      "title": "The context repo",
+      "type": "topic",
+      "summary": "A durable, versioned knowledge substrate shared by humans and agents — the idea this KB surveys.",
+      "tags": [
+        "context-repo",
+        "decoupling",
+        "markdown",
+        "git"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "title": "The context repo",
+        "summary": "A durable, versioned knowledge substrate shared by humans and agents — the idea this KB surveys.",
+        "source": "synthesized from linked sources, 2026-07-18",
+        "tags": [
+          "context-repo",
+          "decoupling",
+          "markdown",
+          "git"
+        ]
+      },
+      "headings": [],
+      "excerpt": "The context repo A context repo is a version-controlled collection of markdown files that serves as the durable knowledge substrate for both humans and agents: readable without tooling, parseable without SDKs, diffable in git, portable across agent stacks. This repo's…",
+      "modified": "2026-07-18T15:06:47.957Z"
+    },
+    {
+      "path": "kb/topics/kb-discovery.md",
+      "title": "KB discovery and the kb-card gap",
+      "type": "topic",
+      "summary": "No adopted standard describes a knowledge base the way a model card describes a model — the gap kb-kit's kb-card targets.",
+      "tags": [
+        "kb-card",
+        "discovery",
+        "model-cards",
+        "governance"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "title": "KB discovery and the kb-card gap",
+        "summary": "No adopted standard describes a knowledge base the way a model card describes a model — the gap kb-kit's kb-card targets.",
+        "source": "synthesized from linked sources, 2026-07-18",
+        "tags": [
+          "kb-card",
+          "discovery",
+          "model-cards",
+          "governance"
+        ]
+      },
+      "headings": [],
+      "excerpt": "KB discovery and the kb-card gap How does an agent (or a team) find a knowledge base, and decide whether to trust it? As of mid-2026, no dedicated, widely adopted \"KB card\" standard exists. That is the open gap in…",
+      "modified": "2026-07-18T15:07:38.629Z"
+    },
+    {
+      "path": "kb/topics/llm-wiki-pattern.md",
+      "title": "The LLM-wiki pattern",
+      "type": "topic",
+      "summary": "Karpathy's three-layer, agent-maintained markdown wiki — ingest/query/lint as the loop, drift as the failure mode.",
+      "tags": [
+        "llm-wiki",
+        "karpathy",
+        "ingest",
+        "lint",
+        "drift"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "title": "The LLM-wiki pattern",
+        "summary": "Karpathy's three-layer, agent-maintained markdown wiki — ingest/query/lint as the loop, drift as the failure mode.",
+        "source": "synthesized from linked sources, 2026-07-18",
+        "tags": [
+          "llm-wiki",
+          "karpathy",
+          "ingest",
+          "lint",
+          "drift"
+        ]
+      },
+      "headings": [],
+      "excerpt": "The LLM-wiki pattern Karpathy's April 2026 gist described the pattern this kit implements: instead of RAG retrieval at query time, \"the LLM incrementally builds and maintains a persistent wiki\" — a \"persistent, compounding artifact\" sitting between you and the raw…",
+      "modified": "2026-07-18T15:07:07.777Z"
+    },
+    {
+      "path": "kb/topics/progressive-disclosure.md",
+      "title": "Progressive disclosure",
+      "type": "topic",
+      "summary": "The shared mechanism across skills, OKF, CLAUDE.md, and MCP — load near-zero tokens until knowledge is actually needed.",
+      "tags": [
+        "progressive-disclosure",
+        "tokens",
+        "indexes"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "title": "Progressive disclosure",
+        "summary": "The shared mechanism across skills, OKF, CLAUDE.md, and MCP — load near-zero tokens until knowledge is actually needed.",
+        "source": "synthesized from linked sources, 2026-07-18",
+        "tags": [
+          "progressive-disclosure",
+          "tokens",
+          "indexes"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Progressive disclosure Progressive disclosure is the one mechanism every surviving context standard shares: expose a cheap summary layer first, and load the expensive full content only when it is actually needed. It is the survey's second cross-cutting takeaway (after \"markdown-in-git…",
+      "modified": "2026-07-18T15:07:19.137Z"
+    },
+    {
+      "path": "docs/taxonomy.md",
+      "title": "What makes a great context repo",
+      "type": null,
+      "summary": null,
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {},
+      "headings": [
+        "1. Scope",
+        "2. Structure & navigability",
+        "3. Typing & consistency",
+        "4. Linkage",
+        "5. Provenance & trust",
+        "6. Freshness & maintenance",
+        "7. Agent-readiness",
+        "8. Human experience",
+        "9. Discoverability",
+        "10. Governance"
+      ],
+      "excerpt": "What makes a great context repo A taxonomy of quality for knowledge bases that humans and agents share. Use it three ways: as a checklist when building, as a rubric when linting, and as a vocabulary for the kb-card —…",
+      "modified": "2026-07-18T15:01:45.853Z"
+    },
+    {
+      "path": "docs/kb-card-spec.md",
+      "title": "kb-card: a model card for knowledge bases",
+      "type": null,
+      "summary": null,
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {},
+      "headings": [
+        "Design rules",
+        "Declared core (frontmatter)",
+        "Inferred traits (lint-owned)",
+        "Body (prose, optional but encouraged)",
+        "For crawlers",
+        "Progressive discovery"
+      ],
+      "excerpt": "kb-card: a model card for knowledge bases A kb-card is a single file, kb-card.md, at the root of a repository that contains a knowledge base. It does for KBs what a model card does for models: lets a human or…",
+      "modified": "2026-07-18T15:02:11.329Z"
+    },
+    {
+      "path": "kb-card.md",
+      "title": "kb-card — kb-kit demo knowledge base",
+      "type": "kb-card",
+      "summary": "A survey of the context-management and context-repo landscape (mid-2026), shipped as the working demo content of the kb-kit starter kit.",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "kb-card",
+        "kb_card_version": "0.1",
+        "name": "kb-kit demo knowledge base",
+        "description": "A survey of the context-management and context-repo landscape (mid-2026), shipped as the working demo content of the kb-kit starter kit.",
+        "scope": "Standards, tools, patterns, and ideas for giving AI agents and humans a shared, versioned knowledge substrate. Out of scope — general AI news, model benchmarks, anything not about context/knowledge management.",
+        "owner": "kb-kit maintainers",
+        "audience": [
+          "product managers",
+          "agent builders",
+          "knowledge engineers"
+        ],
+        "topics": [
+          "context-engineering",
+          "knowledge-bases",
+          "agents",
+          "okf",
+          "agents-md",
+          "skills",
+          "mcp",
+          "memory"
+        ],
+        "access": "public",
+        "license": "MIT",
+        "contact": "GitHub issues on this repository",
+        "entry_points": {
+          "bundle": "kb/_index.md",
+          "site": "https://dudgeon.github.io/kb-kit/knowledge-base.html",
+          "agents": "AGENTS.md"
+        },
+        "established": "2026-07-18"
+      },
+      "headings": [
+        "What this is",
+        "What's deliberately out of scope",
+        "How to contribute",
+        "Caveats"
+      ],
+      "excerpt": "kb-card — kb-kit demo knowledge base This card describes the demo KB that ships with kb-kit so the site, search, and skills have something real to work on. When you fork the kit, the setup skill replaces this card with…",
+      "modified": "2026-07-18T15:02:31.825Z"
+    }
+  ]
+}
