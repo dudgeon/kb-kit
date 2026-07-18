@@ -10,7 +10,18 @@ Started: 2026-07-18
 
 ## Q&A
 
-_(interview starting — Q1 asked 2026-07-18)_
+### Q1 — How deep should the KB structure go? (2026-07-18)
+
+Options offered: (a) middle path — OKF floor + starter type templates;
+(b) full brainkit-style graph; (c) OKF minimal.
+
+**A:** Start minimal and only build up as needed — KBs should "grow" their
+typing and opinionation via ingestion and linting. But the reference kit must
+ship a **setup/onboarding skill** that: deletes the reference KB content,
+interviews the new KB owner about their needs (the repo is designed to be
+forked), and adds types as needed. The infrastructure for typing should exist,
+but typing itself stays minimal; any typing added for illustrative purposes
+must be catalogued and removable via the setup skill.
 
 ## Research notes / decisions pending interview
 
