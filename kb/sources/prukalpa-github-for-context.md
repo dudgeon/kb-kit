@@ -6,16 +6,16 @@ source: https://contextandchaos.substack.com/p/the-github-for-context-doesnt-exi
 url: https://contextandchaos.substack.com/p/the-github-for-context-doesnt-exist
 date: 2026-07-16
 status: processed
-retrieval: secondary - reconstructed from search snippets and mirrors
+retrieval: primary - essay fetched and quotes verified 2026-07-18
 tags: [prukalpa, decoupling, governance, kb-card]
 ---
 
 # Prukalpa Sankar — "The GitHub for Context Doesn't Exist Yet"
 
-Essay by Prukalpa Sankar (Atlan co-CEO, "Context & Chaos" Substack), announced
-on X 2026-07-16. Retrieval caveat: x.com was egress-blocked during research;
-the essay was reconstructed via search snippets and mirrors — treat framing as
-faithful, exact wording as verbatim only where quoted below.
+Essay by Prukalpa Sankar (Atlan co-CEO, "Context & Chaos" Substack), published
+2026-07-16. Originally reconstructed from search snippets while the Substack
+was egress-blocked; the essay has since been fetched in full and the quotes
+below verified (and corrected) against the published text.
 
 Opens with an AI Engineer World's Fair 2026 anecdote — building an agent took
 ~5 minutes; giving it business context "took forever" — and a company that
@@ -34,12 +34,12 @@ context" is external validation of kb-card),
 
 ## Key excerpts
 
-- "The agent layer is becoming disposable, but a company's context is not —
-  yet most tools still bind the two together."
+- "The agent layer is becoming disposable. Your company's context is not."
 - "Performance is intelligence times context, and the relationship is
-  **multiplicative**."
-- SWE parallel: git gave code diffs; industrial software also needed review,
-  ownership, CI, dependency management, registries, observability. Today
-  "**context has diffs**" but not the rest.
-- The missing thing is an "operating layer treating context as durable
-  infrastructure," not agent-specific configuration.
+  multiplicative."
+- SWE parallel: git gave code diffs, but "git versions text, not meaning" —
+  industrial software also needed review, ownership, CI, dependency
+  management, registries, observability. "Context has the diffs. It does not
+  yet have a coherent version of the rest."
+- The missing thing is "the operating layer that lets a company treat context
+  as durable infrastructure rather than agent-specific configuration."

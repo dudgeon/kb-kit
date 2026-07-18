@@ -70,6 +70,10 @@ the two layers relate?
 Unresolved: Slack is the hard case — no stable URI worth pointing at, and
 the knowledge is in the *aggregate*, not any message. Distill-on-decision
 ("when a thread concludes, someone says *ingest this*") may beat any crawler.
+One production answer now exists: [Cerebras](../sources/cerebras-kb-blog.md)
+continuously upserts whole threads and has an LLM distill each into a
+structured question/summary/resolution artifact — the artifact is embedded,
+not the transcript, and "accuracy increased significantly."
 
 ## Also on the watchlist
 

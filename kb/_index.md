@@ -53,7 +53,7 @@ here: [AGENTS.md](../AGENTS.md).
 - [Google OKF SPEC.md v0.1](./sources/okf-spec.md) - the knowledge-bundle spec, 2026-06-12.
 - [Prukalpa — "The GitHub for Context Doesn't Exist Yet"](./sources/prukalpa-github-for-context.md) - the decoupling manifesto, 2026-07-16.
 - [Introducing OpenWiki](./sources/openwiki-announcement.md) - Brace Sproul's launch announcement, 2026-07-01.
-- [Cerebras — "How We Built Our Knowledge Base"](./sources/cerebras-kb-blog.md) - company-scale KB account; blog not retrievable, details secondhand.
+- [Cerebras — "How We Built Our Knowledge Base"](./sources/cerebras-kb-blog.md) - first-party company-scale KB account, 2026-07-15; 15k+ queries/day.
 - [Anthropic — "Effective context engineering"](./sources/anthropic-effective-context-engineering.md) - context rot and the four techniques, 2025-09-29.
 
 ## Decisions

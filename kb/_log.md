@@ -10,6 +10,15 @@ naming the operation (`ingest | lint | setup | edit`) and the pages touched.
 
 ## 2026-07-18
 
+- ingest | Re-fetched the three egress-blocked sources from an unrestricted
+  network. Cerebras blog read in full: corrected the secondhand stack claim
+  (Postgres/pgvector + FTS + RRF, not SQLite FTS5), confirmed 15,000+ queries
+  **per day**, corrected date to 2026-07-15; Prukalpa essay quotes verified
+  and corrected to exact wording; Karpathy gist quotes byte-verified. All
+  three `retrieval:` flags now primary. Pages touched:
+  sources/cerebras-kb-blog.md, sources/prukalpa-github-for-context.md,
+  sources/karpathy-llm-wiki-gist.md, sources/_index.md, _index.md,
+  topics/context-repo.md, topics/open-questions.md.
 - ingest | Open questions topic added from maintainer discussion (multiplayer
   lint/governance, ossifying authority, volatile linked sources) — pages
   touched: topics/open-questions.md, topics/_index.md, _index.md.

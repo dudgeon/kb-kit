@@ -6,7 +6,7 @@ source: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
 url: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
 date: 2026-04
 status: processed
-retrieval: primary via summarizing fetch - quotes high-fidelity but not byte-guaranteed (raw file 403)
+retrieval: primary - all quotes byte-verified against the raw gist 2026-07-18
 tags: [karpathy, llm-wiki, gist]
 ---
 
@@ -39,7 +39,7 @@ formalizes it), [obsidian](../tools/obsidian.md).
 - Layer 3, the schema: "a document (e.g. CLAUDE.md for Claude Code or
   AGENTS.md for Codex) that tells the LLM how the wiki is structured, what the
   conventions are, and what workflows to follow."
-- Ingest: "a single source might touch 10-15 wiki pages."
+- Ingest: "A single source might touch 10-15 wiki pages."
 - "The tedious part of maintaining a knowledge base is not the reading or the
   thinking — it's the bookkeeping... LLMs don't get bored, don't forget to
   update a cross-reference, and can touch 15 files in one pass."

@@ -33,7 +33,9 @@ The pattern converged from several directions in 2025–2026:
   [agent memory](./agent-memory.md)).
 - [OpenWiki](../tools/openwiki.md) shipped a reference implementation emitting
   OKF bundles; [Cerebras](../sources/cerebras-kb-blog.md) published a
-  first-party account of an internal agent-queried company KB.
+  first-party account of an internal company KB serving 15,000+ queries a day
+  to humans, automations, and agents (Postgres-based retrieval over live
+  sources — the RAG-shaped counterpoint to the wiki-shaped pattern).
 
 The mid-2026 takeaway across the survey: markdown-files-in-git won at every
 layer — instructions, skills, site maps, bundles, wikis, even memory. What is
