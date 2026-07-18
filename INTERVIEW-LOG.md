@@ -46,3 +46,13 @@ with per-tool discovery shims like .claude/skills as needed).
   - No adopted "KB card" standard exists (mid-2026) — kb-card is a real gap;
     nearest analogs: OKF frontmatter, SKILL.md metadata, MCP registry
     server.json, model/data cards.
+
+### Q3 — Repo layout: where does the knowledge live? (2026-07-18)
+
+Options: (a) `kb/` subfolder; (b) `knowledge/` (brainkit match); (c) repo root
+as bundle.
+
+**A:** (a) — `kb/` subfolder is the bundle root (`kb/index.md` carries
+okf_version); kit machinery (site, README, kb-card.md, skills, actions) at repo
+root. Process note: maintainer wants AskUserQuestion used for this type of
+multiple-choice question going forward.
