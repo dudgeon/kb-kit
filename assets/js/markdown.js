@@ -202,6 +202,13 @@ export function render(src, opts = {}) {
     // --- Blank line: block separator -------------------------------
     if (line.trim() === "") { i++; continue; }
 
+    // --- HTML comment line: structural marker, not content ---------
+    // Lines that are entirely a comment (e.g. the kb-card:inferred
+    // markers) are skipped rather than escaped into visible text.
+    // Comments inside code fences are unaffected — the fence branch
+    // below consumes its lines before this rule ever sees them.
+    if (/^\s*<!--.*-->\s*$/.test(line)) { i++; continue; }
+
     // --- Fenced code block: ```lang … ``` --------------------------
     const fence = line.match(/^```(\S*)\s*$/);
     if (fence) {

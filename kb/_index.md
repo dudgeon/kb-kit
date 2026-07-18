@@ -18,7 +18,7 @@ here: [AGENTS.md](../AGENTS.md).
 - [KB discovery and the kb-card gap](./topics/kb-discovery.md) - the open gap kb-kit targets.
 - [Open questions](./topics/open-questions.md) - the frontier: multiplayer governance, ossified authority, volatile sources.
 
-## Topics
+## [Topics](./topics/_index.md)
 
 - [The context repo](./topics/context-repo.md) - the central concept and the decoupling thesis (agents disposable, context durable).
 - [Context engineering](./topics/context-engineering.md) - the discipline: Karpathy's framing, Anthropic's techniques, LangChain's write/select/compress/isolate.
@@ -28,7 +28,7 @@ here: [AGENTS.md](../AGENTS.md).
 - [KB discovery and the kb-card gap](./topics/kb-discovery.md) - no adopted KB-card standard; model-card precedents; what kb-kit proposes.
 - [Open questions](./topics/open-questions.md) - who lints in multiplayer mode, how authority ossifies, and how repos coexist with Notion/Docs/Slack.
 
-## Standards
+## [Standards](./standards/_index.md)
 
 - [Open Knowledge Format (OKF)](./standards/open-knowledge-format.md) - Google's v0.1 knowledge-bundle spec; this KB's format anchor.
 - [AGENTS.md](./standards/agents-md.md) - the de facto repo-root agent instruction file; ~30 tools, 60k+ repos.
@@ -37,7 +37,7 @@ here: [AGENTS.md](../AGENTS.md).
 - [MCP — Resources and the Registry](./standards/mcp.md) - context delivery over protocol, and the nearest existing discovery standard.
 - [CLAUDE.md](./standards/claude-md.md) - Anthropic's layered memory hierarchy; coexists with AGENTS.md.
 
-## Tools & systems
+## [Tools & systems](./tools/_index.md)
 
 - [OpenWiki](./tools/openwiki.md) - LangChain's agent-maintained wiki CLI; first major OKF producer.
 - [Letta](./tools/letta.md) - MemGPT lineage; rebuilt around git-based context repositories in Feb 2026.
@@ -47,7 +47,7 @@ here: [AGENTS.md](../AGENTS.md).
 - [brainkit](./tools/brainkit.md) - a forkable second-brain kit whose knowledge folder is a valid OKF vault.
 - [duo](./tools/duo.md) - macOS human+agent workspace defining the OKF-aligned vault flavor this kit borrows from.
 
-## Sources
+## [Sources](./sources/_index.md)
 
 - [Karpathy — "LLM Wiki" gist](./sources/karpathy-llm-wiki-gist.md) - the April 2026 idea file the pattern traces to.
 - [Google OKF SPEC.md v0.1](./sources/okf-spec.md) - the knowledge-bundle spec, 2026-06-12.
@@ -56,7 +56,7 @@ here: [AGENTS.md](../AGENTS.md).
 - [Cerebras — "How We Built Our Knowledge Base"](./sources/cerebras-kb-blog.md) - first-party company-scale KB account, 2026-07-15; 15k+ queries/day.
 - [Anthropic — "Effective context engineering"](./sources/anthropic-effective-context-engineering.md) - context rot and the four techniques, 2025-09-29.
 
-## Decisions
+## [Decisions](./decisions/_index.md)
 
 - [Relative markdown links only](./decisions/relative-markdown-links.md) - why not wikilinks, why not OKF's absolute form.
 - [_index.md and _log.md](./decisions/underscore-index-files.md) - why the underscore deviation from OKF's reserved names.

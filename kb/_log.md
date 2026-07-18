@@ -10,6 +10,14 @@ naming the operation (`ingest | lint | setup | edit`) and the pages touched.
 
 ## 2026-07-18
 
+- lint | First full lint pass. Auto-fixed: root `_index.md` section headers
+  now link to the five folder indexes (they were unreachable from the front
+  door). Verified: 29 content pages, 241 internal links, 0 orphans, 0 broken
+  links beyond the two deliberate not-yet-written targets, every page ≤4 hops
+  from the root. kb-card inferred block populated for the first time.
+  Proposed (not applied): exclude `kb/templates/` files from the site's
+  type-listing pages — each template currently double-counts as a page of its
+  own type. Pages touched: _index.md, ../kb-card.md.
 - ingest | Re-fetched the three egress-blocked sources from an unrestricted
   network. Cerebras blog read in full: corrected the secondhand stack claim
   (Postgres/pgvector + FTS + RRF, not SQLite FTS5), confirmed 15,000+ queries

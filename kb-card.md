@@ -47,6 +47,34 @@ This landscape moves fast; pages carry `source` provenance and dates — trust
 the dates, not the tense of the prose.
 
 <!-- BEGIN kb-card:inferred -->
-_Not yet linted. Run the [lint skill](./skills/lint/SKILL.md) to populate
-inferred traits (page/type census, link health, freshness, taxonomy grades)._
+
+```yaml
+inferred_at: 2026-07-18
+pages: 29            # content pages (excludes indexes, log, templates)
+types:
+  topic: 7
+  tool: 7
+  source: 6
+  standard: 6
+  decision: 3
+links:
+  internal: 241
+  broken: 2          # both deliberate "not yet written" targets
+  orphan_pages: 0
+freshness:
+  last_ingest: 2026-07-18
+  log_entries_90d: 4
+taxonomy_grades:     # per docs/taxonomy.md; graded from lint evidence
+  scope: good        # declared on card; no neighboring KBs to negotiate with yet
+  structure: good    # one-screen indexes, all pages ≤4 hops from root (great needs ≤3)
+  typing: good       # every page typed + templated; census too young to call stable
+  linkage: good      # all links resolve or are deliberate gaps; prose asserts relations
+  provenance: good   # source floor + retrieval flags; circular-evidence check is manual
+  freshness: good    # log heartbeat and propagating ingests; lint not yet scheduled
+  agent_readiness: good  # AGENTS.md states workflows concretely; co-evolution unproven
+  human_experience: good # browsable site with search and GitHub affordances
+  discoverability: great # this card, refreshed, at a stable root path
+  governance: good   # owner + contribution paths; skills propose rather than mutate
+```
+
 <!-- END kb-card:inferred -->
