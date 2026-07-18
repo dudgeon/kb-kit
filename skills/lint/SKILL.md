@@ -1,0 +1,48 @@
+---
+name: lint
+description: Health-check this knowledge base — broken links, orphans, stale claims, frontmatter violations, index drift — propose fixes, and refresh the inferred section of kb-card.md. Use when asked to lint, check, clean up, or grade the KB, or on a maintenance schedule.
+---
+
+# lint — keep the KB compounding instead of rotting
+
+Lint **proposes**; it fixes mechanical problems freely but never deletes or
+restructures content without approval. Conventions: root
+[AGENTS.md](../../AGENTS.md); grading rubric: [docs/taxonomy.md](../../docs/taxonomy.md).
+
+## Pass 1 — mechanical (fix directly)
+
+- Frontmatter floor: every `kb/**/*.md` (except `_index.md`/`_log.md`) has
+  parseable YAML with `type` matching a template; flag missing
+  `summary`/`source`.
+- Links: find broken relative links (typos/moved files — fix; genuinely
+  unwritten targets — leave, they're intentional); find any `[[wikilinks]]`
+  or absolute `/paths` and convert to relative markdown.
+- Indexes: every page reachable from `kb/_index.md` within a few hops; every
+  index entry points at a real file; indexes ≈ one screen.
+
+## Pass 2 — editorial (propose, don't apply)
+
+- **Orphans** — pages nothing links to: propose where they belong.
+- **Drift** — pages that should mention each other but don't; cross-references
+  a past ingest should have updated.
+- **Contradictions & staleness** — claims newer sources supersede; undated
+  time-sensitive claims ("currently", "recently") — propose dating them.
+- **Type pressure** — clusters of `note` pages sharing a shape (propose a new
+  type) or a type with one lonely page (propose folding it).
+- Present findings as a short report: what was auto-fixed, what's proposed,
+  what questions the KB should ingest answers to next.
+
+## Pass 3 — refresh the kb-card
+
+Rewrite ONLY the block between `<!-- BEGIN kb-card:inferred -->` and
+`<!-- END kb-card:inferred -->` in `kb-card.md` (never the declared
+frontmatter): a fenced yaml block with `inferred_at` (today), `pages`, `types`
+census, `links` {internal, broken, orphan_pages}, `freshness` {last_ingest,
+log_entries_90d}, and `taxonomy_grades` — grade each taxonomy dimension
+`functional | good | great` against the rubric's criteria, honestly; grades
+must be defensible from the pass-1/2 evidence.
+
+## Close out
+
+Append to `kb/_log.md`: `lint | summary of fixes/proposals`. If substantial
+findings, suggest the owner schedule lint recurringly (e.g. monthly).
