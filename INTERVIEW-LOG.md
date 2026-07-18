@@ -74,3 +74,20 @@ auto-computed stats, keep minimal.
 additional traits (e.g. typed-entity census, taxonomy assessment) — and these
 optional traits must be **inferred from linting analysis, not declared by the
 user**. (So: humans author the small descriptive core; lint computes the rest.)
+
+### Q6 — Pages site architecture (2026-07-18)
+
+Options: (a) client-side app + Action-built JSON; (b) full static pre-render;
+(c) hybrid.
+
+**A:** (a), with specifics:
+- Required site elements: search-forward home page; the customer-success/
+  educational-oriented index root (marketing page); a search results page; an
+  entity-class (type) overview page; and a note page template.
+- Explicitly NOT an SSG — no html twin per md file. Navigating to a kb md
+  renders its contents into the html template client-side, with affordances:
+  button/link to the canonical md on GitHub, button to open an issue / draft a
+  PR relative to that page, etc.
+- The html files must be really well documented and agent-friendly, so a user
+  (and their agent) can easily imagine what the page could become and customize
+  it without breaking things.
