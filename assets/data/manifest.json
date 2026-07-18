@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-18T18:40:46.910Z",
+  "generated_at": "2026-07-18T18:41:04.526Z",
   "repo": {
     "kb_dir": "kb",
     "default_branch": "main"
@@ -244,6 +244,7 @@
         "url": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
         "date": "2026-04",
         "status": "processed",
+        "retrieval": "primary via summarizing fetch - quotes high-fidelity but not byte-guaranteed (raw file 403)",
         "tags": [
           "karpathy",
           "llm-wiki",
@@ -254,7 +255,7 @@
         "Key excerpts"
       ],
       "excerpt": "Karpathy — \"LLM Wiki\" gist An \"idea file\" (llm-wiki.md, shared April 2026; ~5k+ stars and 40+ comments as of 2026-07) meant to be pasted to your own agent. Core move: replace per-query RAG with a persistent wiki the LLM builds…",
-      "modified": "2026-07-18T15:10:03.761Z"
+      "modified": "2026-07-18T18:41:04.462Z"
     },
     {
       "path": "kb/sources/okf-spec.md",

@@ -6,6 +6,7 @@ source: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
 url: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
 date: 2026-04
 status: processed
+retrieval: primary via summarizing fetch - quotes high-fidelity but not byte-guaranteed (raw file 403)
 tags: [karpathy, llm-wiki, gist]
 ---
 
