@@ -60,13 +60,20 @@ record them in `retrieval:` frontmatter. Do not repeat this.
 
 ## Suggested next tasks (roughly in order)
 
-1. **Browser-verify the site** (real Chrome/Safari, then Pages after merging
-   to main): all four routes, pills, GitHub affordance links (config.js
-   derives owner/repo from `*.github.io/<repo>`; CONFIG fallback is at top of
-   `assets/js/config.js`), mobile widths, dark mode.
-2. **Run the lint skill** end-to-end; populates the kb-card inferred block —
-   dogfoods the loop and will surface real nits.
-3. **Re-fetch the three blocked sources** (above).
+> **Update 2026-07-18 (local agent):** tasks 1–3 and 6 are DONE — site
+> browser-verified (all routes, search, dark mode, mobile, 404s; two site
+> fixes landed: root index now links folder indexes, renderer skips
+> comment-only HTML lines), lint run (kb-card inferred block populated),
+> all three sources re-fetched and corrected (Cerebras stack claim was
+> wrong in secondary coverage — see kb/_log.md), setup-skill removal list
+> verified and its do-not-touch list extended. Still open: Pages
+> deployment check after merge to main; tasks 4 (needs maintainer
+> approval) and 5 (Obsidian, needs desktop app).
+
+1. ~~**Browser-verify the site**~~ DONE (locally; re-check on the live
+   Pages URL after merging to main).
+2. ~~**Run the lint skill**~~ DONE.
+3. ~~**Re-fetch the three blocked sources**~~ DONE.
 4. **Scheduled mechanical-lint Action** — proposed to maintainer (OpenWiki's
    daily-PR pattern), NOT yet approved; maintainer left it "open question vs
    build" — ask before building.

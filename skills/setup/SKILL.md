@@ -38,10 +38,10 @@ landscape KB in a branch or an `archive/` folder if they find it useful):
 them): `standard`, `tool`. **Core types** (keep unless asked): `note`,
 `source`, `decision`, `topic`.
 
-Do NOT touch: `AGENTS.md`, `skills/`, `docs/`, the site files (`index.html`,
-`knowledge-base.html`, `assets/`, `.github/`) — those are machinery, not
-content. `meta/`, if present, is upstream-development residue: offer to
-delete it.
+Do NOT touch: `AGENTS.md`, `skills/`, `.claude/` (per-tool skill symlinks),
+`docs/`, `scripts/`, the site files (`index.html`, `knowledge-base.html`,
+`assets/`, `.github/`) — those are machinery, not content. `meta/`, if
+present, is upstream-development residue: offer to delete it.
 
 ## Step 3 — fit the types
 
