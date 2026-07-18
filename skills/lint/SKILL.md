@@ -6,8 +6,13 @@ description: Health-check this knowledge base — broken links, orphans, stale c
 # lint — keep the KB compounding instead of rotting
 
 Lint **proposes**; it fixes mechanical problems freely but never deletes or
-restructures content without approval. Conventions: root
-[AGENTS.md](../../AGENTS.md); grading rubric: [docs/taxonomy.md](../../docs/taxonomy.md).
+restructures content without approval. Its write scope is `kb/` plus exactly
+one file outside it: the marked inferred block of `kb-card.md` (pass 3).
+Findings about anything else outside `kb/` — docs drift, structural issues,
+the card's declared core — go in the report as proposals; changing non-kb
+content is a governed process (see "The agent-managed boundary" in
+AGENTS.md). Conventions: root [AGENTS.md](../../AGENTS.md); grading rubric:
+[docs/taxonomy.md](../../docs/taxonomy.md).
 
 ## Pass 1 — mechanical (fix directly)
 

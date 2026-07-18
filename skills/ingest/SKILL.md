@@ -6,7 +6,11 @@ description: Add a source or fact to this knowledge base and propagate it — wr
 # ingest — one source in, many pages touched
 
 Read the root [AGENTS.md](../../AGENTS.md) conventions first. The unit of
-work is: **capture verbatim → distill → propagate → record.**
+work is: **capture verbatim → distill → propagate → record.** Ingest writes
+only inside `kb/`; if a source implies a change outside it (docs, kb-card
+declared core, repo structure), *propose* that to the owner — non-kb content
+is authoritative and changes to it are governed (see "The agent-managed
+boundary" in AGENTS.md).
 
 0. **Fetch honestly.** If you cannot retrieve the source itself — paywall,
    network block, dead link — and are working from snippets, mirrors, or

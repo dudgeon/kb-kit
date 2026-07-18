@@ -121,6 +121,15 @@ plus demo decision/source entities, index + log).
 3. Marketing tone approved: educational, PM-first, vendor-neutral,
    fork-in-minutes CTA, links into the live demo KB.
 
+### Q9 — Agent-managed boundary (2026-07-18, maintainer directive, unprompted)
+
+**A:** The `kb/` folder is agent-managed. Content at the repo root and in
+non-`kb/` subfolders is **not** agent-managed, but **should be included in
+query scope**. Linting and ingest may *propose* changes to the non-kb
+structure, but this is a governed process — non-kb content is assumed to be
+authoritative and less volatile. (Encoded in ADR 007, AGENTS.md, and the
+query/ingest/lint skills.)
+
 ### Interview status
 
 Core decisions locked; build phase begins. Remaining choices (folder

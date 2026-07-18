@@ -8,6 +8,9 @@ description: Answer a question from this knowledge base with citations, navigati
 1. **Navigate, don't glob.** Read `kb/_index.md` first; follow links (folder
    indexes → pages) to what's relevant. Only fall back to grep when the
    indexes fail you — and if they do, that's an index gap worth reporting.
+   Query scope is wider than `kb/`: repo-root files (`kb-card.md`, README,
+   `AGENTS.md`) and `docs/` are human-maintained and authoritative — use and
+   cite them too. They are read-only for this skill.
 2. **Answer with citations.** Every substantive claim links the KB page it
    came from; where the page cites an external source, surface that too.
    Distinguish clearly between what the KB says and what you know from

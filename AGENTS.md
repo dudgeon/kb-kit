@@ -17,6 +17,20 @@ files about *building the kit itself* and is not part of any forked KB.
 If you are in a fresh fork that still contains the demo content, run the
 [setup skill](./skills/setup/SKILL.md) first.
 
+## The agent-managed boundary
+
+Write scope and query scope are different:
+
+- **`kb/` is agent-managed.** The workflows below write there directly
+  (within the Conduct rules — destructive changes are still proposed first).
+- **Everything outside `kb/` is not agent-managed, but IS in query scope.**
+  Answers may draw on and cite `docs/`, `kb-card.md`, this file, the README —
+  they are authoritative, human-maintained, and less volatile than the KB.
+- **Changes to non-kb content are a governed process.** Lint and ingest may
+  *propose* them (an issue, a PR, or an explicit ask in-session), never apply
+  them unilaterally. The one standing exception: lint refreshes the marked
+  inferred block of `kb-card.md`, and nothing else outside `kb/`.
+
 ## Layout
 
 - `kb/` — the knowledge bundle. This is the only place knowledge lives.
