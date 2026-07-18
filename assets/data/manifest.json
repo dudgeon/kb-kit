@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-07-18T15:18:23.080Z",
+  "generated_at": "2026-07-18T18:34:23.227Z",
   "repo": {
     "kb_dir": "kb",
     "default_branch": "main"
   },
-  "page_count": 46,
+  "page_count": 47,
   "warning_count": 0,
   "pages": [
     {
@@ -29,7 +29,7 @@
         "Templates"
       ],
       "excerpt": "Knowledge base A survey of the context-management and context-repo landscape (mid-2026). What this KB is and who owns it: kb-card.md. How to work here: AGENTS.md. Start here The context repo - the idea this whole KB (and kit) is about:…",
-      "modified": "2026-07-18T15:12:10.173Z"
+      "modified": "2026-07-18T18:34:22.851Z"
     },
     {
       "path": "kb/_log.md",
@@ -45,8 +45,8 @@
       "headings": [
         "2026-07-18"
       ],
-      "excerpt": "Change log Newest first. Entry format: ## YYYY-MM-DD heading, bulleted changes, each naming the operation (ingest lint setup edit) and the pages touched. 2026-07-18 ingest Initial content build from the mid-2026 landscape research: 6 topic pages (topics/), 6 standard pages…",
-      "modified": "2026-07-18T15:12:12.613Z"
+      "excerpt": "Change log Newest first. Entry format: ## YYYY-MM-DD heading, bulleted changes, each naming the operation (ingest lint setup edit) and the pages touched. 2026-07-18 ingest Open questions topic added from maintainer discussion (multiplayer lint/governance, ossifying authority, volatile linked sources) —…",
+      "modified": "2026-07-18T18:34:22.852Z"
     },
     {
       "path": "kb/decisions/_index.md",
@@ -895,7 +895,7 @@
       },
       "headings": [],
       "excerpt": "Topics Synthesis pages — what this KB knows about each idea, cited to sources. The context repo - the central concept: durable, versioned knowledge shared by humans and agents. Context engineering - the discipline; Karpathy's framing, Anthropic's techniques, LangChain's taxonomy.…",
-      "modified": "2026-07-18T15:11:36.237Z"
+      "modified": "2026-07-18T18:34:22.851Z"
     },
     {
       "path": "kb/topics/agent-memory.md",
@@ -1036,6 +1036,38 @@
       "headings": [],
       "excerpt": "The LLM-wiki pattern Karpathy's April 2026 gist described the pattern this kit implements: instead of RAG retrieval at query time, \"the LLM incrementally builds and maintains a persistent wiki\" — a \"persistent, compounding artifact\" sitting between you and the raw…",
       "modified": "2026-07-18T15:07:07.777Z"
+    },
+    {
+      "path": "kb/topics/open-questions.md",
+      "title": "Open questions worth exploring",
+      "type": "topic",
+      "summary": "Unsolved questions in the context-repo space worth further exploration — multiplayer governance, ossifying authority, and living with volatile sources.",
+      "tags": [
+        "governance",
+        "volatility",
+        "multiplayer",
+        "open-questions"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "summary": "Unsolved questions in the context-repo space worth further exploration — multiplayer governance, ossifying authority, and living with volatile sources.",
+        "source": "synthesized from linked sources and maintainer questions, 2026-07-18",
+        "tags": [
+          "governance",
+          "volatility",
+          "multiplayer",
+          "open-questions"
+        ]
+      },
+      "headings": [
+        "Multiplayer mode: who lints?",
+        "Authority: how do you ossify content, and where does it live?",
+        "Volatility: version-controlled distillation over living sources",
+        "Also on the watchlist"
+      ],
+      "excerpt": "Open questions worth exploring The context repo pattern is young; single-player mode is basically solved and everything past it is frontier. These are the questions this KB is tracking — each could become its own topic page as answers emerge.…",
+      "modified": "2026-07-18T18:34:06.700Z"
     },
     {
       "path": "kb/topics/progressive-disclosure.md",

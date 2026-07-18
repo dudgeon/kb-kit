@@ -10,6 +10,9 @@ naming the operation (`ingest | lint | setup | edit`) and the pages touched.
 
 ## 2026-07-18
 
+- ingest | Open questions topic added from maintainer discussion (multiplayer
+  lint/governance, ossifying authority, volatile linked sources) — pages
+  touched: topics/open-questions.md, topics/_index.md, _index.md.
 - ingest | Initial content build from the mid-2026 landscape research: 6 topic
   pages (`topics/`), 6 standard pages (`standards/`), 7 tool pages (`tools/`),
   6 source pages (`sources/`), 3 decision pages (`decisions/`), plus an

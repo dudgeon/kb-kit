@@ -13,3 +13,4 @@ Synthesis pages — what this KB knows about each idea, cited to sources.
 - [Progressive disclosure](./progressive-disclosure.md) - the token-frugal mechanism every surviving standard shares.
 - [Agent memory vs. knowledge bases](./agent-memory.md) - the merging of memory systems and KBs; the opaque outlier.
 - [KB discovery and the kb-card gap](./kb-discovery.md) - no adopted KB-card standard exists; what kb-kit proposes.
+- [Open questions](./open-questions.md) - the frontier: multiplayer lint, ossifying authority, volatile sources.

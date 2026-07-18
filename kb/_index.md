@@ -16,6 +16,7 @@ here: [AGENTS.md](../AGENTS.md).
 
 - [The context repo](./topics/context-repo.md) - the idea this whole KB (and kit) is about: durable, versioned knowledge shared by humans and agents.
 - [KB discovery and the kb-card gap](./topics/kb-discovery.md) - the open gap kb-kit targets.
+- [Open questions](./topics/open-questions.md) - the frontier: multiplayer governance, ossified authority, volatile sources.
 
 ## Topics
 
@@ -25,6 +26,7 @@ here: [AGENTS.md](../AGENTS.md).
 - [Progressive disclosure](./topics/progressive-disclosure.md) - the token-frugal mechanism shared across skills, OKF, CLAUDE.md, and MCP.
 - [Agent memory vs. knowledge bases](./topics/agent-memory.md) - memory systems and KBs merging into context repos; ChatGPT as the opaque outlier.
 - [KB discovery and the kb-card gap](./topics/kb-discovery.md) - no adopted KB-card standard; model-card precedents; what kb-kit proposes.
+- [Open questions](./topics/open-questions.md) - who lints in multiplayer mode, how authority ossifies, and how repos coexist with Notion/Docs/Slack.
 
 ## Standards
 
