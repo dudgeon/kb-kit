@@ -27,10 +27,19 @@ knowledge-base.html + assets/js/*.js        ← ONE app shell, hash-routed
 client-side render (assets/js/markdown.js) → what the visitor sees
 ```
 
-Key consequence: **pushing markdown is the whole publish flow.** The GitHub
-Action ([.github/workflows/pages.yml](../.github/workflows/pages.yml))
-rebuilds the JSON and redeploys the entire repo as the Pages artifact, so
-the app can fetch any `.md` file by its repo-relative path.
+Key consequence: **the branch is the site.** Pages deploys straight from
+`main` (Settings → Pages → Source: "Deploy from a branch" → `main`,
+`/ (root)`) — no deploy workflow, by design: the kit targets environments
+where Actions can't publish Pages. Two things make this work:
+
+- the root `.nojekyll` file disables Jekyll processing, which would
+  otherwise silently exclude every underscore-prefixed path (`kb/_index.md`,
+  `kb/_log.md`, the folder indexes) from the deployed site — never delete it;
+- `assets/data/*.json` are committed artifacts: run
+  `node scripts/build-index.mjs` after editing `kb/` and commit the result.
+  A CI backstop ([.github/workflows/build-index.yml](../.github/workflows/build-index.yml))
+  rebuilds and commits them on `main` if someone forgets (e.g. web-UI edits),
+  but the site does not depend on it.
 
 ### The pieces
 
@@ -117,8 +126,10 @@ These are load-bearing architectural decisions, not preferences:
   the repo root and fetch `assets/…`, `kb/…`, `docs/…` relatively, so the
   site works at `https://owner.github.io/repo/`, on custom domains, and on
   localhost without a base-path config.
-- **The Pages artifact is the whole repo.** The workflow uploads the repo
-  root so raw markdown is fetchable. Don't narrow it to a `dist/`.
+- **The Pages artifact is the whole repo.** The branch root is served
+  directly so raw markdown is fetchable. Don't move the site into a `dist/`
+  or `docs/`-folder deployment — the app fetches `kb/**/*.md` by
+  repo-relative path.
 - **Raw HTML in markdown stays escaped.** `markdown.js` escapes everything;
   relaxing that means any KB page can inject script into your site (the
   tradeoff is documented in that file's header).
@@ -128,9 +139,11 @@ These are load-bearing architectural decisions, not preferences:
 ## Troubleshooting
 
 - **"The index hasn't been built yet"** — `assets/data/manifest.json` is
-  missing. Locally: run `node scripts/build-index.mjs`. On GitHub: push to
-  `main` or run the workflow from the Actions tab, and check that
-  Settings → Pages → Source is set to **GitHub Actions**.
+  missing or stale. Run `node scripts/build-index.mjs` and commit the JSON
+  (or trigger the build-index workflow from the Actions tab). Check that
+  Settings → Pages → Source is **Deploy from a branch** (`main`, `/ (root)`).
+- **Underscore files 404 on the deployed site but work locally** — the
+  `.nojekyll` file was deleted; restore it (empty file at the repo root).
 - **Page 404s in the viewer but exists in the repo** — the deployed
   artifact predates the file; push again. Locally, confirm the server root
   is the repo root.

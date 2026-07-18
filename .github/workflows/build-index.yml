@@ -1,0 +1,88 @@
+# build-index.yml — CI backstop that keeps the committed search index fresh
+# ==========================================================================
+#
+# WHAT THIS IS
+#   kb-kit deploys GitHub Pages FROM A BRANCH (Settings → Pages → Source:
+#   "Deploy from a branch" → main, "/ (root)") — NOT from Actions. That is a
+#   firm requirement: the kit targets environments (e.g. strict GHEC configs)
+#   where Actions may be used for CI but never as the Pages publisher.
+#   See meta/adr/008-branch-deployed-pages.md (upstream repo only).
+#
+#   Because the branch itself is the deployed artifact, the site's data files
+#   (assets/data/manifest.json + search-index.json) must be COMMITTED, not
+#   built at deploy time. Whoever edits kb/ should run
+#       node scripts/build-index.mjs
+#   and commit the result. This workflow is only a safety net: on every push
+#   to main it rebuilds the JSON and, if what's committed has drifted (e.g.
+#   someone edited a page in the GitHub web UI), commits the fresh files back.
+#
+#   If Actions are disabled in your org, nothing breaks — the site simply
+#   serves whatever JSON was last committed. This workflow is optional
+#   convenience, not a dependency.
+#
+#   The root .nojekyll file is load-bearing: without it, Pages' Jekyll
+#   processing EXCLUDES every underscore-prefixed path — which would silently
+#   drop kb/_index.md, kb/_log.md, and every folder index from the site.
+#   Never delete it.
+#
+# FOR FORKS
+#   Nothing to edit here. After forking, enable Pages once:
+#     Settings → Pages → Build and deployment → Source: "Deploy from a branch"
+#     → Branch: main, folder: / (root)
+#   Your site appears at https://<owner>.github.io/<repo>/.
+#
+# SAFE TO CUSTOMIZE
+#   - Add lint/link-check steps after the build step.
+#   - Change the branch filter if your default branch isn't `main`.
+#
+# WILL BREAK THINGS
+#   - Adding npm install steps: build-index.mjs is zero-dependency by design.
+#   - Making this workflow deploy Pages: forks' environments can't (ADR 008).
+
+name: Rebuild KB index if stale
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# contents: write lets the workflow commit regenerated JSON back to main.
+permissions:
+  contents: write
+
+# One rebuild at a time; a superseded run's commit would just be re-checked.
+concurrency:
+  group: build-index
+  cancel-in-progress: false
+
+jobs:
+  build-index:
+    runs-on: ubuntu-latest
+    # The auto-commit below is authored by the Actions bot; this guard stops
+    # that commit from triggering an infinite loop of runs.
+    if: github.actor != 'github-actions[bot]'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # build-index.mjs needs Node >= 18 and nothing else — no npm install.
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Rebuild manifest + search index
+        run: node scripts/build-index.mjs
+
+      # Commit only when the regenerated JSON differs from what's committed.
+      - name: Commit refreshed index if drifted
+        run: |
+          if git diff --quiet -- assets/data/; then
+            echo "Index is fresh — nothing to commit."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add assets/data/manifest.json assets/data/search-index.json
+            git commit -m "CI: rebuild search index after kb/ change"
+            git push
+          fi

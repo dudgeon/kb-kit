@@ -23,9 +23,10 @@ kb-kit gives you that repo, batteries included:
   `ingest` (add a source, propagate it), `query` (cited answers), `lint`
   (health checks + grading). Agent-agnostic: [`AGENTS.md`](./AGENTS.md) is
   the schema file; works with Claude Code, Codex, Cursor, and friends.
-- **A zero-server browsing site** — GitHub Pages + one Action. Keyword
-  search, clickable frontmatter pills, rendered pages with edit/issue
-  buttons. No database, no workers, no build framework.
+- **A zero-server browsing site** — plain branch-deployed GitHub Pages (no
+  Actions required; works on strict enterprise configs). Keyword search,
+  clickable frontmatter pills, rendered pages with edit/issue buttons. No
+  database, no workers, no build framework.
 - **A [kb-card](./kb-card.md)** — a model card for your knowledge base:
   scope, owner, and lint-computed health at a stable path a crawler can find.
   Spec: [docs/kb-card-spec.md](./docs/kb-card-spec.md).
@@ -39,8 +40,10 @@ Letta, and more) — so everything works the moment you fork.
 ## Fork it (5 minutes)
 
 1. **Fork** this repo (or "Use this template").
-2. **Enable Pages**: Settings → Pages → Source: **GitHub Actions**. Your site
-   appears at `https://<you>.github.io/<repo>/`.
+2. **Enable Pages**: Settings → Pages → Source: **Deploy from a branch** →
+   `main`, `/ (root)`. Your site appears at
+   `https://<you>.github.io/<repo>/`. (The repo's `.nojekyll` file must stay
+   — it stops Pages from dropping the `_index.md` files.)
 3. **Run setup**: open the repo with any coding agent and say *"run the setup
    skill"*. It interviews you, clears the demo content, installs the entity
    types you actually need, and writes your kb-card.
@@ -61,7 +64,7 @@ and no login.
 | `AGENTS.md` / `CLAUDE.md` | Agent schema file (canonical / shim) |
 | `skills/` | setup · ingest · query · lint |
 | `index.html`, `knowledge-base.html`, `assets/` | The static site |
-| `scripts/build-index.mjs` + `.github/workflows/` | Search-index build + Pages deploy |
+| `scripts/build-index.mjs` + `.github/workflows/` | Search-index build + CI freshness backstop |
 | `docs/` | Taxonomy, kb-card spec, site customization guide |
 | `meta/` | Upstream kit-development files (delete in your fork) |
 

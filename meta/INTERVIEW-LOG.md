@@ -130,6 +130,15 @@ structure, but this is a governed process — non-kb content is assumed to be
 authoritative and less volatile. (Encoded in ADR 007, AGENTS.md, and the
 query/ingest/lint skills.)
 
+### Q10 — Pages deployment mechanism (2026-07-18, maintainer directive, unprompted)
+
+**A:** Target users can only use **branch-deployed** GitHub Pages — the
+"GitHub Actions" Pages source is unavailable to them; Actions are allowed for
+CI only, and their Pages config is strict (don't forget a `.nojekyll` file).
+Because the kit is meant to be cloned by those users, the upstream repo must
+follow the same approach. **A firm requirement.** (Encoded in ADR 008;
+pages.yml replaced by a CI index-rebuild workflow.)
+
 ### Interview status
 
 Core decisions locked; build phase begins. Remaining choices (folder

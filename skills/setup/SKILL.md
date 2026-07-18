@@ -61,5 +61,6 @@ can grow later via ingest/lint — nothing is final today.
 3. Reset `kb/_log.md` with a dated `setup` entry recording what was removed
    and which types were installed.
 4. Update the README title/description to their KB's name, and point them at:
-   enabling GitHub Pages (Settings → Pages → GitHub Actions) and the ingest
+   enabling GitHub Pages (Settings → Pages → Source: **Deploy from a branch**
+   → `main`, `/ (root)`; the root `.nojekyll` file must stay) and the ingest
    skill for their first real source.

@@ -34,9 +34,11 @@ stub README; a parallel agent was expected on main but never appeared).
   `assets/js/` (config/router/search/markdown/views/app), tokens in
   `assets/css/site.css`, zero external CDNs, custom md renderer (escapes raw
   HTML). `scripts/build-index.mjs` (node ≥18, zero deps) emits
-  `assets/data/{manifest,search-index}.json`; `.github/workflows/pages.yml`
-  deploys on push to **main** (repo Settings → Pages → Source: GitHub
-  Actions must be enabled — cannot be verified from this sandbox).
+  `assets/data/{manifest,search-index}.json`; **deployment model changed
+  2026-07-18 (ADR 008, firm maintainer requirement)**: Pages deploys FROM
+  THE BRANCH (Settings → Pages → Source: Deploy from a branch → main,
+  / root; root `.nojekyll` is load-bearing), and
+  `.github/workflows/build-index.yml` is only a CI freshness backstop.
   Verified locally: 47 pages indexed, all URLs 200 via `python3 -m
   http.server`, renderer/router/search exercised via node harness. NOT yet
   verified in a real browser — do that first with computer access.

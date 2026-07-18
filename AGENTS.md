@@ -113,7 +113,9 @@ Spec: [docs/kb-card-spec.md](./docs/kb-card-spec.md).
   restructuring folders) get discussed first.
 - Never edit raw quoted source material; corrections go alongside, attributed.
 - Naming: one topic per file, lowercase-hyphenated filenames.
-- The site needs no build step for content changes — pushing markdown is
-  enough; the Pages workflow regenerates the search index.
+- After editing `kb/`, run `node scripts/build-index.mjs` and commit the
+  regenerated `assets/data/*.json` with your change — the site deploys
+  straight from the branch, so the committed JSON is what search serves.
+  (A CI workflow rebuilds it on `main` as a backstop if you forget.)
 - `meta/` (upstream kit development only) is out of bounds for KB workflows;
   see [meta/CLAUDE.md](./meta/CLAUDE.md) when working *on the kit itself*.

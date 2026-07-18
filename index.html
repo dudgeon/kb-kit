@@ -203,15 +203,17 @@
         <li>
           <h3>Turn on Pages</h3>
           <p>In your fork: <strong>Settings → Pages → Build and deployment →
-          Source: GitHub Actions</strong>. That single toggle is the entire
-          deployment setup.</p>
+          Source: Deploy from a branch</strong>, then pick
+          <strong><code>main</code></strong> and <strong>/ (root)</strong>.
+          That single toggle is the entire deployment setup — no Actions
+          required, so it works on locked-down enterprise configs too.</p>
         </li>
         <li>
-          <h3>Push (or run the workflow)</h3>
-          <p>Any push to <code>main</code> — or a manual run of the
-          <em>“Build KB index and deploy to Pages”</em> workflow from the
-          Actions tab — builds the search index and publishes your site at
-          <code>https://&lt;you&gt;.github.io/&lt;repo&gt;/</code>.</p>
+          <h3>Push</h3>
+          <p>Any push to <code>main</code> publishes your site at
+          <code>https://&lt;you&gt;.github.io/&lt;repo&gt;/</code>. The
+          search index ships as committed files; your agent refreshes them
+          when it edits the KB (a CI backstop catches anything missed).</p>
         </li>
         <li>
           <h3>Run the setup skill with any agent</h3>
