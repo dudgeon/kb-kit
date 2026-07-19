@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T11:26:31.000Z",
+  "generated_at": "2026-07-19T11:41:58.000Z",
   "repo": {
     "kb_dir": "kb",
     "default_branch": "main"
@@ -1293,7 +1293,7 @@
         "2026-07-18"
       ],
       "excerpt": "Pattern log — changes to the kit machinery This ledger tracks changes to the pattern — everything that is not KB content: the site, skills, scripts, workflows, schema files, and structural conventions. (kb/log.md tracks knowledge; this file tracks machinery.) Why…",
-      "modified": "2026-07-19T11:26:31.000Z"
+      "modified": "2026-07-19T11:41:58.000Z"
     },
     {
       "path": "skills/ingest/SKILL.md",
