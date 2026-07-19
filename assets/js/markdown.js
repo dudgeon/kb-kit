@@ -210,13 +210,20 @@ export function render(src, opts = {}) {
     if (/^\s*<!--.*-->\s*$/.test(line)) { i++; continue; }
 
     // --- Fenced code block: ```lang … ``` --------------------------
-    const fence = line.match(/^```(\S*)\s*$/);
+    // CommonMark fence-length rule: a fence closes only on a run of AT
+    // LEAST as many backticks as opened it. That's what lets a document
+    // SHOW fenced markdown: wrap the example in a longer fence
+    // (````markdown … ````) and the inner ``` lines stay literal.
+    // Without this, one nested fence flips the rest of the page into
+    // code and silently swallows every later heading.
+    const fence = line.match(/^(`{3,})(\S*)\s*$/);
     if (fence) {
+      const closeRe = new RegExp(`^\`{${fence[1].length},}\\s*$`);
       const code = [];
       i++;
-      while (i < lines.length && !/^```\s*$/.test(lines[i])) { code.push(lines[i]); i++; }
+      while (i < lines.length && !closeRe.test(lines[i])) { code.push(lines[i]); i++; }
       i++; // skip closing fence (or EOF)
-      const langAttr = fence[1] ? ` class="language-${escapeHtml(fence[1])}"` : "";
+      const langAttr = fence[2] ? ` class="language-${escapeHtml(fence[2])}"` : "";
       out.push(`<pre><code${langAttr}>${escapeHtml(code.join("\n"))}</code></pre>`);
       continue;
     }

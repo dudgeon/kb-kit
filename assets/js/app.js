@@ -80,7 +80,9 @@ async function boot() {
   // Footer build stamp (progressive detail, not load-bearing).
   const stamp = document.getElementById("build-stamp");
   if (stamp && manifest.generated_at) {
-    stamp.textContent = `index built ${manifest.generated_at.slice(0, 16).replace("T", " ")} UTC · ${manifest.page_count} pages`;
+    // generated_at is the newest content commit date, not build wall-clock
+    // (the build is deterministic on purpose — see scripts/build-index.mjs).
+    stamp.textContent = `content updated ${manifest.generated_at.slice(0, 16).replace("T", " ")} UTC · ${manifest.page_count} pages`;
   }
 
   // ---- 3. Route dispatch ------------------------------------------------

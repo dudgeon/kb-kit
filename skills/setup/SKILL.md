@@ -21,6 +21,9 @@ Learn, in roughly this order:
    intel? This drives Step 3's type choices.
 6. GitHub Pages URL if known (`https://<user>.github.io/<repo>/`) for
    `entry_points.site`.
+7. Domain knowledge that lives OUTSIDE this repo — team wikis, dashboards,
+   vendor docs, canonical specs (→ card `external_sources`; a KB points
+   beyond itself for its domain).
 
 ## Step 2 — clear the demo content
 
@@ -77,3 +80,8 @@ can grow later via ingest/lint — nothing is final today.
    enabling GitHub Pages (Settings → Pages → Source: **Deploy from a branch**
    → `main`, `/ (root)`; the root `.nojekyll` file must stay) and the ingest
    skill for their first real source.
+5. **Tailor AGENTS.md** to what the interview decided: it should describe
+   *this* KB (its folder set, its typing philosophy, its external sources),
+   not the upstream demo. Log the tailoring as a `fork |` entry in
+   `pattern-log.md`. AGENTS.md is the file every future agent reads first —
+   onboarding isn't done until it tells the truth.

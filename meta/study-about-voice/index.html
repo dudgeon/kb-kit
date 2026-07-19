@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decision playground — about-page voice</title>
+<style>
+  /* Self-contained study page (meta/ — deleted before release). */
+  :root { --bg:#fff; --fg:#1a202c; --muted:#57606a; --line:#d9dee3; --acc:#2563eb; --soft:#eef4ff; --ok:#1a7f37; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0d1117; --fg:#e6edf3; --muted:#9aa4af; --line:#30363d; --acc:#6ea8fe; --soft:#12233f; --ok:#4ac26b; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 52rem; margin: 0 auto; padding: 1.2rem 1rem 4rem; }
+  h1 { font-size:1.4rem; } h2 { font-size:1.05rem; margin:2.2rem 0 .3rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); }
+  p.lead { color:var(--muted); }
+  .opt { border:1.5px solid var(--line); border-radius:10px; padding:1rem 1.1rem; margin:.8rem 0; cursor:pointer; }
+  .opt:hover { border-color: var(--acc); }
+  .opt.picked { border-color: var(--acc); background: var(--soft); }
+  .opt h3 { margin:.1rem 0 .2rem; font-size:1rem; }
+  .opt .tag { font-size:.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+  .sample { border-left:3px solid var(--line); padding:.4rem .9rem; margin:.7rem 0 0; font-size:.92rem; }
+  .sample b { display:block; margin-bottom:.15rem; }
+  .sample .cap { font-size:.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+  textarea { width:100%; min-height:3.2rem; margin-top:.5rem; border:1px solid var(--line); border-radius:8px;
+             background:var(--bg); color:var(--fg); padding:.5rem .7rem; font:inherit; font-size:.9rem; }
+  .bar { position:fixed; bottom:0; left:0; right:0; background:var(--bg); border-top:1px solid var(--line);
+         padding:.6rem 1rem; display:flex; gap:.8rem; align-items:center; font-size:.9rem; }
+  .bar .status { color:var(--muted); flex:1; }
+  button { font:inherit; font-size:.9rem; padding:.45rem .9rem; border-radius:8px; border:1px solid var(--line);
+           background:var(--bg); color:var(--acc); cursor:pointer; }
+  button:hover { border-color: var(--acc); }
+  .done { color: var(--ok); }
+</style>
+</head>
+<body>
+<main>
+  <h1>About-page voice — pick a direction</h1>
+  <p class="lead">Two decisions for rewriting <code>index.html</code> (the kit explainer).
+  Tap to pick; add notes if you want; then hit <b>Copy summary</b> and paste it in chat —
+  or just tell Claude to read this page. Picks persist in this browser.</p>
+
+  <h2>Decision 1 — voice</h2>
+  <p class="lead">Same two passages, three voices. Pick the one you'd want the whole page written in.</p>
+
+  <div class="opt" data-q="voice" data-v="A">
+    <div class="tag">Direction A</div>
+    <h3>Technical README</h3>
+    <p>Terse and factual. States what things are; links do the explaining.</p>
+    <div class="sample"><span class="cap">opening</span>
+      <b>kb-kit is a template repository for running a knowledge base as markdown in git.</b>
+      It contains an OKF v0.1 bundle (<code>kb/</code>), four agent skills (setup, ingest, query, lint),
+      a <code>kb-card.md</code> describing the KB, and a static site that renders the bundle client-side.
+      Fork it, run the setup skill, start ingesting.</div>
+    <div class="sample"><span class="cap">composition</span>
+      <b>What's in the repo</b>
+      <code>kb/</code> — the bundle: frontmatter-typed pages, <code>_index.md</code> catalog, <code>_log.md</code> history, inbox queue, raw archive.
+      <code>skills/</code> — the four workflows, agent-agnostic. <code>kb-card.md</code> — declared scope + lint-computed health.
+      Site: two HTML files, no build framework; Pages serves the branch.</div>
+  </div>
+
+  <div class="opt" data-q="voice" data-v="B">
+    <div class="tag">Direction B</div>
+    <h3>Field guide</h3>
+    <p>Educational narrator. Explains the concept before the feature; teaches as it goes.</p>
+    <div class="sample"><span class="cap">opening</span>
+      <b>A knowledge base your team and its agents maintain together, as plain markdown in a git repo.</b>
+      The idea (from Karpathy's LLM-wiki pattern): instead of retrieval at question-time, an agent
+      continuously files what your team learns into a small wiki it keeps consistent — you read it,
+      the agent writes it, git reviews it. kb-kit is that idea packaged: fork it and the structure,
+      the workflows, and the browsing site are already in place.</div>
+    <div class="sample"><span class="cap">composition</span>
+      <b>What you get, and why each piece exists</b>
+      A <b>bundle</b> (<code>kb/</code>) in Google's Open Knowledge Format, because a KB should be readable by
+      <i>any</i> tool that can read files. Four <b>skills</b> — setup, ingest, query, lint — because a KB is an
+      operating loop, not a folder. A <b>kb-card</b>, because in a company of many KBs, each one needs to say
+      what it is before you read it. And a <b>site</b>, because casual readers shouldn't need a clone.</div>
+  </div>
+
+  <div class="opt" data-q="voice" data-v="C">
+    <div class="tag">Direction C</div>
+    <h3>Systems doc</h3>
+    <p>Architecture-first. Leads with layers, contracts, and lineage; reads like a design doc.</p>
+    <div class="sample"><span class="cap">opening</span>
+      <b>kb-kit implements a three-layer context repo.</b>
+      Layer 1: immutable raw sources (<code>kb/sources/raw/</code>, fed by an inbox queue and GitHub issues).
+      Layer 2: the distilled wiki (<code>kb/</code>, typed frontmatter, relative links only).
+      Layer 3: the schema (<code>AGENTS.md</code>) that tells any agent how to operate the loop —
+      ingest → query → lint. A static viewer and a <code>kb-card</code> expose the repo to humans and crawlers.</div>
+    <div class="sample"><span class="cap">composition</span>
+      <b>Contracts</b>
+      Format: OKF v0.1, two documented deviations (relative links; <code>_index.md</code>/<code>_log.md</code>).
+      State-by-location: inbox = unprocessed, raw = preserved. Deployment: branch-served Pages,
+      <code>.nojekyll</code> load-bearing. All automation is deterministic scripts; agentic work runs in the
+      owner's own session. Lineage: Karpathy llm-wiki → Google OKF → agents.md → model cards.</div>
+  </div>
+  <textarea id="notes-voice" placeholder="Notes on voice (optional) — e.g. 'B, but shorter sentences'…"></textarea>
+
+  <h2>Decision 2 — what the page leads with</h2>
+  <p class="lead">Section order for the explainer, independent of voice.</p>
+
+  <div class="opt" data-q="structure" data-v="1">
+    <div class="tag">Structure 1</div>
+    <h3>Inventory first</h3>
+    <p>What it is → what's inside → how the loop works → standards &amp; lineage → how to adopt.</p>
+  </div>
+  <div class="opt" data-q="structure" data-v="2">
+    <div class="tag">Structure 2</div>
+    <h3>Mechanism first</h3>
+    <p>How the loop works (ingest/query/lint, the three intake doors) → what's inside → standards &amp; lineage → adopt.</p>
+  </div>
+  <div class="opt" data-q="structure" data-v="3">
+    <div class="tag">Structure 3</div>
+    <h3>Short problem, then the system</h3>
+    <p>Two honest sentences on why context repos (no drama) → the design answers → what's inside → lineage → adopt.</p>
+  </div>
+  <textarea id="notes-structure" placeholder="Notes on structure (optional)…"></textarea>
+
+  <div class="bar">
+    <span class="status" id="status">Nothing picked yet.</span>
+    <button id="copy">Copy summary</button>
+  </div>
+</main>
+<script>
+  // Picks persist per-origin; Claude reads them via window.__getFeedback().
+  const KEY = "kbkit-about-voice-study";
+  const state = JSON.parse(localStorage.getItem(KEY) || "{}");
+
+  function paint() {
+    document.querySelectorAll(".opt").forEach((o) => {
+      o.classList.toggle("picked", state[o.dataset.q] === o.dataset.v);
+    });
+    document.getElementById("notes-voice").value = state.notesVoice || "";
+    document.getElementById("notes-structure").value = state.notesStructure || "";
+    const s = [];
+    s.push(state.voice ? `voice: ${state.voice}` : "voice: —");
+    s.push(state.structure ? `structure: ${state.structure}` : "structure: —");
+    const el = document.getElementById("status");
+    el.textContent = s.join(" · ");
+    el.className = "status" + (state.voice && state.structure ? " done" : "");
+  }
+  function save() { localStorage.setItem(KEY, JSON.stringify(state)); paint(); }
+
+  document.querySelectorAll(".opt").forEach((o) =>
+    o.addEventListener("click", () => { state[o.dataset.q] = o.dataset.v; save(); }));
+  document.getElementById("notes-voice").addEventListener("input", (e) => { state.notesVoice = e.target.value; save(); });
+  document.getElementById("notes-structure").addEventListener("input", (e) => { state.notesStructure = e.target.value; save(); });
+
+  window.__getFeedback = () => ({
+    ...state,
+    readable:
+      `voice=${state.voice || "unpicked"}; structure=${state.structure || "unpicked"}` +
+      (state.notesVoice ? `; voice notes: ${state.notesVoice}` : "") +
+      (state.notesStructure ? `; structure notes: ${state.notesStructure}` : ""),
+  });
+  document.getElementById("copy").addEventListener("click", async (e) => {
+    try { await navigator.clipboard.writeText(window.__getFeedback().readable); e.target.textContent = "Copied!"; }
+    catch { e.target.textContent = window.__getFeedback().readable.slice(0, 40) + "…"; }
+    setTimeout(() => (e.target.textContent = "Copy summary"), 1600);
+  });
+  paint();
+</script>
+</body>
+</html>

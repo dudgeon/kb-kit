@@ -189,6 +189,91 @@ root `pattern-log.md` (`upstream |` entries in kb-kit itself; forks add
 `fork |` entries and a fork-point anchor recorded by setup). The upgrade
 skill itself is QUEUED — see ADR 010 and meta/HANDOFF.md.
 
+### Q15 — Scheduled lint REJECTED; local-agent-only constraint (2026-07-18, AskUserQuestion)
+
+**A:** "I don't understand this suggestion; linting requires a strong
+generative model, which gh does not have access to; this pattern needs to
+work for users/fork owners who only have claude code and cannot access
+deployed agents, background headless processes, etc."
+
+Ruling absorbed as a load-bearing constraint: **the kit may not depend on
+server-side, scheduled, or headless agents.** Everything agentic runs in the
+fork owner's own local agent session (Claude Code or equivalent). CI may run
+only deterministic scripts (build-index, lint-kb mechanical checks) — no
+model calls. The editorial lint passes remain a human-triggered skill.
+
+### Q16 — Site search scope: index everything (2026-07-18, AskUserQuestion)
+
+**A:** "can we just index all md and html in the repo?" → Yes. Build now
+indexes every repo .md plus index.html/knowledge-base.html; exclusions:
+`kb/inbox/`, `kb/sources/raw/` (raw material), `meta/` (deleted
+pre-release), dot-folders. Non-kb pages carry no `type` (searchable, never
+in type views); the home "recently updated" feed stays kb-only. Correction
+recorded: the question's premise was wrong — `docs/` was already indexed
+via EXTRA_DOCS; the directive generalizes it.
+
+### Q17 — kb-card site URL (2026-07-18, AskUserQuestion)
+
+**A:** Declare the canonical custom-domain URL. `entry_points.site` is now
+`https://dudgeon.org/kb-kit/knowledge-base.html` (the account-level custom
+domain; the github.io URL 301s there). kb-card interview: maintainer chose
+"Later" — stays queued.
+
+### Q18 — Site voice: educational, not salesy; keep the about page current (2026-07-19)
+
+**A (general feedback, maintainer):** index.html is "too salesy in the use
+of language, and not descriptive enough about how the kit works, what it is
+comprised of, which standards/approaches/lineage it adheres to" — and
+AGENTS.md should keep this up to date as the kit evolves. "I don't want to
+have to reinforce this again." → Encoded as a standing voice rule in
+AGENTS.md ("Writing for the kit's surfaces") + PLAN.md product principles;
+ADR 011. A decision playground for candidate voice directions was built at
+`meta/study-about-voice/` — the index.html rewrite follows the picks.
+
+### Q19 — KB home: live search, storytelling, educational intake (2026-07-19)
+
+**A (maintainer, generalized):** (1) live-site search "appears broken — does
+not respond to keystroke entries" → root cause: search fired only on Enter
+with no as-you-type feedback; fixed with debounced live search. (2) The home
+needs storytelling: many users interact with the repo directly — cloning it,
+via their agent, RAG workflows, or MCP — while the KB home is the quick
+browse/basic-search surface, especially for casual users. (3) "How knowledge
+gets in" was descriptive, must be *educational*: how to add to the inbox,
+open an issue (with link), then either run ingest or wait for a maintainer
+pass — **ingest scans issues as it scans the inbox and the current
+session**; common usage is an interactive session then "/ingest this".
+(4) "Start here" cards were "bad — not logical starting points" → replaced
+with task-oriented sections. ADR 012 covers the intake channels.
+
+### Q20 — kb-card vision: context hub, crawler, external sources (2026-07-19)
+
+**A (maintainer, near verbatim):** Companies will have many KB repos; some
+part of daily team routine, others hard to find and understand. kb-card
+lets companies build systems (or just use agents) to scan repos and find
+context KBs — AGENTS.md should also point to the kb-card. Foreseen system:
+users manually onboard a knowledge repo to a "context hub"; it becomes
+indexed and searchable, and linting operations consider the contents of
+adjacent repos. Subsequent step: a crawler fans out across the company's
+full GitHub instance and finds KBs by their kb-card, *automatically*
+pulling them into the KB universe. Also: not all knowledge lives in
+GitHub — a KB should, for its domain, point to relevant external sources,
+and those references can be added to the kb-card too. → ADR 013; spec +
+demo card updated; interview-prep doc updated (parts of Q2/Q5 now answered).
+
+### Q21 — Reconcile the two instruction layers (2026-07-19)
+
+**A (maintainer):** Root AGENTS.md = descriptive about the project, useful
+for users: how to fork, how to use post-fork; augmented and improved
+through onboarding skills. meta/AGENTS.md + CLAUDE.md twin = for building
+and changing the core kit: recent feedback on writing tone etc.; orients
+the agent to the documents and build processes/infra including PRDs, ADRs,
+pending todos. → ADR 014. Root AGENTS.md gained a "Forking, and life after
+the fork" section and shed the tone section (one-line voice floor remains
+in Conduct); meta/AGENTS.md created as the canonical build doc (document
+map, tone rule, load-bearing decisions, infra, working agreements);
+meta/CLAUDE.md reduced to a shim; setup skill now tailors root AGENTS.md
+during onboarding and logs it as a `fork |` pattern entry.
+
 ### Pending interview: the kb-card concept (queued 2026-07-18)
 
 Maintainer: "I think we could better explain the kb-card concept — that

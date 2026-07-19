@@ -28,7 +28,8 @@ reference:
   missing `summary`/`source`.
 - Inbox: list items sitting in `kb/inbox/` — the inbox is the unprocessed
   queue and should trend toward empty; propose an ingest sweep if anything
-  has lingered. Never flag `kb/sources/raw/` contents as stale or orphaned —
+  has lingered. Check open GitHub issues too (`gh issue list`) — issues
+  containing knowledge are the same queue in another door (ingest skill). Never flag `kb/sources/raw/` contents as stale or orphaned —
   archived originals are permanent by design and reached via their source
   page's `raw:` pointer, not via indexes.
 - Links: find broken relative links (typos/moved files — fix; genuinely
@@ -66,4 +67,7 @@ must be defensible from the pass-1/2 evidence.
 ## Close out
 
 Append to `kb/_log.md`: `lint | summary of fixes/proposals`. If substantial
-findings, suggest the owner schedule lint recurringly (e.g. monthly).
+findings, suggest the owner make lint a habit (e.g. asking their agent
+monthly). There is deliberately no server-side automation for this — the
+editorial passes need a strong model, and the kit must work for owners
+whose only agent is their local session.

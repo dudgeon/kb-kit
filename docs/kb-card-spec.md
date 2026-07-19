@@ -3,12 +3,38 @@
 A **kb-card** is a single file, `kb-card.md`, at the root of a repository that
 contains a knowledge base. It does for KBs what a model card does for models:
 lets a human or agent judge scope, ownership, freshness, and trustworthiness
-**without reading the KB** — and lets an org-wide crawler index hundreds of
-KBs by fetching one well-known path per repo.
+**without reading the KB**.
+
+The problem it exists for: a company doesn't have *a* knowledge base — it
+accumulates many KB repos. A few are part of some team's daily routine; the
+rest are hard to find and harder to judge. The card is each KB's
+**discovery interface**: the fixed, machine-readable thing an org system —
+or just an agent with code search — can find, parse, and trust. It also
+carries the KB's pointers *beyond* the repo (`external_sources`), because
+not all of a domain's knowledge lives in GitHub.
 
 Status: draft v0.1, defined by [kb-kit](../README.md). There is no adopted
 standard for describing KBs (mid-2026); this is a proposal shaped to be
 crawlable today with nothing but GitHub code search for `path:kb-card.md`.
+
+## The discovery trajectory (where this is going)
+
+The card is designed for three stages of org adoption, each cheaper than
+the last:
+
+1. **Manual onboarding** — a user registers a KB repo with an org
+   **context hub**; the hub reads the card, indexes the KB, and makes it
+   searchable. Once several KBs are onboarded, lint operations can consider
+   *adjacent* repos: scope negotiation, cross-KB links, overlap detection.
+2. **Automatic discovery** — a crawler fans out across the company's whole
+   GitHub instance, recognizes KBs by their `kb-card.md`, and pulls them
+   into the hub with no onboarding step at all.
+3. **Beyond GitHub** — `external_sources` on the card points at the
+   domain's knowledge that doesn't live in any repo (wikis, dashboards,
+   vendor docs), so the hub's picture of a domain isn't repo-bound.
+
+Nothing in this kit implements a hub or crawler; the kit's job is to
+guarantee every fork carries the card those systems need.
 
 ## Design rules
 
@@ -53,13 +79,18 @@ entry_points:
   site: <GitHub Pages URL>    # browsing UI, if any
   agents: AGENTS.md           # the schema file
 established: <YYYY-MM-DD>
+external_sources:             # domain knowledge that lives OUTSIDE this repo
+  - name: <human name>        # (not all knowledge is in GitHub — the KB
+    url: <where it lives>     #  points beyond itself for its domain, and a
+    note: <one line on what it is and why it matters here>  # hub/crawler
+  # …                         #  may index these alongside the KB)
 ```
 
 ## Inferred traits (lint-owned)
 
 Lint rewrites everything between the markers; the shape inside is:
 
-```markdown
+````markdown
 <!-- BEGIN kb-card:inferred -->
 ```yaml
 inferred_at: 2026-07-18
@@ -70,7 +101,7 @@ freshness: {last_ingest: 2026-07-16, log_entries_90d: 14}
 taxonomy_grades: {structure: good, linkage: good, provenance: functional, ...}
 ```
 <!-- END kb-card:inferred -->
-```
+````
 
 Grades use the [taxonomy](./taxonomy.md) vocabulary
 (`functional | good | great`), computed against its per-dimension criteria.
@@ -91,6 +122,7 @@ staleness warnings, trust notes).
 - Rank/filter: `topics`, `access`, `owner`, and inferred `freshness` — a card
   whose `inferred_at` is ancient tells you the KB's lint loop is dead, which
   is usually the answer you needed.
+- Follow: `entry_points` into the KB, `external_sources` beyond it.
 
 ## Progressive discovery
 

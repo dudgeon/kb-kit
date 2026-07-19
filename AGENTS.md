@@ -14,8 +14,22 @@ else is machinery: a static browsing site (`index.html`,
 (`docs/`), and — in the upstream starter kit only — `meta/`, which holds
 files about *building the kit itself* and is not part of any forked KB.
 
-If you are in a fresh fork that still contains the demo content, run the
-[setup skill](./skills/setup/SKILL.md) first.
+## Forking, and life after the fork
+
+kb-kit is designed to be forked ("Use this template" or Fork on GitHub):
+
+1. **Enable Pages**: Settings → Pages → Source: *Deploy from a branch* →
+   `main`, `/ (root)`. Keep the root `.nojekyll` file — without it Pages
+   drops every `_index.md`.
+2. **Run the [setup skill](./skills/setup/SKILL.md)**: it interviews the new
+   owner, clears the demo content, installs the entity types they actually
+   need, writes their `kb-card.md`, and records the fork point in
+   `pattern-log.md`. Setup also **tailors this file** — the interview's
+   answers (folder set, types, external sources) should be reflected here,
+   so AGENTS.md keeps describing *this* KB, not the demo.
+3. **Then just run the loop** (Workflows below): teach an agent things and
+   say "ingest this"; ask questions with the query skill; lint on a cadence.
+   Humans who never clone use the site, GitHub issues, and the inbox.
 
 ## The agent-managed boundary
 
@@ -98,8 +112,11 @@ new one unless the subject is a distinct entity you'd link to from elsewhere.
 - **Ingest** ([skill](./skills/ingest/SKILL.md)) — add a source or fact:
   write/update the affected pages, update every `_index.md` on the path,
   append to `_log.md`. One source may touch many pages; that's the point.
-  Information flows in two ways: handed to an agent directly ("ingest
-  this"), or dropped into `kb/inbox/` for a later "process the inbox" sweep.
+  Information arrives through three channels, one loop: (1) the current
+  session — a user teaches the agent something and says "ingest this";
+  (2) files dropped in `kb/inbox/`; (3) GitHub issues containing or
+  pointing at knowledge. A "process the inbox" sweep scans the inbox AND
+  open issues; un-swept items wait for the next maintainer pass.
 - **Query** ([skill](./skills/query/SKILL.md)) — read `kb/_index.md` first,
   navigate by links, answer with citations (links to KB pages and their
   sources). File genuinely reusable answers back into the KB.
@@ -110,10 +127,16 @@ new one unless the subject is a distinct entity you'd link to from elsewhere.
 ## kb-card.md
 
 The repo-root [kb-card.md](./kb-card.md) describes this KB the way a model
-card describes a model. Humans maintain the small declared core (name, scope,
-owning team…); **lint computes the inferred traits** (page/type census,
-freshness, link health). Never hand-edit the inferred block; it sits between
-`<!-- BEGIN kb-card:inferred -->` and `<!-- END kb-card:inferred -->` markers.
+card describes a model — and it is this KB's **discovery interface**: when
+introducing this KB to another system or agent (an org context hub, a
+crawler, a teammate's agent), hand over the card first. Companies with many
+KB repos find and judge them by their cards (fixed filename, machine-first
+frontmatter, lint-refreshed health). Humans maintain the small declared
+core (name, scope, owning team, `external_sources` — domain-relevant
+references that live outside this repo); **lint computes the inferred
+traits** (page/type census, freshness, link health). Never hand-edit the
+inferred block; it sits between `<!-- BEGIN kb-card:inferred -->` and
+`<!-- END kb-card:inferred -->` markers.
 Spec: [docs/kb-card-spec.md](./docs/kb-card-spec.md).
 
 ## Customizing the kit
@@ -138,9 +161,13 @@ and ruin post-fork content).
 - Never edit raw quoted source material — including anything in
   `kb/sources/raw/`; corrections go alongside, attributed.
 - Naming: one topic per file, lowercase-hyphenated filenames.
+- User-facing copy (site pages, README) stays educational and descriptive —
+  explain how things work; never promotional language.
 - After editing `kb/`, run `node scripts/build-index.mjs` and commit the
   regenerated `assets/data/*.json` with your change — the site deploys
   straight from the branch, so the committed JSON is what search serves.
   (A CI workflow rebuilds it on `main` as a backstop if you forget.)
 - `meta/` (upstream kit development only) is out of bounds for KB workflows;
-  see [meta/CLAUDE.md](./meta/CLAUDE.md) when working *on the kit itself*.
+  when working *on the kit itself* — changing machinery, docs, or site —
+  read [meta/AGENTS.md](./meta/AGENTS.md) first (build processes, PRD,
+  ADRs, tone rules, pending work).

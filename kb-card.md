@@ -12,9 +12,19 @@ license: MIT
 contact: GitHub issues on this repository
 entry_points:
   bundle: kb/_index.md
-  site: https://dudgeon.github.io/kb-kit/knowledge-base.html
+  site: https://dudgeon.org/kb-kit/knowledge-base.html
   agents: AGENTS.md
 established: "2026-07-18"
+external_sources:
+  - name: Google OKF SPEC.md
+    url: https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md
+    note: The knowledge-bundle format this KB conforms to (v0.1, two documented deviations).
+  - name: Karpathy — llm-wiki.md gist
+    url: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
+    note: Origin of the ingest/query/lint operating loop this KB runs on.
+  - name: agents.md
+    url: https://agents.md
+    note: The AGENTS.md convention this repo's schema file follows.
 ---
 
 # kb-card — kb-kit demo knowledge base

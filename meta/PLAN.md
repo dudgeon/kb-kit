@@ -1,7 +1,28 @@
-# kb-kit build plan (working doc)
+# kb-kit build plan (working doc / PRD)
 
 A forkable starter kit for product teams (PM-first) to build knowledge bases —
 context repos that agents and humans add to, curate, and query.
+
+## Product principles (standing; do not drift)
+
+1. **Voice: educational, never salesy** (Q18, ADR 011). Every user-facing
+   surface explains how the kit works, what it is comprised of, and which
+   standards/approaches/lineage it adheres to. No marketing superlatives.
+   `index.html` is the kit *explainer*; the KB home is the *casual
+   browse/search surface* that names the deeper paths (clone + query,
+   agent + AGENTS.md, RAG/MCP). AGENTS.md enforces keeping the explainer
+   current as the kit evolves.
+2. **Local-agent-only** (Q15). No server-side, scheduled, or headless
+   agents anywhere; CI runs deterministic scripts only. Works for fork
+   owners whose only agent is Claude Code in a locked-down org.
+3. **Branch-deployed Pages, firm** (Q10, ADR 008). `.nojekyll` is
+   load-bearing.
+4. **Location encodes state** (Q12, ADR 009/012). inbox = unprocessed;
+   sources/raw = processed and preserved; three intake channels (session,
+   inbox, issues), one ingest loop; nothing deleted.
+5. **The kb-card is the discovery interface** (Q20, ADR 013). Fixed path,
+   machine-first frontmatter, lint-refreshed health, external_sources for
+   knowledge outside the repo — designed for org context hubs and crawlers.
 
 ## Settled by research (defaults; interview may override)
 
@@ -34,7 +55,8 @@ context repos that agents and humans add to, curate, and query.
 2. Baseline structure: `kb/` (or `knowledge/`) bundle + templates + AGENTS.md/
    CLAUDE.md schema + skills (ingest/query/lint at minimum).
 3. Utilities: Pages site (search, md wrapper, pills), build Action, link check.
-4. `index.html` — polished marketing page for kb-kit.
+4. `index.html` — the kit explainer page (educational; see principle 1 —
+   "marketing page" language retired per Q18).
 5. `README.md` — purpose, fork-me instructions, links to Pages site +
    knowledge-base.html.
 6. Placeholder KB content: survey of the context-management landscape
