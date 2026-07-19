@@ -281,6 +281,18 @@ function excerpt(plain, n) {
 // File walking
 // ---------------------------------------------------------------------------
 
+/**
+ * Folders under the repo root that are deliberately NOT indexed:
+ *   kb/inbox        — the unprocessed queue: raw drops, unvetted text.
+ *   kb/sources/raw  — the immutable archive of ingested originals; indexing
+ *                     verbatim full texts would drown the distilled pages
+ *                     in keyword search.
+ * Both stay viewable by direct #/page/ link (the page view fetches raw
+ * markdown); they just never appear in search or type listings.
+ * See kb/inbox/_index.md and kb/sources/raw/_index.md for the contracts.
+ */
+const SKIP_DIRS = new Set(["kb/inbox", "kb/sources/raw"]);
+
 /** Recursively list every .md file under dir (absolute paths, sorted). */
 function walkMarkdown(dir) {
   const out = [];
@@ -288,8 +300,11 @@ function walkMarkdown(dir) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     if (entry.name.startsWith(".")) continue; // skip hidden files/dirs
     const full = join(dir, entry.name);
-    if (entry.isDirectory()) out.push(...walkMarkdown(full));
-    else if (entry.isFile() && entry.name.endsWith(".md")) out.push(full);
+    if (entry.isDirectory()) {
+      const rel = relative(REPO_ROOT, full).split(sep).join("/");
+      if (SKIP_DIRS.has(rel)) continue;
+      out.push(...walkMarkdown(full));
+    } else if (entry.isFile() && entry.name.endsWith(".md")) out.push(full);
   }
   return out.sort();
 }

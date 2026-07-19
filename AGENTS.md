@@ -37,6 +37,11 @@ Write scope and query scope are different:
   - `kb/_index.md` — root catalog of the KB; read this first, always.
   - `kb/_log.md` — append-only change history (newest first).
   - `kb/templates/` — one file per entity type; defines that type.
+  - `kb/inbox/` — the unprocessed queue: raw drops waiting for ingest;
+    presence here means "not yet processed." Not knowledge, not indexed.
+  - `kb/sources/raw/` — the immutable archive: ingest MOVES processed inbox
+    originals here (never deletes, never edits them) and links them from
+    the distilled source page via `raw:` frontmatter. Not indexed.
   - other folders — organized by the KB's owner; folders are navigation,
     frontmatter `type` is meaning.
 - `kb-card.md` — repo-root card describing this KB (see below).
@@ -91,6 +96,8 @@ new one unless the subject is a distinct entity you'd link to from elsewhere.
 - **Ingest** ([skill](./skills/ingest/SKILL.md)) — add a source or fact:
   write/update the affected pages, update every `_index.md` on the path,
   append to `_log.md`. One source may touch many pages; that's the point.
+  Information flows in two ways: handed to an agent directly ("ingest
+  this"), or dropped into `kb/inbox/` for a later "process the inbox" sweep.
 - **Query** ([skill](./skills/query/SKILL.md)) — read `kb/_index.md` first,
   navigate by links, answer with citations (links to KB pages and their
   sources). File genuinely reusable answers back into the KB.
@@ -111,7 +118,8 @@ Spec: [docs/kb-card-spec.md](./docs/kb-card-spec.md).
 
 - Propose, don't silently mutate: destructive operations (deleting pages,
   restructuring folders) get discussed first.
-- Never edit raw quoted source material; corrections go alongside, attributed.
+- Never edit raw quoted source material — including anything in
+  `kb/sources/raw/`; corrections go alongside, attributed.
 - Naming: one topic per file, lowercase-hyphenated filenames.
 - After editing `kb/`, run `node scripts/build-index.mjs` and commit the
   regenerated `assets/data/*.json` with your change — the site deploys

@@ -68,8 +68,12 @@ record them in `retrieval:` frontmatter. Do not repeat this.
 > comment-only HTML lines), lint run (kb-card inferred block populated),
 > all three sources re-fetched and corrected (Cerebras stack claim was
 > wrong in secondary coverage — see kb/_log.md), setup-skill removal list
-> verified and its do-not-touch list extended. Still open: Pages
-> deployment check after merge to main; tasks 4 (needs maintainer
+> verified and its do-not-touch list extended. Since then, three more
+> maintainer directives landed: the agent-managed boundary (ADR 007),
+> branch-deployed Pages with .nojekyll (ADR 008 — firm), and the
+> inbox→ingest→raw-archive flow + honest-search/clone-to-query home
+> (ADR 009, interview Q11–Q12). Still open: Pages deployment check after
+> merge to main (now: Deploy from a branch); tasks 4 (needs maintainer
 > approval) and 5 (Obsidian, needs desktop app).
 
 1. ~~**Browser-verify the site**~~ DONE (locally; re-check on the live

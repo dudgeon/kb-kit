@@ -139,6 +139,32 @@ Because the kit is meant to be cloned by those users, the upstream repo must
 follow the same approach. **A firm requirement.** (Encoded in ADR 008;
 pages.yml replaced by a CI index-rebuild workflow.)
 
+### Q11 — KB home: honest search, clone-to-query CTA, inbox flow (2026-07-18, maintainer notes)
+
+**A (four notes, verbatim intent):** On the KB home (`knowledge-base.html#/`):
+(1) note that site search is basic — keyword only; (2) for more sophisticated
+searches users should clone the repo and use the query skill; (3) since many
+users won't know how, provide a copyable code block with a single terminal
+command that clones the repo, cds into it, and runs `claude /query`; (4) the
+pages should explain explicitly how information flows into the KB **via the
+inbox and ingest**. The inbox did not previously exist as a convention — it
+is established as `kb/inbox/` (ADR 009): a drop folder the ingest skill
+sweeps and empties.
+
+### Q12 — Inbox disposal: move, don't delete (2026-07-18)
+
+Agent surfaced that the Karpathy gist has a permanent raw-sources layer but
+no queue (processing state must be computed from the log), while the first
+inbox implementation had a queue but destroyed originals. Maintainer
+confirmed the synthesis:
+
+**A:** There should be a `kb/inbox/` folder which indicates *unprocessed*;
+the act of ingesting should **move** items elsewhere (not delete them).
+Implemented as: `kb/inbox/` = queue (presence means unprocessed),
+`kb/sources/raw/` = immutable archive of processed originals (Karpathy's
+layer 1), with the distilled source page linking its archived original.
+Location encodes state at both ends; neither folder is search-indexed.
+
 ### Interview status
 
 Core decisions locked; build phase begins. Remaining choices (folder

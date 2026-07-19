@@ -58,12 +58,12 @@ types:
   standard: 6
   decision: 3
 links:
-  internal: 241
+  internal: 258
   broken: 2          # both deliberate "not yet written" targets
   orphan_pages: 0
 freshness:
   last_ingest: 2026-07-18
-  log_entries_90d: 4
+  log_entries_90d: 6
 taxonomy_grades:     # per docs/taxonomy.md; graded from lint evidence
   scope: good        # declared on card; no neighboring KBs to negotiate with yet
   structure: good    # one-screen indexes, all pages ≤4 hops from root (great needs ≤3)

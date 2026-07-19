@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-18T21:32:06.037Z",
+  "generated_at": "2026-07-19T00:01:08.118Z",
   "repo": {
     "kb_dir": "kb",
     "default_branch": "main"
@@ -28,8 +28,8 @@
         "Decisions",
         "Templates"
       ],
-      "excerpt": "Knowledge base A survey of the context-management and context-repo landscape (mid-2026). What this KB is and who owns it: kb-card.md. How to work here: AGENTS.md. Start here The context repo - the idea this whole KB (and kit) is about:…",
-      "modified": "2026-07-18T21:31:11.540Z"
+      "excerpt": "Knowledge base A survey of the context-management and context-repo landscape (mid-2026). What this KB is and who owns it: kb-card.md. How to work here: AGENTS.md. Raw material waiting to be ingested lives in the inbox; originals of processed sources are…",
+      "modified": "2026-07-18T23:56:24.418Z"
     },
     {
       "path": "kb/_log.md",
@@ -45,8 +45,8 @@
       "headings": [
         "2026-07-18"
       ],
-      "excerpt": "Change log Newest first. Entry format: ## YYYY-MM-DD heading, bulleted changes, each naming the operation (ingest lint setup edit) and the pages touched. 2026-07-18 lint First full lint pass. Auto-fixed: root index.md section headers now link to the five folder…",
-      "modified": "2026-07-18T21:32:01.650Z"
+      "excerpt": "Change log Newest first. Entry format: ## YYYY-MM-DD heading, bulleted changes, each naming the operation (ingest lint setup edit) and the pages touched. 2026-07-18 edit Established the inbox→ingest→archive flow (maintainer directive): inbox/ is the unprocessed queue (presence = waiting), and…",
+      "modified": "2026-07-18T23:57:37.278Z"
     },
     {
       "path": "kb/decisions/_index.md",
@@ -159,8 +159,8 @@
         "title": "Sources — index"
       },
       "headings": [],
-      "excerpt": "Sources External artifacts this KB has ingested. Each page: distilled summary, then verbatim ## Key excerpts (never edited in place). Karpathy — \"LLM Wiki\" gist - the April 2026 idea file the whole pattern traces to. Google OKF SPEC.md v0.1…",
-      "modified": "2026-07-18T21:28:28.009Z"
+      "excerpt": "Sources External artifacts this KB has ingested. Each page: distilled summary, then verbatim ## Key excerpts (never edited in place). Originals that arrived via the inbox are preserved unmodified in the raw archive and linked from their page's raw: frontmatter.…",
+      "modified": "2026-07-18T23:56:31.452Z"
     },
     {
       "path": "kb/sources/anthropic-effective-context-engineering.md",
@@ -258,7 +258,7 @@
         "Key excerpts"
       ],
       "excerpt": "Karpathy — \"LLM Wiki\" gist An \"idea file\" (llm-wiki.md, shared April 2026; ~5k+ stars and 40+ comments as of 2026-07) meant to be pasted to your own agent. Core move: replace per-query RAG with a persistent wiki the LLM builds…",
-      "modified": "2026-07-18T21:28:25.004Z"
+      "modified": "2026-07-18T23:56:59.292Z"
     },
     {
       "path": "kb/sources/okf-spec.md",
@@ -1041,7 +1041,7 @@
       },
       "headings": [],
       "excerpt": "The LLM-wiki pattern Karpathy's April 2026 gist described the pattern this kit implements: instead of RAG retrieval at query time, \"the LLM incrementally builds and maintains a persistent wiki\" — a \"persistent, compounding artifact\" sitting between you and the raw…",
-      "modified": "2026-07-18T21:20:46.220Z"
+      "modified": "2026-07-18T23:56:38.071Z"
     },
     {
       "path": "kb/topics/open-questions.md",
@@ -1159,7 +1159,7 @@
         "Troubleshooting"
       ],
       "excerpt": "Site guide — how the kb-kit site works and how to customize it This guide is for the humans and agents who maintain a fork's site. The KB content conventions live in AGENTS.md; this file covers only the machinery: the…",
-      "modified": "2026-07-18T21:20:46.215Z"
+      "modified": "2026-07-19T00:00:41.348Z"
     },
     {
       "path": "kb-card.md",
@@ -1207,7 +1207,7 @@
         "Caveats"
       ],
       "excerpt": "kb-card — kb-kit demo knowledge base This card describes the demo KB that ships with kb-kit so the site, search, and skills have something real to work on. When you fork the kit, the setup skill replaces this card with…",
-      "modified": "2026-07-18T21:31:52.092Z"
+      "modified": "2026-07-19T00:00:58.725Z"
     }
   ]
 }

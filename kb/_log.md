@@ -10,6 +10,13 @@ naming the operation (`ingest | lint | setup | edit`) and the pages touched.
 
 ## 2026-07-18
 
+- edit | Established the inbox→ingest→archive flow (maintainer directive):
+  `inbox/` is the unprocessed queue (presence = waiting), and ingest now
+  MOVES processed originals to `sources/raw/` (immutable archive, Karpathy's
+  layer 1) instead of deleting anything. Neither folder is search-indexed.
+  Pages touched: inbox/_index.md (new), sources/raw/_index.md (new),
+  _index.md, sources/_index.md, sources/karpathy-llm-wiki-gist.md,
+  topics/llm-wiki-pattern.md.
 - lint | First full lint pass. Auto-fixed: root `_index.md` section headers
   now link to the five folder indexes (they were unreachable from the front
   door). Verified: 29 content pages, 241 internal links, 0 orphans, 0 broken

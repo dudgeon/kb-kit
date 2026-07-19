@@ -57,7 +57,9 @@ where Actions can't publish Pages. Two things make this work:
 
 ### Routes
 
-- `#/` — search box, type pills, recently updated
+- `#/` — search box (with an honest keyword-only note and a copyable
+  clone-and-query command), type pills, start-here cards, "how knowledge
+  gets in" (inbox → ingest → archive), recently updated
 - `#/search?q=okf` — ranked results
 - `#/type/note` — the type's template rendered as its definition, plus all pages of that type
 - `#/page/kb/topics/context-repo.md` — any markdown file rendered in the viewer (works for `docs/*.md` and `kb-card.md` too; supports `#/page/x.md#section` anchors)

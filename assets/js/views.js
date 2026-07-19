@@ -5,7 +5,9 @@
  * WHAT THIS IS
  *   One exported render function per route (see router.js):
  *
- *     renderHome     #/                search box, type pills, recent pages
+ *     renderHome     #/                search box + clone-to-query CTA,
+ *                                      type pills, knowledge-flow note,
+ *                                      recent pages
  *     renderSearch   #/search?q=…      ranked results
  *     renderType     #/type/<type>     type definition + all pages of type
  *     renderPage     #/page/<path>     fetch + render one markdown page
@@ -205,6 +207,89 @@ function searchBox(initial = "", autofocus = false) {
   return input;
 }
 
+/**
+ * The clone-and-query block: an honest note that site search is keyword-only,
+ * plus a single copyable command that takes a user from "browsing the site"
+ * to "asking the KB real questions" — clone, cd, run the query skill.
+ * The repo URL/name are derived at runtime (config.js), so forks get their
+ * own command for free. `claude /query` assumes Claude Code, but the note
+ * says any agent that reads AGENTS.md works — the skills are agent-agnostic.
+ */
+function cloneQueryBlock() {
+  const { repo } = repoInfo();
+  const cmd = `git clone ${repoUrl()}.git && cd ${repo} && claude /query`;
+  const button = el(
+    "button",
+    {
+      class: "kb-copy-btn",
+      type: "button",
+      "aria-label": "Copy the clone-and-query command",
+      onclick: async (e) => {
+        // Clipboard needs a secure context (https/localhost); fall back to
+        // the ancient-but-universal selection trick elsewhere.
+        try {
+          await navigator.clipboard.writeText(cmd);
+        } catch {
+          const r = document.createRange();
+          r.selectNodeContents(e.target.previousSibling);
+          const sel = window.getSelection();
+          sel.removeAllRanges(); sel.addRange(r);
+          document.execCommand("copy");
+          sel.removeAllRanges();
+        }
+        const btn = e.target;
+        btn.textContent = "Copied!";
+        setTimeout(() => { btn.textContent = "Copy"; }, 1500);
+      },
+    },
+    "Copy"
+  );
+  return [
+    el(
+      "p",
+      { class: "kb-search-note" },
+      "Search here is deliberately basic — keyword matching only; every term must appear on the page. ",
+      "For more sophisticated questions, clone the KB and ask its ",
+      el("a", { href: `${repoUrl()}/blob/${repoInfo().branch}/skills/query/SKILL.md` }, "query skill"),
+      " (shown with Claude Code; any agent that reads AGENTS.md works):"
+    ),
+    el(
+      "div",
+      { class: "kb-clone-block" },
+      el("pre", {}, el("code", {}, cmd)),
+      button
+    ),
+  ];
+}
+
+/**
+ * "How knowledge gets in" — the flow-in story, on the front door where
+ * visitors will actually see it. The mechanics live in kb/inbox/_index.md
+ * and the ingest skill; this is the one-paragraph version: inbox (queue) →
+ * ingest → distilled pages + archived original + log entry. Location
+ * encodes state: in the inbox = unprocessed, in sources/raw = processed.
+ */
+function knowledgeFlowSection() {
+  return [
+    el("div", { class: "kb-section-label" }, "How knowledge gets in"),
+    el(
+      "p",
+      { class: "kb-flow-note" },
+      "Two doors. Hand material to an agent working in the repo and say ",
+      el("em", {}, "“ingest this”"),
+      " — or drop raw files (notes, links, exports) into the ",
+      el("a", { href: routes.page("kb/inbox/_index.md") }, "inbox"),
+      ", the KB's unprocessed queue, and ask for a sweep later. Either way, the ",
+      el("a", { href: `${repoUrl()}/blob/${repoInfo().branch}/skills/ingest/SKILL.md` }, "ingest skill"),
+      " turns each item into a cited source page, propagates it across every affected page and index, records the change in the ",
+      el("a", { href: routes.page("kb/_log.md") }, "log"),
+      ", and moves the original into the ",
+      el("a", { href: routes.page("kb/sources/raw/_index.md") }, "raw archive"),
+      " — nothing is deleted, and nothing is searchable here until it has been through that loop."
+    ),
+  ];
+}
+
 /** Distinct content types present in the manifest (templates define more). */
 function typesInUse(manifest) {
   const counts = new Map();
@@ -236,6 +321,7 @@ export function renderHome(ctx) {
   mount(
     root,
     searchBox("", true),
+    cloneQueryBlock(),
     typePills.length
       ? [el("div", { class: "kb-section-label" }, "Browse by type"),
          el("div", { class: "pill-row" }, typePills)]
@@ -263,6 +349,7 @@ export function renderHome(ctx) {
         el("p", {}, "What this KB is about, who owns it, and what's out of scope.")
       )
     ),
+    knowledgeFlowSection(),
     recent.length
       ? [el("div", { class: "kb-section-label" }, "Recently updated"), recent.map(resultRow)]
       : el("p", { class: "kb-loading" }, "No content pages yet — the KB is waiting for its first ingest."),
@@ -370,10 +457,17 @@ export async function renderPage(ctx, route) {
     );
   }
 
-  const { body } = stripFrontmatter(raw);
+  const { frontmatter, body } = stripFrontmatter(raw);
   const bodyEl = el("div", { class: "md-body" });
   // Safe: markdown.js escapes all raw HTML in the source (see its header).
   bodyEl.innerHTML = renderMarkdown(body, makeResolvers(path));
+
+  // Pages the manifest deliberately skips (kb/inbox/, kb/sources/raw/) still
+  // deserve a real heading: fall back to the file's own frontmatter title
+  // before settling for the bare filename.
+  const fmTitle = frontmatter ? frontmatter.match(/^title:\s*["']?(.+?)["']?\s*$/m)?.[1] : null;
+  const pageTitle = page ? page.title : (fmTitle || path.split("/").pop().replace(/\.md$/, ""));
+  document.title = `${pageTitle} — ${CONFIG.siteTitle}`;
 
   // Affordance bar: canonical file, edit, feedback, history — all on GitHub.
   const { branch } = repoInfo();
@@ -385,7 +479,7 @@ export async function renderPage(ctx, route) {
     "header",
     { class: "kb-page-header" },
     el("div", { class: "pill-row" }, el("a", { href: routes.home() }, "← Home")),
-    el("h1", {}, page ? page.title : path.split("/").pop().replace(/\.md$/, "")),
+    el("h1", {}, pageTitle),
     page ? frontmatterPills(page) : null,
     el(
       "nav",

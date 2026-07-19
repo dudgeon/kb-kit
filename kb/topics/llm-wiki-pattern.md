@@ -33,6 +33,15 @@ index gives way to hybrid SQLite FTS5 + embeddings search. Other comment
 threads converged on verification-status metadata, provenance headers, and
 git-backed review gates.
 
+One gap worth naming: the gist's raw-sources layer is a permanent archive
+with **no queue** — "you drop a new source and tell the LLM to process it,"
+so what's *unprocessed* lives in the human's head (or must be recomputed by
+diffing the collection against `log.md`). This kit closes that gap by
+splitting the two roles: [`kb/inbox/`](../inbox/_index.md) encodes
+"unprocessed" by location, and ingest moves originals to the
+[raw archive](../sources/raw/_index.md) — the gist's layer 1 — once
+processed.
+
 Lineage and neighbors: the gist claims Memex ancestry (Vannevar Bush, 1945);
 Google's [OKF](../standards/open-knowledge-format.md) explicitly positions
 itself as this pattern "specified"; [OpenWiki](../tools/openwiki.md) and

@@ -6,7 +6,10 @@ title: Sources — index
 # Sources
 
 External artifacts this KB has ingested. Each page: distilled summary, then
-verbatim `## Key excerpts` (never edited in place).
+verbatim `## Key excerpts` (never edited in place). Originals that arrived
+via the [inbox](../inbox/_index.md) are preserved unmodified in the
+[raw archive](./raw/_index.md) and linked from their page's `raw:`
+frontmatter.
 
 - [Karpathy — "LLM Wiki" gist](./karpathy-llm-wiki-gist.md) - the April 2026 idea file the whole pattern traces to.
 - [Google OKF SPEC.md v0.1](./okf-spec.md) - the knowledge-bundle spec, 2026-06-12.

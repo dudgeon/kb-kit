@@ -8,7 +8,9 @@ title: Knowledge base — index
 
 A survey of the context-management and context-repo landscape (mid-2026).
 What this KB is and who owns it: [kb-card.md](../kb-card.md). How to work
-here: [AGENTS.md](../AGENTS.md).
+here: [AGENTS.md](../AGENTS.md). Raw material waiting to be ingested lives
+in the [inbox](./inbox/_index.md); originals of processed sources are
+preserved in the [raw archive](./sources/raw/_index.md).
 
 <!-- duo:listing -->
 

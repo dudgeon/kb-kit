@@ -43,3 +43,16 @@ boundary" in AGENTS.md).
 Batch mode (several sources): do steps 1–4 per source, but one combined
 discussion up front and one log entry per source. Links: relative markdown
 only; a link to a not-yet-written page is allowed and encouraged.
+
+**Inbox sweep** ("process the inbox"): `kb/inbox/` is the unprocessed
+queue — presence there means not yet ingested. Treat every file in it
+(except its `_index.md`) as a source and run steps 0–4 on each; an inbox
+item with a URL means fetch that URL (step 0 honesty rules apply). After
+capturing an item, **move the original to `kb/sources/raw/`** (never
+delete, never edit it — see `kb/sources/raw/_index.md`) and link it from
+the source page: `raw: ./raw/<file>` in frontmatter plus a body link.
+Location encodes state, so a half-done sweep is safe to resume: whatever is
+still in the inbox is still unprocessed. If a dropped item is a full copy
+of someone else's published text headed for a public repo, flag the
+licensing question to the owner instead of silently archiving. Note the
+sweep in the `_log.md` entry.

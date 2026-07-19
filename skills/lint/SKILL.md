@@ -16,9 +16,15 @@ AGENTS.md). Conventions: root [AGENTS.md](../../AGENTS.md); grading rubric:
 
 ## Pass 1 — mechanical (fix directly)
 
-- Frontmatter floor: every `kb/**/*.md` (except `_index.md`/`_log.md`) has
-  parseable YAML with `type` matching a template; flag missing
-  `summary`/`source`.
+- Frontmatter floor: every `kb/**/*.md` (except `_index.md`/`_log.md`, and
+  everything in `kb/inbox/` and `kb/sources/raw/`, which hold raw material
+  by contract) has parseable YAML with `type` matching a template; flag
+  missing `summary`/`source`.
+- Inbox: list items sitting in `kb/inbox/` — the inbox is the unprocessed
+  queue and should trend toward empty; propose an ingest sweep if anything
+  has lingered. Never flag `kb/sources/raw/` contents as stale or orphaned —
+  archived originals are permanent by design and reached via their source
+  page's `raw:` pointer, not via indexes.
 - Links: find broken relative links (typos/moved files — fix; genuinely
   unwritten targets — leave, they're intentional); find any `[[wikilinks]]`
   or absolute `/paths` and convert to relative markdown.

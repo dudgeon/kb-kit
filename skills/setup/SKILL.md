@@ -31,6 +31,9 @@ landscape KB in a branch or an `archive/` folder if they find it useful):
 - All pages under `kb/topics/`, `kb/standards/`, `kb/tools/`, `kb/sources/`,
   `kb/decisions/` (the folders themselves may stay if the owner will use
   them).
+- Any stray items in `kb/inbox/` and demo originals in `kb/sources/raw/` —
+  but keep both folders and their `_index.md` files; the inbox (queue) and
+  raw archive are machinery.
 - All entries in `kb/_log.md` (restart the log with a `setup` entry) and all
   demo listings in `kb/_index.md` (keep its frontmatter and structure).
 

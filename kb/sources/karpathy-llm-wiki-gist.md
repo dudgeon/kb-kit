@@ -22,6 +22,13 @@ abstract — "It describes the idea, not a specific implementation." The comment
 threads are as valuable as the gist: production-scale reports on drift, lint,
 and search scaling.
 
+One structural gap, noted for this KB's own design: the gist's raw-sources
+layer is a permanent archive with no queue — nothing encodes *unprocessed*
+(the human triggers each ingest by hand). This KB fills it with
+[inbox](../inbox/_index.md) (= waiting) and the
+[raw archive](./raw/_index.md) (= processed, preserved); details in
+[llm-wiki-pattern](../topics/llm-wiki-pattern.md).
+
 Propagated to: [llm-wiki-pattern](../topics/llm-wiki-pattern.md),
 [context-repo](../topics/context-repo.md),
 [open-knowledge-format](../standards/open-knowledge-format.md) (which
@@ -44,6 +51,8 @@ formalizes it), [obsidian](../tools/obsidian.md).
   thinking — it's the bookkeeping... LLMs don't get bored, don't forget to
   update a cross-reference, and can touch 15 files in one pass."
 - "your explorations compound in the knowledge base."
+- Flow-in: "You drop a new source into the raw collection and tell the LLM
+  to process it."
 - Comment, phoebe22222 (~4,000-concept prod wiki): "The schema file is
   everything"; drift is the top failure mode — "the lint pass is *not*
   optional."
