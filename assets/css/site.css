@@ -338,14 +338,35 @@ a.card:hover { text-decoration: none; border-color: var(--accent); }
 }
 .kb-main-wide { max-width: var(--max-width-wide); }
 
-/* Home masthead — the KB's name/description from the kb-card */
-.kb-masthead { margin: 0 0 1.1rem; }
-.kb-masthead h1 { margin: 0 0 0.2rem; font-size: 1.55rem; }
-.kb-masthead-desc {
-  margin: 0 0 0.35rem;
-  font-size: 1rem;
-  color: var(--fg);
+/* Home masthead — eyebrow / name / description / dotted meta row */
+.kb-masthead {
+  margin: 0.4rem 0 1.4rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid var(--border);
 }
+.kb-eyebrow {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 0.3rem;
+}
+.kb-masthead h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.7rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.kb-masthead-desc {
+  margin: 0 0 0.7rem;
+  font-size: 1.02rem;
+  color: var(--fg-muted);
+  max-width: 38rem;          /* keep the measure readable, not full-bleed */
+}
+.kb-meta-row {
+  display: flex; flex-wrap: wrap; gap: 0.45rem;
+  font-size: 0.83rem;
+  color: var(--fg-muted);
+}
+.kb-meta-row .dot { color: var(--border); }
 
 /* Home search box */
 .kb-search-box {

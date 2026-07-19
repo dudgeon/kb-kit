@@ -275,10 +275,9 @@ function cloneQueryBlock() {
     el(
       "p",
       { class: "kb-search-note" },
-      "Search here is deliberately basic — keyword matching only; every term must appear on the page. ",
-      "For more sophisticated questions, clone the KB and ask its ",
+      "Keyword matching only — every term must appear. For real questions, clone the KB and ask its ",
       el("a", { href: `${repoUrl()}/blob/${repoInfo().branch}/skills/query/SKILL.md` }, "query skill"),
-      " (shown with Claude Code; any agent that reads AGENTS.md works):"
+      ":"
     ),
     el(
       "div",
@@ -429,19 +428,23 @@ export function renderHome(ctx) {
 
   mount(
     root,
+    // Masthead lockup: eyebrow → name → one-line description → meta row.
+    // Deliberately not a paragraph pile — hierarchy comes from size/weight,
+    // and the orientation facts compress into a single dotted meta line.
     el(
       "header",
       { class: "kb-masthead" },
+      el("div", { class: "kb-eyebrow" }, "Knowledge base"),
       el("h1", {}, kbName),
       kbDesc ? el("p", { class: "kb-masthead-desc" }, kbDesc) : null,
       el(
-        "p",
-        { class: "kb-flow-note" },
-        "This is the knowledge base's home — a browsable, searchable view of a ",
-        el("a", { href: repoUrl() }, "GitHub repo of plain markdown"),
-        ". Read and search here without cloning; details on the KB itself are on the ",
-        el("a", { href: routes.page("kb-card.md") }, "kb-card"),
-        "."
+        "div",
+        { class: "kb-meta-row" },
+        el("span", {}, "Browsable home of ", el("a", { href: repoUrl() }, "this GitHub repo")),
+        el("span", { class: "dot", "aria-hidden": "true" }, "·"),
+        el("span", {}, "no clone, no login"),
+        el("span", { class: "dot", "aria-hidden": "true" }, "·"),
+        el("span", {}, "scope & health: ", el("a", { href: routes.page("kb-card.md") }, "kb-card"))
       )
     ),
     // First keystroke hops to the search view (results go live there).
