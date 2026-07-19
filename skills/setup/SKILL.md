@@ -28,9 +28,11 @@ The demo KB is a survey of the context-management landscape. Removal list —
 delete these entirely (confirm with the owner first; offer to keep the
 landscape KB in a branch or an `archive/` folder if they find it useful):
 
-- All pages under `kb/topics/`, `kb/standards/`, `kb/tools/`, `kb/sources/`,
-  `kb/decisions/` (the folders themselves may stay if the owner will use
-  them).
+- All content pages under `kb/topics/`, `kb/standards/`, `kb/tools/`,
+  `kb/sources/`, `kb/decisions/`. For each folder the owner keeps, keep (or
+  recreate) its `_index.md`, emptied to a one-line description — a kept
+  folder always has an index. `kb/sources/` and its `_index.md` always stay:
+  the raw archive lives beneath it.
 - Any stray items in `kb/inbox/` and demo originals in `kb/sources/raw/` —
   but keep both folders and their `_index.md` files; the inbox (queue) and
   raw archive are machinery.
@@ -39,7 +41,9 @@ landscape KB in a branch or an `archive/` folder if they find it useful):
 
 **Demo-only types** (remove `kb/templates/<type>.md` unless the owner wants
 them): `standard`, `tool`. **Core types** (keep unless asked): `note`,
-`source`, `decision`, `topic`.
+`source`, `decision`, `topic`. When removing a template, also remove its
+line from `kb/templates/_index.md` — run `node scripts/lint-kb.mjs` at the
+end of setup to catch anything missed.
 
 Do NOT touch: `AGENTS.md`, `skills/`, `.claude/` (per-tool skill symlinks),
 `docs/`, `scripts/`, the site files (`index.html`, `knowledge-base.html`,

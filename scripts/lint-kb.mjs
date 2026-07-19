@@ -57,7 +57,10 @@ const JSON_MODE = process.argv.includes("--json");
 const EXEMPT_DIRS = ["kb/inbox", "kb/sources/raw"];
 
 const posix = (p) => relative(REPO_ROOT, p).split(sep).join("/");
-const inExemptDir = (rel) => EXEMPT_DIRS.some((d) => rel.startsWith(d + "/"));
+// An exempt folder's own _index.md is its CONTRACT page — machinery, not a
+// raw drop — so it stays fully checked; only the folder's contents are exempt.
+const inExemptDir = (rel) =>
+  EXEMPT_DIRS.some((d) => rel.startsWith(d + "/")) && !rel.endsWith("/_index.md");
 
 // ---------------------------------------------------------------------------
 // Walk kb/ (everything — exemptions are applied per-check, not in the walk,
