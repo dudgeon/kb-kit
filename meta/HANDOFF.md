@@ -74,7 +74,11 @@ record them in `retrieval:` frontmatter. Do not repeat this.
 > inbox→ingest→raw-archive flow + honest-search/clone-to-query home
 > (ADR 009, interview Q11–Q12). Still open: Pages deployment check after
 > merge to main (now: Deploy from a branch); tasks 4 (needs maintainer
-> approval) and 5 (Obsidian, needs desktop app).
+> approval) and 5 (Obsidian, needs desktop app). Also since:
+> `scripts/lint-kb.mjs` now runs lint's mechanical pass (locally + in
+> CI), and a kb-card interview is QUEUED — prep + question list in
+> [kb-card-interview-prep.md](./kb-card-interview-prep.md); conduct it
+> one question at a time when the maintainer is available.
 
 1. ~~**Browser-verify the site**~~ DONE (locally; re-check on the live
    Pages URL after merging to main).

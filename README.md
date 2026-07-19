@@ -65,7 +65,7 @@ and no login.
 | `AGENTS.md` / `CLAUDE.md` | Agent schema file (canonical / shim) |
 | `skills/` | setup · ingest · query · lint |
 | `index.html`, `knowledge-base.html`, `assets/` | The static site |
-| `scripts/build-index.mjs` + `.github/workflows/` | Search-index build + CI freshness backstop |
+| `scripts/` + `.github/workflows/` | Search-index build, mechanical KB lint, CI freshness backstop |
 | `docs/` | Taxonomy, kb-card spec, site customization guide |
 | `meta/` | Upstream kit-development files (delete in your fork) |
 

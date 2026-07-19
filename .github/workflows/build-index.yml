@@ -32,7 +32,7 @@
 #   Your site appears at https://<owner>.github.io/<repo>/.
 #
 # SAFE TO CUSTOMIZE
-#   - Add lint/link-check steps after the build step.
+#   - Add further checks alongside the lint step (it runs scripts/lint-kb.mjs).
 #   - Change the branch filter if your default branch isn't `main`.
 #
 # WILL BREAK THINGS
@@ -70,6 +70,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      # Mechanical KB health check (scripts/lint-kb.mjs). Fails the run only
+      # on hard rule violations (missing frontmatter/type, wikilinks,
+      # absolute links); dangling links and orphans are warnings by design —
+      # in this KB a broken link marks knowledge worth writing.
+      - name: Lint the KB (mechanical checks)
+        run: node scripts/lint-kb.mjs
 
       - name: Rebuild manifest + search index
         run: node scripts/build-index.mjs

@@ -16,6 +16,12 @@ AGENTS.md). Conventions: root [AGENTS.md](../../AGENTS.md); grading rubric:
 
 ## Pass 1 — mechanical (fix directly)
 
+Start with `node scripts/lint-kb.mjs --json` — it runs this whole pass
+deterministically (frontmatter floor, wikilinks/absolute links, dangling
+links, reachability, orphans, inbox queue depth) and is the same check CI
+runs. Fix what it reports, then verify by re-running. The rules, for
+reference:
+
 - Frontmatter floor: every `kb/**/*.md` (except `_index.md`/`_log.md`, and
   everything in `kb/inbox/` and `kb/sources/raw/`, which hold raw material
   by contract) has parseable YAML with `type` matching a template; flag

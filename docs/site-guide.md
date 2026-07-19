@@ -54,6 +54,7 @@ where Actions can't publish Pages. Two things make this work:
 | `assets/js/markdown.js` | dependency-free md → HTML renderer (escapes all raw HTML) |
 | `assets/css/site.css` | all styling; design tokens at the top |
 | `scripts/build-index.mjs` | markdown → JSON (Node ≥ 18, zero dependencies) |
+| `scripts/lint-kb.mjs` | mechanical KB health check (same sweep CI runs; `--json` for agents) |
 
 ### Routes
 

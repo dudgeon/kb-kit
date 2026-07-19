@@ -165,6 +165,21 @@ Implemented as: `kb/inbox/` = queue (presence means unprocessed),
 layer 1), with the distilled source page linking its archived original.
 Location encodes state at both ends; neither folder is search-indexed.
 
+### Q13 — Raw-archive licensing (2026-07-18)
+
+**A:** Not worried about licensing implications of archiving freely
+available content — "seems well covered under fair use." The ingest skill's
+flag-before-archiving tripwire was removed; agents archive inbox originals
+unconditionally.
+
+### Pending interview: the kb-card concept (queued 2026-07-18)
+
+Maintainer: "I think we could better explain the kb-card concept — that
+could be an oppty for you to interview me in the future." Prep doc with
+proposed questions: [kb-card-interview-prep.md](./kb-card-interview-prep.md).
+Ask ONE question at a time (working agreement) when the maintainer is next
+available.
+
 ### Interview status
 
 Core decisions locked; build phase begins. Remaining choices (folder
