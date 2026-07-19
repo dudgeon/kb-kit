@@ -442,9 +442,7 @@ export function renderHome(ctx) {
         { class: "kb-meta-row" },
         el("span", {}, "Browsable home of ", el("a", { href: repoUrl() }, "this GitHub repo")),
         el("span", { class: "dot", "aria-hidden": "true" }, "·"),
-        el("span", {}, "no clone, no login"),
-        el("span", { class: "dot", "aria-hidden": "true" }, "·"),
-        el("span", {}, "scope & health: ", el("a", { href: routes.page("kb-card.md") }, "kb-card"))
+        el("span", {}, el("a", { href: routes.page("kb-card.md") }, "about"))
       )
     ),
     // First keystroke hops to the search view (results go live there).
