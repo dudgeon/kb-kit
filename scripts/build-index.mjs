@@ -4,9 +4,10 @@
  * =======================================================================
  *
  * WHAT THIS IS
- *   The only "build step" in kb-kit. It walks every markdown file under kb/
- *   (plus the kit docs listed in EXTRA_DOCS), parses YAML frontmatter with a
- *   small built-in parser, and writes two files:
+ *   The only "build step" in kb-kit. It walks EVERY markdown file in the
+ *   repo (kb/ content, root docs, docs/, skills/ — see the scope note at
+ *   HTML_PAGES/SKIP_DIRS below) plus the two HTML pages, parses YAML
+ *   frontmatter with a small built-in parser, and writes two files:
  *
  *     assets/data/manifest.json      — structured metadata for every page
  *                                      (drives the home view, type views,
@@ -47,6 +48,7 @@
  */
 
 import { readdirSync, readFileSync, statSync, mkdirSync, writeFileSync, existsSync } from "node:fs";
+import { execSync } from "node:child_process";
 import { join, relative, dirname, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -61,16 +63,15 @@ const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const KB_DIR = "kb";
 
 /**
- * Kit documentation outside kb/ that should also be indexed so the viewer
- * can render it (e.g. #/page/docs/taxonomy.md) and search can find it.
- * Paths are relative to the repo root. Missing files are skipped silently.
+ * Indexing scope (maintainer directive, 2026-07-18): EVERY markdown file in
+ * the repo is indexed — kb/ content, root files (README, AGENTS.md,
+ * kb-card.md, pattern-log.md…), docs/, skills/ — plus the HTML pages listed
+ * below. Exceptions are SKIP_DIRS (raw material) and meta/ (upstream
+ * kit-development files, deleted before release); dot-folders (.claude,
+ * .github) are skipped by the walker. Non-kb pages carry no frontmatter
+ * `type`, so they appear in search but never in type pills or listings.
  */
-const EXTRA_DOCS = [
-  "docs/taxonomy.md",
-  "docs/kb-card-spec.md",
-  "docs/site-guide.md",
-  "kb-card.md",
-];
+const HTML_PAGES = ["index.html", "knowledge-base.html"];
 
 /** Where the JSON output goes (the client fetches from here). */
 const OUT_DIR = join(REPO_ROOT, "assets", "data");
@@ -282,16 +283,17 @@ function excerpt(plain, n) {
 // ---------------------------------------------------------------------------
 
 /**
- * Folders under the repo root that are deliberately NOT indexed:
+ * Folders that are deliberately NOT indexed:
  *   kb/inbox        — the unprocessed queue: raw drops, unvetted text.
  *   kb/sources/raw  — the immutable archive of ingested originals; indexing
  *                     verbatim full texts would drown the distilled pages
  *                     in keyword search.
- * Both stay viewable by direct #/page/ link (the page view fetches raw
+ *   meta            — upstream kit-development files; deleted pre-release
+ *                     and never part of a fork's KB.
+ * All stay viewable by direct #/page/ link (the page view fetches raw
  * markdown); they just never appear in search or type listings.
- * See kb/inbox/_index.md and kb/sources/raw/_index.md for the contracts.
  */
-const SKIP_DIRS = new Set(["kb/inbox", "kb/sources/raw"]);
+const SKIP_DIRS = new Set(["kb/inbox", "kb/sources/raw", "meta"]);
 
 /** Recursively list every .md file under dir (absolute paths, sorted). */
 function walkMarkdown(dir) {
@@ -313,8 +315,59 @@ function walkMarkdown(dir) {
 // Build one page record
 // ---------------------------------------------------------------------------
 
+/**
+ * `modified` provenance: last git commit date for the file (stable across
+ * checkouts, so CI rebuilds are byte-identical unless content changed —
+ * the freshness backstop stays quiet on timestamp-only churn). Falls back
+ * to filesystem mtime for uncommitted files or non-git checkouts.
+ */
+function lastModified(absPath) {
+  try {
+    const iso = execSync(
+      `git log -1 --format=%cI -- "${relative(REPO_ROOT, absPath)}"`,
+      { cwd: REPO_ROOT, stdio: ["ignore", "pipe", "ignore"] }
+    ).toString().trim();
+    if (iso) return new Date(iso).toISOString();
+  } catch { /* not a git checkout — fall through */ }
+  return statSync(absPath).mtime.toISOString();
+}
+
+/** Visible text of an HTML page: comments, scripts, styles, tags stripped. */
+function htmlToPlainText(html) {
+  return html
+    .replace(/<!--[\s\S]*?-->/g, " ")                    // dev-note comments are NOT content
+    .replace(/<(script|style|noscript)[\s\S]*?<\/\1>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&[a-z#0-9]+;/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** Page record for one of the HTML_PAGES (no frontmatter, no type). */
+function buildHtmlPage(absPath) {
+  const relPath = relative(REPO_ROOT, absPath).split(sep).join("/");
+  const raw = readFileSync(absPath, "utf8");
+  const title = raw.match(/<title>([^<]*)<\/title>/i)?.[1]?.trim() || relPath;
+  const plain = htmlToPlainText(raw);
+  const page = {
+    path: relPath,
+    title,
+    type: null,          // not a KB entity: searchable, never in type views
+    summary: null,
+    tags: [],
+    reserved: false,
+    frontmatter: {},
+    headings: [],
+    excerpt: excerpt(plain, EXCERPT_WORDS),
+    modified: lastModified(absPath),
+  };
+  const blob = [title, plain].join(" ").toLowerCase().replace(/\s+/g, " ").slice(0, BLOB_MAX_CHARS);
+  return { page, searchEntry: { path: relPath, title, type: null, tags: [], blob } };
+}
+
 function buildPage(absPath) {
   const relPath = relative(REPO_ROOT, absPath).split(sep).join("/"); // posix paths in JSON
+  if (relPath.endsWith(".html")) return buildHtmlPage(absPath);
   const raw = readFileSync(absPath, "utf8");
   const { data, warnings, body } = splitFrontmatter(raw);
   const plain = toPlainText(body);
@@ -342,10 +395,9 @@ function buildPage(absPath) {
     // Navigation aids.
     headings: extractH2s(body),
     excerpt: excerpt(plain, EXCERPT_WORDS),
-    // Filesystem modification time (ISO) — powers "recently updated".
-    // Note: in CI this reflects checkout time unless git restores mtimes;
-    // it is a hint, not provenance.
-    modified: statSync(absPath).mtime.toISOString(),
+    // Last git commit date (ISO) — powers "recently updated"; mtime only
+    // as a fallback. See lastModified() for why this must be git-derived.
+    modified: lastModified(absPath),
   };
   if (warnings.length) page.warnings = warnings;
 
@@ -369,8 +421,8 @@ function buildPage(absPath) {
 
 function main() {
   const files = [
-    ...walkMarkdown(join(REPO_ROOT, KB_DIR)),
-    ...EXTRA_DOCS.map((p) => join(REPO_ROOT, p)).filter((p) => existsSync(p)),
+    ...walkMarkdown(REPO_ROOT),
+    ...HTML_PAGES.map((p) => join(REPO_ROOT, p)).filter((p) => existsSync(p)),
   ];
 
   const pages = [];
@@ -404,8 +456,12 @@ function main() {
   }
 
   const manifest = {
-    // ISO timestamp of this build — shown in the site footer.
-    generated_at: new Date().toISOString(),
+    // When the indexed content last changed (max of page `modified` dates),
+    // NOT wall-clock build time — shown in the site footer. Deterministic on
+    // purpose: rebuilding unchanged content must produce byte-identical
+    // JSON, or the CI freshness backstop would commit timestamp churn on
+    // every push.
+    generated_at: pages.reduce((m, p) => (p.modified && p.modified > m ? p.modified : m), ""),
     // Hints only: the client derives owner/repo from its own URL and falls
     // back to CONFIG in assets/js/config.js. These help local preview.
     repo: { kb_dir: KB_DIR, default_branch: "main" },

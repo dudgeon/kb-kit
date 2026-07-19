@@ -12,7 +12,7 @@ license: MIT
 contact: GitHub issues on this repository
 entry_points:
   bundle: kb/_index.md
-  site: https://dudgeon.github.io/kb-kit/knowledge-base.html
+  site: https://dudgeon.org/kb-kit/knowledge-base.html
   agents: AGENTS.md
 established: "2026-07-18"
 ---

@@ -175,9 +175,12 @@ function makeResolvers(pagePath) {
 
 /** One result row (used by search + type + recent listings). */
 function resultRow(page) {
+  // Markdown pages render inside the app; the indexed HTML pages (marketing
+  // page, this shell) are real pages — link straight to them.
+  const href = page.path.endsWith(".md") ? routes.page(page.path) : page.path;
   return el(
     "a",
-    { class: "kb-result", href: routes.page(page.path) },
+    { class: "kb-result", href },
     el(
       "div",
       { class: "pill-row" },
@@ -313,8 +316,12 @@ export function renderHome(ctx) {
     el("a", { class: `pill pill-type-${type}`, href: routes.type(type) }, `${type} (${count})`)
   );
 
+  // "Recently updated" is a KNOWLEDGE feed: kb/ pages + the kb-card only.
+  // The index also carries kit docs and HTML pages (searchable), but repo
+  // housekeeping shouldn't crowd out actual knowledge here.
   const recent = manifest.pages
     .filter((p) => !p.reserved && p.type !== "index" && p.type !== "log" && p.modified)
+    .filter((p) => p.path.startsWith("kb/") || p.path === "kb-card.md")
     .sort((a, b) => (b.modified || "").localeCompare(a.modified || ""))
     .slice(0, RECENT_COUNT);
 

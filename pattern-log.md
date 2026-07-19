@@ -23,6 +23,17 @@ Rules (see AGENTS.md → "Customizing the kit"):
 
 ## 2026-07-18
 
+- upstream | Search index scope widened to the whole repo (maintainer
+  directive): every .md (root files, docs/, skills/) plus the two HTML
+  pages; still excluded: kb/inbox/, kb/sources/raw/, meta/, dot-folders.
+  Non-kb pages have no `type`; home "recently updated" stays kb-only; HTML
+  search results link directly. Files: scripts/build-index.mjs,
+  assets/js/views.js.
+- upstream | Build made deterministic: `modified` = last git commit date
+  (was mtime), `generated_at` = newest content date (was wall-clock), so CI
+  rebuilds of unchanged content are byte-identical and the freshness
+  backstop no longer commits timestamp churn on every push. Footer wording:
+  "content updated". Files: scripts/build-index.mjs, assets/js/app.js.
 - upstream | Setup hardened by a fork dry-run: kept folders always keep a
   one-line `_index.md`; `kb/sources/_index.md` always survives (raw/ lives
   beneath it); removing a demo template now updates `kb/templates/_index.md`.

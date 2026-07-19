@@ -28,6 +28,10 @@ sense in a fresh fork with the demo content deleted. Everything about
 - kb-card.md: small human-declared core; inferred traits computed by lint
   between `<!-- kb-card:inferred -->` markers.
 - License: MIT (corporate-friendly, attribution).
+- No server-side/scheduled/headless agents, ever (Q15): everything agentic
+  runs in the fork owner's local agent session; CI runs deterministic
+  scripts only (no model calls). Pages deploys from the branch (Q10/ADR
+  008) for the same reason: forks live in locked-down environments.
 
 ## Working agreements
 

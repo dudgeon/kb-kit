@@ -87,9 +87,10 @@ record them in `retrieval:` frontmatter. Do not repeat this.
    Pages URL after merging to main).
 2. ~~**Run the lint skill**~~ DONE.
 3. ~~**Re-fetch the three blocked sources**~~ DONE.
-4. **Scheduled mechanical-lint Action** — proposed to maintainer (OpenWiki's
-   daily-PR pattern), NOT yet approved; maintainer left it "open question vs
-   build" — ask before building.
+4. ~~**Scheduled mechanical-lint Action**~~ REJECTED (Q15) — and a
+   load-bearing constraint came with it: no server-side/scheduled/headless
+   agents anywhere in the kit; CI runs deterministic scripts only. See
+   meta/CLAUDE.md.
 5. **Obsidian check** — open the repo as a vault; confirm relative links +
    frontmatter behave (maintainer's PMs use Obsidian).
 6. **Setup-skill dry run** — simulate a fork onboarding; confirm the demo

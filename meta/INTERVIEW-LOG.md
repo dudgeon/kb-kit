@@ -189,6 +189,36 @@ root `pattern-log.md` (`upstream |` entries in kb-kit itself; forks add
 `fork |` entries and a fork-point anchor recorded by setup). The upgrade
 skill itself is QUEUED — see ADR 010 and meta/HANDOFF.md.
 
+### Q15 — Scheduled lint REJECTED; local-agent-only constraint (2026-07-18, AskUserQuestion)
+
+**A:** "I don't understand this suggestion; linting requires a strong
+generative model, which gh does not have access to; this pattern needs to
+work for users/fork owners who only have claude code and cannot access
+deployed agents, background headless processes, etc."
+
+Ruling absorbed as a load-bearing constraint: **the kit may not depend on
+server-side, scheduled, or headless agents.** Everything agentic runs in the
+fork owner's own local agent session (Claude Code or equivalent). CI may run
+only deterministic scripts (build-index, lint-kb mechanical checks) — no
+model calls. The editorial lint passes remain a human-triggered skill.
+
+### Q16 — Site search scope: index everything (2026-07-18, AskUserQuestion)
+
+**A:** "can we just index all md and html in the repo?" → Yes. Build now
+indexes every repo .md plus index.html/knowledge-base.html; exclusions:
+`kb/inbox/`, `kb/sources/raw/` (raw material), `meta/` (deleted
+pre-release), dot-folders. Non-kb pages carry no `type` (searchable, never
+in type views); the home "recently updated" feed stays kb-only. Correction
+recorded: the question's premise was wrong — `docs/` was already indexed
+via EXTRA_DOCS; the directive generalizes it.
+
+### Q17 — kb-card site URL (2026-07-18, AskUserQuestion)
+
+**A:** Declare the canonical custom-domain URL. `entry_points.site` is now
+`https://dudgeon.org/kb-kit/knowledge-base.html` (the account-level custom
+domain; the github.io URL 301s there). kb-card interview: maintainer chose
+"Later" — stays queued.
+
 ### Pending interview: the kb-card concept (queued 2026-07-18)
 
 Maintainer: "I think we could better explain the kb-card concept — that

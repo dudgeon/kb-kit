@@ -66,4 +66,7 @@ must be defensible from the pass-1/2 evidence.
 ## Close out
 
 Append to `kb/_log.md`: `lint | summary of fixes/proposals`. If substantial
-findings, suggest the owner schedule lint recurringly (e.g. monthly).
+findings, suggest the owner make lint a habit (e.g. asking their agent
+monthly). There is deliberately no server-side automation for this — the
+editorial passes need a strong model, and the kit must work for owners
+whose only agent is their local session.
