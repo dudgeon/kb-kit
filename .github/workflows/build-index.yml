@@ -62,8 +62,16 @@ jobs:
     # that commit from triggering an infinite loop of runs.
     if: github.actor != 'github-actions[bot]'
     steps:
+      # fetch-depth: 0 is REQUIRED, not an optimization: build-index.mjs
+      # derives every page's `modified` from `git log -1 -- <file>`. On the
+      # default shallow (depth-1) checkout the only visible commit is the
+      # tip, so every file "changed" at the tip's date — the index drifts on
+      # every push and this workflow commits churn (that exact bug shipped
+      # once; see pattern-log.md 2026-07-19).
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # build-index.mjs needs Node >= 18 and nothing else — no npm install.
       - name: Set up Node

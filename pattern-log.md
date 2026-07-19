@@ -23,6 +23,12 @@ Rules (see AGENTS.md → "Customizing the kit"):
 
 ## 2026-07-19
 
+- upstream | CI fix: build-index's git-derived dates require a full-depth
+  checkout — on the default shallow clone every file's `modified` collapsed
+  to the tip commit's date, re-breaking determinism and scrambling
+  "recently updated" (bot commit d57ad10). Workflow now checks out with
+  fetch-depth: 0; correct dates recommitted. Files:
+  .github/workflows/build-index.yml, assets/data/*.json.
 - upstream | KB home gains a masthead: the KB's name + description read
   from the kb-card's declared frontmatter (forks inherit automatically),
   plus one orienting sentence. Renderer fence bug fixed: fences now follow
