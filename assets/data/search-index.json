@@ -1,0 +1,467 @@
+{
+  "generated_at": "2026-07-19T01:55:48.238Z",
+  "entries": [
+    {
+      "path": "kb/_index.md",
+      "title": "Knowledge base — index",
+      "type": "index",
+      "tags": [],
+      "blob": "knowledge base — index start here topics standards tools & systems sources decisions templates knowledge base a survey of the context-management and context-repo landscape (mid-2026). what this kb is and who owns it: kb-card.md. how to work here: agents.md. raw material waiting to be ingested lives in the inbox; originals of processed sources are preserved in the raw archive. start here the context repo - the idea this whole kb (and kit) is about: durable, versioned knowledge shared by humans and agents. kb discovery and the kb-card gap - the open gap kb-kit targets. open questions - the frontier: multiplayer governance, ossified authority, volatile sources. topics the context repo - the central concept and the decoupling thesis (agents disposable, context durable). context engineering - the discipline: karpathy's framing, anthropic's techniques, langchain's write/select/compress/isolate. the llm-wiki pattern - karpathy's three layers, the ingest/query/lint loop, drift as the failure mode. progressive disclosure - the token-frugal mechanism shared across skills, okf, claude.md, and mcp. agent memory vs. knowledge bases - memory systems and kbs merging into context repos; chatgpt as the opaque outlier. kb discovery and the kb-card gap - no adopted kb-card standard; model-card precedents; what kb-kit proposes. open questions - who lints in multiplayer mode, how authority ossifies, and how repos coexist with notion/docs/slack. standards open knowledge format (okf) - google's v0.1 knowledge-bundle spec; this kb's format anchor. agents.md - the de facto repo-root agent instruction file; ~30 tools, 60k+ repos. agent skills (skill.md) - packaged capabilities loaded via progressive disclosure; ~40 products. llms.txt - root markdown site index for llms; growing supply, lagging crawler demand. mcp — resources and the registry - context delivery over protocol, and the nearest existing discovery standard. claude.md - anthropic's layered memory hierarchy; coexists with agents.md"
+    },
+    {
+      "path": "kb/_log.md",
+      "title": "Knowledge base — change log",
+      "type": "log",
+      "tags": [],
+      "blob": "knowledge base — change log 2026-07-18 change log newest first. entry format: ## yyyy-mm-dd heading, bulleted changes, each naming the operation (ingest lint setup edit) and the pages touched. 2026-07-18 edit established the inbox→ingest→archive flow (maintainer directive): inbox/ is the unprocessed queue (presence = waiting), and ingest now moves processed originals to sources/raw/ (immutable archive, karpathy's layer 1) instead of deleting anything. neither folder is search-indexed. pages touched: inbox/index.md (new), sources/raw/index.md (new), index.md, sources/index.md, sources/karpathy-llm-wiki-gist.md, topics/llm-wiki-pattern.md. lint first full lint pass. auto-fixed: root index.md section headers now link to the five folder indexes (they were unreachable from the front door). verified: 29 content pages, 241 internal links, 0 orphans, 0 broken links beyond the two deliberate not-yet-written targets, every page ≤4 hops from the root. kb-card inferred block populated for the first time. proposed (not applied): exclude kb/templates/ files from the site's type-listing pages — each template currently double-counts as a page of its own type. pages touched: index.md, ../kb-card.md. ingest re-fetched the three egress-blocked sources from an unrestricted network. cerebras blog read in full: corrected the secondhand stack claim (postgres/pgvector + fts + rrf, not sqlite fts5), confirmed 15,000+ queries per day, corrected date to 2026-07-15; prukalpa essay quotes verified and corrected to exact wording; karpathy gist quotes byte-verified. all three retrieval: flags now primary. pages touched: sources/cerebras-kb-blog.md, sources/prukalpa-github-for-context.md, sources/karpathy-llm-wiki-gist.md, sources/index.md, index.md, topics/context-repo.md, topics/open-questions.md. ingest open questions topic added from maintainer discussion (multiplayer lint/governance, ossifying authority, volatile linked sources) — pages touched: topics/open-questions.md, topics/index.md, inde"
+    },
+    {
+      "path": "kb/decisions/_index.md",
+      "title": "Decisions — index",
+      "type": "index",
+      "tags": [],
+      "blob": "decisions — index decisions choices made in building this kb/kit, with rationale and rejected options. decisions are immutable; reversals are new pages linking back. relative markdown links only - why not wikilinks, why not okf's absolute form. index.md and log.md - why the underscore deviation from okf's reserved names. minimal typing, grown via the loop - types earn their way in; demo types are setup-removable."
+    },
+    {
+      "path": "kb/decisions/minimal-typing.md",
+      "title": "Decision: minimal typing, grown via the loop",
+      "type": "decision",
+      "tags": [
+        "types",
+        "templates",
+        "schema"
+      ],
+      "blob": "decision: minimal typing, grown via the loop types start tiny and grow through ingestion and lint; demo-specific types are catalogued so setup can remove them. types templates schema decision: minimal typing, grown via the loop decision. this kb ships the smallest workable type set — note, source, decision, topic, plus two demo types (standard, tool) — and grows types only when the ingest/lint loop keeps producing pages that don't fit. each type is defined by a prose-plus-minimal-frontmatter template in kb/templates/; adding one means adding a template, logging it, and noting it in the index. agents never invent a type mid-task. demo-specific types are catalogued in the setup skill so a fresh fork can remove them cleanly with the demo content. context. okf deliberately has no fixed type taxonomy — types are not centrally registered, and consumers must tolerate unknown ones. practitioner evidence supports growing rather than designing: the largest production report on the llm-wiki pattern found the new-page-vs-edit heuristic works \"~90% of the time once the schema enumerates the page types\" — enumerated types earn their keep, speculative ones don't. the research caution that verbose boilerplate context can perform worse than none (see context engineering) applies to schemas too: every unused type is index weight an agent must read past. what was rejected. a rich upfront taxonomy (brainkit ships person/meeting/task types plus status ladders — right for a personal second brain, presumptuous for a starter kit); and zero typing (the floor of type/summary/source is what makes lint and the kb-card census possible; see kb-discovery). consequences. early pages lean on note; some will be retyped as the taxonomy grows — that churn is accepted as cheaper than guessing wrong up front. standard and tool exist because this demo kb is a landscape survey; forks that don't need them delete two template files."
+    },
+    {
+      "path": "kb/decisions/relative-markdown-links.md",
+      "title": "Decision: relative markdown links only",
+      "type": "decision",
+      "tags": [
+        "linking",
+        "wikilinks",
+        "okf-deviation"
+      ],
+      "blob": "decision: relative markdown links only this kb links with plain relative markdown — never wikilinks, never okf's recommended absolute bundle paths. linking wikilinks okf-deviation decision: relative markdown links only decision. every link in this kb is plain relative markdown — label or ../folder/page.md. no [[wikilinks]], no absolute /paths. a [[name]] gesture from a human is resolved to a relative link before saving. context. the three formats this kit draws on disagree. karpathy's llm-wiki gist uses [[wikilinks]] as graph edges. okf v0.1 forbids wikilinks and \"recommends\" bundle-root-absolute links (/tables/customers.md) for move-stability, with relative links also valid. brainkit/duo forbid both wikilinks and absolute paths. why not wikilinks. they break github rendering and this kit's static site, and they are obsidian-specific rather than plain markdown. duo supplies harder evidence: it reversed an earlier wikilink decision (enh-266, 2026-07-09) after testing showed frontmatter wikilinks create phantom nodes in obsidian's own graph. why not okf's absolute form. bundle-root-absolute links do not render correctly in the github web ui or on github pages — they resolve against the domain root. since a kb-kit fork must be readable on plain github with zero tooling, the \"recommended\" form fails the kit's core requirement. relative links are okf-spec-valid and render everywhere, so this is a documented deviation, not a break: the bundle stays conformant. consequences. links are move-fragile (renames must update inbound links — a lint job). links to not-yet-written pages are allowed and even encouraged, per okf: a broken link \"may simply represent not-yet-written knowledge.\" affected: agents.md linking rules, open-knowledge-format, obsidian."
+    },
+    {
+      "path": "kb/decisions/underscore-index-files.md",
+      "title": "Decision: _index.md and _log.md",
+      "type": "decision",
+      "tags": [
+        "naming",
+        "index",
+        "okf-deviation"
+      ],
+      "blob": "decision: _index.md and _log.md this kb uses underscore-prefixed index and log filenames, deviating from okf's reserved index.md/log.md. naming index okf-deviation decision: index.md and log.md decision. this kb's catalog and change-log files are index.md and log.md — not the index.md/log.md names that okf v0.1 reserves. they serve exactly the okf-reserved roles: index.md is the progressive-disclosure catalog (bulleted title - description entries, one screen per index); log.md records changes under ## yyyy-mm-dd headings, newest first. why deviate. sort order. an underscore prefix sorts the index and log to the top of every file navigator (github file listing, editors, ls), which serves their read-me-first purpose. plain index.md buries the entry point mid-alphabet. duo compatibility. duo's vault engine made index.md/log.md its paired-listing default (enh-245, legacy non-underscore honored, never mixed), regenerating listings below a fence. matching it means a kb-kit bundle opens cleanly in duo, and the root index.md keeps the fence for that reason. what was rejected. strict okf reserved names (loses sort-first and duo default); carrying both names (duo explicitly forbids mixing; two catalogs drift). consequences. this is the kit's second documented okf deviation (with relative links). strictly, okf conformance requires reserved-name structure \"when present\" — an index.md is a non-reserved file, so ours carry frontmatter with a type to stay conformant-as-concepts. the research notes flag a candidate upstream compatibility pr to reconcile duo's default with google's reserved names; track it on open-knowledge-format."
+    },
+    {
+      "path": "kb/sources/_index.md",
+      "title": "Sources — index",
+      "type": "index",
+      "tags": [],
+      "blob": "sources — index sources external artifacts this kb has ingested. each page: distilled summary, then verbatim ## key excerpts (never edited in place). originals that arrived via the inbox are preserved unmodified in the raw archive and linked from their page's raw: frontmatter. karpathy — \"llm wiki\" gist - the april 2026 idea file the whole pattern traces to. google okf spec.md v0.1 - the knowledge-bundle spec, 2026-06-12. prukalpa — \"the github for context doesn't exist yet\" - the decoupling manifesto, 2026-07-16. introducing openwiki - brace sproul's launch, 2026-07-01, plus okf adoption. cerebras — \"how we built our knowledge base\" - first-party company-scale kb account, 2026-07-15; 15k+ queries/day. anthropic — \"effective context engineering\" - context rot and the four techniques, 2025-09-29."
+    },
+    {
+      "path": "kb/sources/anthropic-effective-context-engineering.md",
+      "title": "Anthropic — \"Effective context engineering for AI agents\"",
+      "type": "source",
+      "tags": [
+        "anthropic",
+        "context-engineering",
+        "context-rot"
+      ],
+      "blob": "anthropic — \"effective context engineering for ai agents\" the canonical engineering essay — context as a finite resource, and the four working techniques against context rot. anthropic context-engineering context-rot key excerpts anthropic — \"effective context engineering for ai agents\" anthropic engineering essay, 2025-09-29. the canonical treatment of context engineering as an engineering discipline rather than prompt-writing craft. core frame: context is a finite resource whose usefulness degrades as the window fills — the essay's term is \"context rot.\" against it, four techniques that became the field's standard toolkit: compaction — summarize and replace older context rather than letting it accumulate. note-taking / memory — persist important information outside the window so it survives across sessions (the technique that agent memory systems and context repos productize). just-in-time retrieval — fetch context when needed rather than front-loading it (the retrieval-side twin of progressive disclosure). sub-agents — isolate context-heavy work in separate agents that return only conclusions. it sits alongside karpathy's june 2025 definition and langchain's write/select/compress/isolate taxonomy as one of the three framings this kb's context engineering topic synthesizes. propagated to: context-engineering, agent-memory, progressive-disclosure. key excerpts from the research notes: \"context as finite resource ('context rot'); compaction, note-taking/memory, just-in-time retrieval, sub-agents.\" karpathy's adjacent framing (june 2025), for the record: context engineering is \"the delicate art and science of filling the context window with just the right information.\""
+    },
+    {
+      "path": "kb/sources/cerebras-kb-blog.md",
+      "title": "Cerebras — \"How We Built Our Knowledge Base\"",
+      "type": "source",
+      "tags": [
+        "cerebras",
+        "company-kb",
+        "retrieval",
+        "slack"
+      ],
+      "blob": "cerebras — \"how we built our knowledge base\" first-party account of a company-scale kb queried 15,000+ times a day — postgres-everything retrieval (pgvector + fts + rrf), llm distillation of slack, mcp tools. cerebras company-kb retrieval slack architecture (as stated in the article) key excerpts cerebras — \"how we built our knowledge base\" blog post (2026-07-15) by isaac tai, daniel kim, and mike gao. first-party account of cerebras knowledge, an internal kb launched ~3 months earlier and queried more than 15,000 times per day by \"humans, automations and agents.\" an earlier version of this page was reconstructed from secondary coverage while the blog was unreachable; the article has since been read in full and the secondhand claims corrected (notably: the stack is postgres-everything, not sqlite fts5 as secondary coverage implied). design thesis: meet information where it lives rather than forcing a single source of truth — \"information is generated wherever it is convenient and ergonomic\" (slack threads, docs, code, jira), so the system extracts from each platform instead of changing behavior. this is a retrieval architecture over live sources, not an agent-maintained wiki — a useful contrast with the llm-wiki pattern, whose layer 1 (immutable raw sources) is the only layer cerebras indexes. architecture (as stated in the article) one postgres table holds embeddings (pgvector, 3,072-dim, hnsw), raw summaries, and metadata for every source; one connector per source; teams add custom sources via plugin scripts in prs. hybrid retrieval, fused: full-text (postgres gin) for exact tokens, embeddings for paraphrase, idf to beat filler, age decay (\"slack answers expire\"). lists fused with reciprocal rank fusion (k=60), then an llm reranker scores the top candidates; winners are re-expanded with neighboring context. slack is the flagship source: socket mode bot, whole-thread upserts, then llm distillation of each thread into a structured artifact (question / summary / reso"
+    },
+    {
+      "path": "kb/sources/karpathy-llm-wiki-gist.md",
+      "title": "Karpathy — \"LLM Wiki\" gist",
+      "type": "source",
+      "tags": [
+        "karpathy",
+        "llm-wiki",
+        "gist"
+      ],
+      "blob": "karpathy — \"llm wiki\" gist the april 2026 idea file defining the agent-maintained compounding markdown wiki — three layers, three operations. karpathy llm-wiki gist key excerpts karpathy — \"llm wiki\" gist an \"idea file\" (llm-wiki.md, shared april 2026; ~5k+ stars and 40+ comments as of 2026-07) meant to be pasted to your own agent. core move: replace per-query rag with a persistent wiki the llm builds and maintains. three layers (raw sources / wiki / schema), three operations (ingest / query / lint), a flat index.md as the catalog, log.md as append-only history, [[wikilinks]] as graph edges, obsidian and git as tooling. deliberately abstract — \"it describes the idea, not a specific implementation.\" the comment threads are as valuable as the gist: production-scale reports on drift, lint, and search scaling. one structural gap, noted for this kb's own design: the gist's raw-sources layer is a permanent archive with no queue — nothing encodes unprocessed (the human triggers each ingest by hand). this kb fills it with inbox (= waiting) and the raw archive (= processed, preserved); details in llm-wiki-pattern. propagated to: llm-wiki-pattern, context-repo, open-knowledge-format (which formalizes it), obsidian. key excerpts \"the llm incrementally builds and maintains a persistent wiki — a structured, interlinked collection of markdown files that sits between you and the raw sources.\" a \"persistent, compounding artifact.\" layer 1, raw sources: \"these are immutable — the llm reads from them but never modifies them. this is your source of truth.\" layer 2, the wiki: \"the llm owns this layer entirely... you read it; the llm writes it.\" layer 3, the schema: \"a document (e.g. claude.md for claude code or agents.md for codex) that tells the llm how the wiki is structured, what the conventions are, and what workflows to follow.\" ingest: \"a single source might touch 10-15 wiki pages.\" \"the tedious part of maintaining a knowledge base is not the reading or the thinking — it's the bo"
+    },
+    {
+      "path": "kb/sources/okf-spec.md",
+      "title": "Google Open Knowledge Format — SPEC.md v0.1",
+      "type": "source",
+      "tags": [
+        "okf",
+        "spec",
+        "google"
+      ],
+      "blob": "google open knowledge format — spec.md v0.1 the v0.1 draft spec for knowledge bundles — markdown concepts, yaml frontmatter, type required, reserved index.md/log.md. okf spec google key excerpts google open knowledge format — spec.md v0.1 v0.1 draft, published ~2026-06-12, apache 2.0, in the googlecloudplatform/knowledge-catalog repo (with a google cloud blog announcement). defines the knowledge bundle / concept model, the frontmatter contract (type required, unknown keys preserved), markdown-only linking, and the reserved index.md/log.md roles. ships a reference enrichment agent (python, gemini + bigquery), a cytoscape.js html graph visualizer, and three sample bundles (ga4 e-commerce, stack overflow, bitcoin). §10 positions okf as the karpathy llm-wiki pattern \"specified.\" propagated to: open-knowledge-format, context-repo, and the decisions relative-markdown-links and underscore-index-files. key excerpts \"the format is intentionally minimal: a directory of markdown files with yaml frontmatter. there is no schema registry, no central authority, and no required tooling. if you can cat a file, you can read okf; if you can git clone a repo, you can ship it.\" types: \"producers should pick values that are descriptive and self-explanatory; consumers must tolerate unknown types gracefully.\" keys: \"producers may include any additional keys. consumers should preserve unknown keys when round-tripping and should not reject documents with unrecognized fields.\" links: \"consumers must tolerate broken links — ... it may simply represent not-yet-written knowledge.\" conformance (§9): every non-reserved .md file has parseable yaml frontmatter with a non-empty type; reserved filenames follow the spec'd structure when present. kb-kit note preserved from research: bundle-root-absolute links (the spec's \"recommended\" form) do not render correctly in the github web ui or on github pages; relative links are spec-valid and render everywhere."
+    },
+    {
+      "path": "kb/sources/openwiki-announcement.md",
+      "title": "Brace Sproul — Introducing OpenWiki",
+      "type": "source",
+      "tags": [
+        "openwiki",
+        "langchain",
+        "announcement"
+      ],
+      "blob": "brace sproul — introducing openwiki launch of langchain's agent-maintained wiki cli (x article, 2026-07-01), plus its okf adoption and brains follow-on. openwiki langchain announcement key excerpts brace sproul — introducing openwiki x article by brace sproul (head of applied ai, langchain), 2026-07-01, with the repo at github.com/langchain-ai/openwiki (the repo was fetched during research; the x post was reconstructed under the same egress caveat as the other x threads, verbatim only where quoted). the announcement covers: a cli with two modes (code brain — repo docs into openwiki/; personal brain — ~/.openwiki/wiki from connectors including repos, gmail, notion, slack, web search, hn, and x); ci-maintained freshness via a daily openwiki --update pr; both modes emitting google okf v0.1 bundles (adoption announced separately on 2026-07-16, status 2077799633640919208); and construction on langchain's open deepagents harness. follow-on release: openwiki brains 0.1.0 (2026-07-10), \"proactive memory\" — agents build memories by fetching context rather than waiting to be told (https://www.langchain.com/blog/introducing-openwiki-brains-general-purpose-wiki-memory-for-agents). significance: reference oss implementation of the agent-maintained wiki-as-kb and the first major okf producer. propagated to: openwiki, open-knowledge-format, llm-wiki-pattern, agent-memory. key excerpts companion tweet (verbatim): \"excited to release openwiki! openwiki is the easiest way to generate and maintain documentation in your codebase, built specifically for agents to consume. get started with a single command: openwiki --init\""
+    },
+    {
+      "path": "kb/sources/prukalpa-github-for-context.md",
+      "title": "Prukalpa Sankar — \"The GitHub for Context Doesn't Exist Yet\"",
+      "type": "source",
+      "tags": [
+        "prukalpa",
+        "decoupling",
+        "governance",
+        "kb-card"
+      ],
+      "blob": "prukalpa sankar — \"the github for context doesn't exist yet\" the decoupling manifesto — agents are becoming disposable, context is not; every unit of context needs a profile. prukalpa decoupling governance kb-card key excerpts prukalpa sankar — \"the github for context doesn't exist yet\" essay by prukalpa sankar (atlan co-ceo, \"context & chaos\" substack), published 2026-07-16. originally reconstructed from search snippets while the substack was egress-blocked; the essay has since been fetched in full and the quotes below verified (and corrected) against the published text. opens with an ai engineer world's fair 2026 anecdote — building an agent took ~5 minutes; giving it business context \"took forever\" — and a company that burned through five agent stacks in twelve months, each migration stranding the context that made the agents useful. prescribes a github-like operating layer for context: profiles per unit of context (owner, approvers, maintainers, scope, provenance, declared dependencies), local vs company-wide context kept distinct (marketing and finance can legitimately define the same term differently), and domain experts encoding knowledge into shared skills in one \"company brain.\" propagated to: context-repo (decoupling thesis), kb-discovery (her \"profile for a unit of context\" is external validation of kb-card), agent-skills, mem0. key excerpts \"the agent layer is becoming disposable. your company's context is not.\" \"performance is intelligence times context, and the relationship is multiplicative.\" swe parallel: git gave code diffs, but \"git versions text, not meaning\" — industrial software also needed review, ownership, ci, dependency management, registries, observability. \"context has the diffs. it does not yet have a coherent version of the rest.\" the missing thing is \"the operating layer that lets a company treat context as durable infrastructure rather than agent-specific configuration.\""
+    },
+    {
+      "path": "kb/standards/_index.md",
+      "title": "Standards — index",
+      "type": "index",
+      "tags": [],
+      "blob": "standards — index standards published specs and conventions in the context landscape, with adoption reality noted honestly on each page. open knowledge format (okf) - google's v0.1 knowledge-bundle spec; this kb's format anchor. agents.md - the de facto repo-root instruction file; linux foundation stewarded. agent skills (skill.md) - packaged agent capabilities via progressive disclosure; ~40 products. llms.txt - root markdown index for websites; growing supply, lagging crawler demand. mcp — resources and the registry - context delivery and the nearest thing to a discovery standard. claude.md - anthropic's memory hierarchy; coexists with agents.md."
+    },
+    {
+      "path": "kb/standards/agent-skills.md",
+      "title": "Agent Skills (SKILL.md)",
+      "type": "standard",
+      "tags": [
+        "skills",
+        "skill-md",
+        "progressive-disclosure"
+      ],
+      "blob": "agent skills (skill.md) open spec for packaged agent capabilities — yaml metadata plus instructions, loaded via progressive disclosure. skills skill-md progressive-disclosure agent skills (skill.md) a skill is a directory containing a skill.md (yaml name/description plus markdown instructions) and optional scripts and templates. its defining mechanism is progressive disclosure: the metadata costs near-zero tokens until the skill triggers, at which point the full instructions load. originated by anthropic; opened as a spec at agentskills.io on 2025-12-18 under agentic ai foundation governance (alongside agents.md). reference repo: https://github.com/anthropics/skills adoption reality: ~40 products support the format (claude, codex, copilot, vs code, cursor, gemini cli, goose, and others). skillsmp indexes ~1.9m public skills. quality is uneven: skillsbench reports a mean quality of 6.2/12, with curated skills adding +16 points to pass rate — volume has outrun curation. positioning: skills are \"how to do x,\" complementing mcp's \"connect to x.\" a useful third leg from the july-2026 commentary: okf covers \"what the agent knows\" — skills, connections, and knowledge as three separable standards. role in this kit: kb-kit ships its workflows (setup, ingest, query, lint) as agent-agnostic skills in skills/<name>/skill.md, so any skill-aware agent can operate this kb. prukalpa's essay lands on the same mechanism from the enterprise side: domain experts encoding knowledge into shared skills in one \"company brain\" (source)."
+    },
+    {
+      "path": "kb/standards/agents-md.md",
+      "title": "AGENTS.md",
+      "type": "standard",
+      "tags": [
+        "agents-md",
+        "instructions",
+        "linux-foundation"
+      ],
+      "blob": "agents.md the de facto standard repo-root instruction file for coding agents — convention plus location, no schema. agents-md instructions linux-foundation agents.md agents.md is a plain-markdown file at a repo root that gives coding agents project instructions. originated by openai (with google, cursor, factory, and sourcegraph); stewarded since 2025-12-09 by the agentic ai foundation under the linux foundation. adoption reality: it is the de facto winner in its category — read by roughly 30 tools (codex, copilot, cursor, windsurf, amp, devin, aider, zed, jules, and others) and present in 60k+ repositories. one 2026 study measured −29% median agent runtime and −17% output tokens when an agents.md is present. notably, there is no schema: the entire value is convention plus location. relation to neighbors: it coexists with anthropic's claude.md memory hierarchy rather than competing — claude-side tooling reads its own files, and many repos (including this one) keep agents.md canonical with claude.md as a pointer. in karpathy's llm-wiki pattern, agents.md is the \"schema\" layer — the document telling the llm how the wiki is structured and which workflows to follow. its governance home is shared with agent skills, making the agentic ai foundation the current center of gravity for agent-facing conventions. role in this kit: the repo-root agents.md is this kb's schema file: it defines the frontmatter floor, the linking rules, and the ingest/query/lint loop for any agent working in kb/."
+    },
+    {
+      "path": "kb/standards/claude-md.md",
+      "title": "CLAUDE.md and the Claude Code memory hierarchy",
+      "type": "standard",
+      "tags": [
+        "claude-md",
+        "memory-hierarchy",
+        "anthropic"
+      ],
+      "blob": "claude.md and the claude code memory hierarchy anthropic's layered instruction system — enterprise/project/personal files, imports, and agent-written auto memory. claude-md memory-hierarchy anthropic claude.md and the claude code memory hierarchy claude.md is anthropic's instruction-file convention for claude code, and it is more layered than agents.md: enterprise, project, and personal claude.md files are discovered up the directory tree and can import other files. alongside the human-written layer sits auto memory — an agent-written memory.md whose first 200 lines / 25kb are auto-loaded. the documented best practice is telling: keep claude.md to ~80–120 high-signal lines, version-controlled. the division of labor — \"claude.md = your requirements, auto memory = what claude observed\" — is a two-layer context repo in miniature: durable human intent above, accumulated agent observations below, both as diffable markdown. the hierarchy itself is progressive disclosure: broad enterprise context loads thin, specifics load near the work. relation to agents.md: the two coexist rather than compete. agents.md won the cross-tool convention (read by ~30 tools); claude.md is richer but claude-specific. the common repo pattern — used by this kit, and by duo in mirror image (duo's agents.md defers to claude.md as canonical) — is to make one file canonical and the other a pointer, so instructions are written once. role in this kit: kb-kit's root agents.md is canonical and claude.md is a shim pointing to it, keeping the kb's schema file (in the llm-wiki sense) agent-agnostic."
+    },
+    {
+      "path": "kb/standards/llms-txt.md",
+      "title": "llms.txt",
+      "type": "standard",
+      "tags": [
+        "llms-txt",
+        "websites",
+        "indexes"
+      ],
+      "blob": "llms.txt root markdown index curating a website's content for llm consumption — growing fast, but major crawlers still ignore it. llms-txt websites indexes llms.txt llms.txt is a markdown file at a website's root that curates the site's content for llms — an index of what matters, in a form a model can consume without scraping the whole site. proposed by jeremy howard (answer.ai) in september 2024. adoption reality — the honest version: ~8.7% of top-1000 sites carry one as of 2026-06, roughly 5.6x growth in twelve months, and shopify deployed it platform-wide. but major llm crawlers still don't reliably fetch it. the real consumers today are ide agents and docs-mcp servers (docs servers fed by llms.txt, and services like gitbook that auto-expose published docs over mcp). it is a supply-side standard whose demand side hasn't fully arrived. where it fits in this survey: llms.txt is progressive disclosure applied to a website — the same job okf's index.md does for a knowledge bundle, and kb-card proposes for whole kbs (see kb discovery). it also shares the open governance question flagged in the research: agents.md and skills found a neutral home in the linux foundation; llms.txt and okf have not, yet. for a kb published as a website (as kb-kit bundles are, via the static site), an llms.txt is a plausible complement to the root index.md — same content, different discovery surface."
+    },
+    {
+      "path": "kb/standards/mcp.md",
+      "title": "MCP — Resources and the Registry",
+      "type": "standard",
+      "tags": [
+        "mcp",
+        "resources",
+        "registry",
+        "discovery"
+      ],
+      "blob": "mcp — resources and the registry the protocol layer for delivering context to agents (resources) and discovering servers (the official registry). mcp resources registry discovery mcp — resources and the registry the model context protocol matters to this survey at two points: how context is delivered to agents (resources) and how knowledge sources are found (the registry). mcp has open governance, with a july 2026 spec release candidate. mcp resources are uri-identified data a server exposes as context, under application control. they are the least-adopted mcp primitive — client ux is immature — but docs-as-mcp is growing: gitbook auto-exposes an mcp server for published docs, and docs servers fed by llms.txt are common. resources fetch content per-uri on demand, another instance of progressive disclosure. the official mcp registry is a centralized metadata catalog of mcp servers with an open api and namespace verification, in preview since 2025-09-08 and listing ~9,650 servers as of 2026-05, with subregistries building on top. it is the nearest thing that exists to a discovery standard for agent-accessible knowledge sources — which makes it the closest prior art for the kb-card idea (see kb discovery), even though server.json describes a server, not a knowledge bundle. the protocol triad framing from the july-2026 commentary: mcp is how an agent connects to tools, a2a is how agents talk to each other, and okf is what the agent knows. agent skills complete the picture as \"how to do x.\" an okf bundle can itself be served over mcp — the obsidian-vault pattern (see obsidian) already works this way."
+    },
+    {
+      "path": "kb/standards/open-knowledge-format.md",
+      "title": "Open Knowledge Format (OKF)",
+      "type": "standard",
+      "tags": [
+        "okf",
+        "format",
+        "bundle",
+        "frontmatter"
+      ],
+      "blob": "open knowledge format (okf) google's v0.1 draft spec for knowledge bundles — markdown + yaml frontmatter, type as the only required key. okf format bundle frontmatter open knowledge format (okf) okf is the format anchor of this kit. it specifies a knowledge bundle: a directory of markdown files with yaml frontmatter, where type is the only required key. \"format, not platform\" — no schema registry, no central authority, no required tooling. a concept is one markdown file; its id is its path minus .md. two reserved filenames: index.md (directory listing, progressive disclosure) and log.md (newest-first change history under yyyy-mm-dd headings). key design choices: types are not centrally registered (consumers must tolerate unknown types); unknown frontmatter keys must be preserved; links are standard markdown only — no wikilinks — with bundle-root-absolute links \"recommended\" and relative links also valid; broken links must be tolerated (\"it may simply represent not-yet-written knowledge\"). the repo ships a reference enrichment agent (python, gemini + bigquery), an html graph visualizer, and three sample bundles. the spec explicitly credits and formalizes karpathy's llm-wiki pattern. its first major external producer is openwiki, which emits okf bundles in both its modes (adoption announced 2026-07-16). duo's vault format independently uses the same name and carries okfversion: \"0.1\" — see duo and brainkit. this kb is an okf bundle with two documented deviations: relative links only (absolute bundle paths break github rendering) and index.md/log.md instead of the reserved names. full excerpts: okf-spec source page."
+    },
+    {
+      "path": "kb/templates/_index.md",
+      "title": "Templates — index",
+      "type": "index",
+      "tags": [],
+      "blob": "templates — index entity types one file per type; the file both defines the type and serves as its template. types are grown, not designed: add one only when ingestion keeps producing pages that don't fit. adding a type = add a file here + note it in log.md. note - default type for a distilled piece of knowledge. source - an external artifact this kb has ingested. decision - a choice that was made, with rationale. topic - a concept page synthesizing multiple sources. standard - a published spec or convention (demo type). tool - a product/system in the landscape (demo type)."
+    },
+    {
+      "path": "kb/templates/decision.md",
+      "title": "decision",
+      "type": "decision",
+      "tags": [],
+      "blob": "decision a choice that was made — what, why, what was rejected. decision capture decisions where they happened, not in slide decks. frontmatter should carry date and, when known, owner. body: context, the decision, options rejected and why, and links to affected pages. decisions are immutable once made — a reversal is a new decision page linking back with \"supersedes\"."
+    },
+    {
+      "path": "kb/templates/note.md",
+      "title": "note",
+      "type": "note",
+      "tags": [],
+      "blob": "note default type — one distilled piece of knowledge, one file. note the default. use when nothing more specific fits. one topic per file; if a note grows two topics, split it and keep the links. a draft note is a placeholder someone should improve; solid means a human stands behind it."
+    },
+    {
+      "path": "kb/templates/source.md",
+      "title": "source",
+      "type": "source",
+      "tags": [],
+      "blob": "source an external artifact (article, thread, spec, paper) ingested into this kb. source one page per ingested artifact. frontmatter should carry url and date (of the artifact, not the ingest). body: a distilled summary first, then a ## raw or ## key excerpts section with verbatim material — never edit inside that section; corrections go above it, attributed. processed means its ideas have been propagated to the relevant topic/note pages."
+    },
+    {
+      "path": "kb/templates/standard.md",
+      "title": "standard",
+      "type": "standard",
+      "tags": [],
+      "blob": "standard a published spec or convention (demo type — remove via setup if unneeded). standard for specs, formats, and conventions. frontmatter should carry steward (who governs it), statusnote (draft/stable/adopted), and url. body: what it specifies, adoption reality vs claims, and how it relates to neighboring standards (links)."
+    },
+    {
+      "path": "kb/templates/tool.md",
+      "title": "tool",
+      "type": "tool",
+      "tags": [],
+      "blob": "tool a product or system in the landscape (demo type — remove via setup if unneeded). tool for products, platforms, and systems. frontmatter should carry maker and url. body: what it does, the idea it embodies (link the topic page), and its relationship to the standards it implements or ignores."
+    },
+    {
+      "path": "kb/templates/topic.md",
+      "title": "topic",
+      "type": "topic",
+      "tags": [],
+      "blob": "topic a concept page synthesizing what this kb knows about one idea. topic the synthesis layer: written from multiple sources, linking to each. a topic page answers \"what do we know about x and how sure are we?\" — cite sources inline, surface disagreements between them as content. update topic pages on every ingest that touches them; that upkeep is the compounding."
+    },
+    {
+      "path": "kb/tools/_index.md",
+      "title": "Tools & systems — index",
+      "type": "index",
+      "tags": [],
+      "blob": "tools & systems — index tools & systems products and systems in the landscape; each page links the idea it embodies and the standards it implements. openwiki - langchain's agent-maintained wiki cli; first major okf producer. letta - memgpt lineage; feb 2026 pivot to git-based context repositories. mem0 / openmemory - memory-as-a-service; one memory ported across agent stacks. obsidian - the vault-as-agent-kb pattern; human ux over agent-native markdown. chatgpt memory - the largest deployed memory system; opaque, non-portable outlier. brainkit - forkable second-brain kit; the maintainer's public prior work. duo - macos pairing workspace defining the okf-aligned vault flavor this kit borrows from."
+    },
+    {
+      "path": "kb/tools/brainkit.md",
+      "title": "brainkit",
+      "type": "tool",
+      "tags": [
+        "brainkit",
+        "second-brain",
+        "okf",
+        "kit"
+      ],
+      "blob": "brainkit \"a second brain for work that compounds\" — a forkable claude-code-oriented kb kit whose knowledge folder is a valid okf vault. brainkit second-brain okf kit brainkit brainkit (v0.3.0, \"contract v2\", shipped in dudgeon/loop-library under dist/brainkit) is a public example of a forkable personal-kb kit — built by this kit's maintainer, described here on the same terms as any other tool in the survey. tagline: \"a second brain for work that compounds.\" it layers loopkit (a foundation.md contract) under brainkit (application policy), with claude.md as the operating manual and skills for ingest → query → distill (distill = karpathy's lint; see the llm-wiki pattern) plus sync, which curates upstream kit updates via a loop.manifest.json managed-files list. its knowledge/ folder ships as a valid okf vault — the bridge to duo, the app that defines the vault flavor. conventions kb-kit directly inherits: the frontmatter floor (\"never ceiling\"): summary, type, source (provenance or unverified) — and the load-bearing rule \"keep frontmatter keys you don't recognize. never drop a key you didn't write.\" type templates as prose plus minimal frontmatter, with optional statuses ladders (e.g. source: unread → reading → read → processed). linking, verbatim: \"plain relative markdown... never [[wikilinks]], never absolute /paths\" — resolve [[name]] gestures before saving (see relative markdown links). one topic per file, lowercase-hyphenated names, one-screen indexes. ideas kb-kit deliberately did not adopt include folders derived from a parent: edge (\"the path is a projection of the graph\"), minted id: keys for link healing, and golden/ locked context — richer machinery than a starter kit needs (see minimal typing)."
+    },
+    {
+      "path": "kb/tools/chatgpt-memory.md",
+      "title": "ChatGPT memory (\"Dreaming\")",
+      "type": "tool",
+      "tags": [
+        "chatgpt",
+        "memory",
+        "opaque",
+        "consolidation"
+      ],
+      "blob": "chatgpt memory (\"dreaming\") the largest deployed agent memory system — offline consolidation that updates memories; opaque and non-portable. chatgpt memory opaque consolidation chatgpt memory (\"dreaming\") chatgpt's memory system is the largest deployed agent memory system, and the philosophical outlier of this survey. its \"dreaming v3\" release (2026-06-04) performs offline consolidation — a background process that doesn't merely append memories but updates them over time, revising what the system believes about a user as new information arrives. technically, that consolidation step is sophisticated: it is the \"compress\" operation of the context-engineering taxonomy (see context engineering) running continuously and invisibly. but the system is opaque and non-portable: users cannot inspect the full store, diff a change, review a consolidation, or export their memory to another vendor. the research notes call it \"the philosophical opposite of markdown context repos,\" and this kb uses it as the boundary case that defines the category: every property a context repo has — readable, diffable, portable, jointly ownable — dreaming lacks by design. the contrast with the rest of the memory field is stark: letta moved its memory substrate into git; mem0 sells portability across agent stacks; dreaming binds memory to one vendor's product. see agent memory for why the survey's lasting distinction is transparent-vs-opaque rather than memory-vs-kb. provenance note: no primary url was captured in the research notes; details here trace to the 2026-07-18 landscape survey and should be re-verified against openai's own documentation."
+    },
+    {
+      "path": "kb/tools/duo.md",
+      "title": "duo",
+      "type": "tool",
+      "tags": [
+        "duo",
+        "vault",
+        "electron",
+        "okf"
+      ],
+      "blob": "duo a macos human+agent pairing workspace that defines and implements an okf-aligned vault format. duo vault electron okf duo duo is a macos electron app — terminal, browser, file tree, and markdown editor in one window, with a duo cli so the agent acts on what the human sees. it is not itself a vault: it defines and implements a vault format (duo's \"open knowledge format\" — same name as, and aligned with, google's okf; vault roots carry okfversion: \"0.1\"). brainkit's knowledge folder ships as a valid vault in this flavor — the bridge between the two projects. built by this kit's maintainer; described here on survey terms. vault conventions that shaped kb-kit: index.md / log.md as the paired listing default (legacy non-underscore honored, never mixed), regenerated below a fence — the direct ancestor of this kit's underscore index files. relative markdown links only; [[ ]] is an input gesture rewritten at rest. notably, duo reversed an earlier wikilink decision (enh-266, 2026-07-09) after obsidian testing showed frontmatter wikilinks create phantom graph nodes — entity-reference fields are now quoted relative markdown links (owner: \"alice park\"). \"the vault is the schema\" — the corpus is computed live, never cached; auto-relink heals moved links by id on vault open. agent posture: propose, don't mutate — criticmarkup tracked suggestions; archiving and moves are proposal-only. kb-kit's conduct rules echo this. one compatibility wrinkle worth tracking: duo's index.md default technically diverges from google okf's reserved index.md/log.md names — the same deviation this kit documents and accepts."
+    },
+    {
+      "path": "kb/tools/letta.md",
+      "title": "Letta",
+      "type": "tool",
+      "tags": [
+        "letta",
+        "memgpt",
+        "memory",
+        "git"
+      ],
+      "blob": "letta the memgpt lineage — self-editing agent memory, rebuilt in feb 2026 around git-based context repositories. letta memgpt memory git letta letta is the company behind memgpt, the os-inspired approach to agent memory: the agent manages its own memory the way an operating system manages virtual memory, paging information in and out of context and editing its own memory blocks. the event that earns letta a page in this survey is its february 2026 rebuild around git-based \"context repositories.\" the flagship memory company moving its substrate to versioned files is the strongest single signal that agent memory and knowledge bases are merging — the convergence traced in agent memory — and it lands letta squarely on the context repo thesis: memory as a durable, inspectable, diffable asset rather than opaque vendor state (contrast chatgpt memory). credibility marker: letta code was the #1 model-agnostic open-source agent on terminal-bench as of 2026-06. relationship to standards: the research notes do not record letta emitting okf bundles — its context repositories are its own format on the shared markdown-in-git substrate. whether the memory vendors and the knowledge-format camp converge on one bundle format is an open question worth tracking alongside mem0's portability work."
+    },
+    {
+      "path": "kb/tools/mem0.md",
+      "title": "Mem0 / OpenMemory",
+      "type": "tool",
+      "tags": [
+        "mem0",
+        "openmemory",
+        "memory",
+        "portability"
+      ],
+      "blob": "mem0 / openmemory memory-as-a-service api plus a local-first cli that ports one memory across agent stacks. mem0 openmemory memory portability mem0 / openmemory mem0 offers agent memory as a service: an api for storing and retrieving what an agent should remember, so memory lives outside any single agent's context window or vendor. its openmemory offering extends this local-first: a cli that ports one memory across claude code, codex, and opencode. that portability is the interesting move for this survey. it is the decoupling thesis — agents disposable, context durable (see context repo) — applied to personal agent memory: if you can carry the same memory across three different coding agents, the memory is the durable asset and the agents are interchangeable front-ends. prukalpa's stranded-context anecdote (five agent stacks in twelve months, source) is exactly the failure mode this design prevents. mem0 also publishes the \"state of ai agent memory 2026\" report (not yet ingested), positioning itself as chronicler of the category it competes in. placement in the landscape: mem0 sits between letta's git-repository pivot (fully transparent substrate) and chatgpt memory's opaque consolidation — a service, but one built around the premise that memory should move with the user. see agent memory for the full convergence picture."
+    },
+    {
+      "path": "kb/tools/obsidian.md",
+      "title": "Obsidian (vault-as-agent-KB pattern)",
+      "type": "tool",
+      "tags": [
+        "obsidian",
+        "vault",
+        "local-first",
+        "markdown"
+      ],
+      "blob": "obsidian (vault-as-agent-kb pattern) a local vault of plain markdown as agent memory/inbox/kb — obsidian supplies the human ux, the folder is agent-native. obsidian vault local-first markdown obsidian (vault-as-agent-kb pattern) obsidian itself is a markdown note-taking app; what earns it a page here is the community pattern that went mainstream among practitioners in 2026: a vault of plain markdown on local disk used as an agent's memory, inbox, and knowledge base, accessed either by direct filesystem access or through obsidian mcp servers (see mcp). the division of labor is clean. obsidian supplies what humans need — graph view, backlinks, an editing ux; the underlying folder of .md files is already agent-native context, no export step required. the same files serve both audiences, which is the core property of a context repo. karpathy's llm-wiki gist recommends exactly this tooling: obsidian as the ide (web clipper for capture, graph view, dataview) over \"just a git repo of markdown files.\" practitioner reports in the gist's comments use private git + obsidian (or an mcp server) for team sharing. one friction point matters for format design: obsidian's native [[wikilinks]] conflict with okf's markdown-links-only rule and break github rendering — the reason this kit forbids them (see relative markdown links). duo hit a sharper version of the same issue: frontmatter wikilinks create phantom nodes in obsidian's own graph, which drove its switch to quoted relative markdown links in frontmatter. vaults work best as agent kbs when they keep to the portable subset of obsidian's features."
+    },
+    {
+      "path": "kb/tools/openwiki.md",
+      "title": "OpenWiki",
+      "type": "tool",
+      "tags": [
+        "openwiki",
+        "langchain",
+        "okf",
+        "wiki"
+      ],
+      "blob": "openwiki langchain's cli for agent-maintained wikis — repo docs or a personal brain, emitted as okf bundles, kept fresh by ci. openwiki langchain okf wiki openwiki openwiki (released 2026-07-01) is the reference open-source implementation of the agent-maintained wiki-as-kb, and the first major producer of open knowledge format bundles. the launch pitch: \"the easiest way to generate and maintain documentation in your codebase, built specifically for agents to consume. get started with a single command: openwiki --init.\" two modes: code brain — repo documentation generated into an openwiki/ directory — and personal brain — a wiki at ~/.openwiki/wiki fed by connectors (repos, gmail, notion, slack, web search, hacker news, x). both modes emit okf v0.1 bundles (frontmatter type, reserved index.md/log.md, root okfversion, markdown links); okf adoption was announced 2026-07-16. it is built on langchain's open deepagents harness. the distinctive operational move is ci-maintained freshness: a daily openwiki --update run (github actions or similar) opens a pr with doc updates — automated defense against drift, the top failure mode of the llm-wiki pattern, with the git pr as the human review gate. follow-on: openwiki brains 0.1.0 (2026-07-10), \"proactive memory\" — agents build memories by fetching context rather than waiting to be told, placing openwiki in the memory-kb convergence traced in agent memory. announcement excerpts: openwiki-announcement."
+    },
+    {
+      "path": "kb/topics/_index.md",
+      "title": "Topics — index",
+      "type": "index",
+      "tags": [],
+      "blob": "topics — index topics synthesis pages — what this kb knows about each idea, cited to sources. the context repo - the central concept: durable, versioned knowledge shared by humans and agents. context engineering - the discipline; karpathy's framing, anthropic's techniques, langchain's taxonomy. the llm-wiki pattern - karpathy's three layers and the ingest/query/lint loop; drift as the failure mode. progressive disclosure - the token-frugal mechanism every surviving standard shares. agent memory vs. knowledge bases - the merging of memory systems and kbs; the opaque outlier. kb discovery and the kb-card gap - no adopted kb-card standard exists; what kb-kit proposes. open questions - the frontier: multiplayer lint, ossifying authority, volatile sources."
+    },
+    {
+      "path": "kb/topics/agent-memory.md",
+      "title": "Agent memory vs. knowledge bases",
+      "type": "topic",
+      "tags": [
+        "memory",
+        "letta",
+        "mem0",
+        "convergence"
+      ],
+      "blob": "agent memory vs. knowledge bases memory systems and kbs are merging into context repos; chatgpt's opaque memory is the philosophical outlier. memory letta mem0 convergence agent memory vs. knowledge bases agent memory systems (what an agent remembers across sessions) and knowledge bases (curated, shared knowledge) started as separate product categories. the mid-2026 signal is that they are merging — into context repos. the clearest evidence is letta (the memgpt lineage): after pioneering os-inspired self-editing memory, it rebuilt in feb 2026 around git-based \"context repositories.\" when the flagship memory company adopts the files-in-git substrate, memory and kb have effectively converged. mem0 points the same way from the portability angle: its openmemory cli carries one memory across claude code, codex, and opencode — memory as a durable asset independent of any one agent, which is the decoupling thesis (see context repo) applied to personal memory. openwiki brains (2026-07-10) adds the proactive variant: agents that build memories by fetching context rather than waiting to be told. the outlier is chatgpt memory. \"dreaming v3\" (2026-06-04) does offline consolidation that updates memories over time, and it is the largest deployed memory system — but it is opaque and non-portable: the philosophical opposite of a markdown context repo. you cannot cat it, diff it, review it, or take it to another vendor. the distinction that survives the merge is not memory-vs-kb but transparent-vs-opaque: whether the knowledge substrate is inspectable and portable. anthropic's context-engineering essay lists note-taking/memory as one of four core techniques (source); the open question this kb tracks is which substrate that note-taking lands in."
+    },
+    {
+      "path": "kb/topics/context-engineering.md",
+      "title": "Context engineering",
+      "type": "topic",
+      "tags": [
+        "context-engineering",
+        "discipline",
+        "terminology"
+      ],
+      "blob": "context engineering the discipline of filling the context window with the right information — the frame that displaced prompt engineering. context-engineering discipline terminology context engineering context engineering is the umbrella discipline this kb's whole subject sits under. karpathy's june 2025 framing named it: \"the delicate art and science of filling the context window with just the right information\" — and the term displaced \"prompt engineering\" as the field's umbrella vocabulary. two canonical treatments: anthropic, \"effective context engineering for ai agents\" (2025-09-29) — treats context as a finite resource that degrades as it fills (\"context rot\"), and catalogs the working techniques: compaction, note-taking/memory, just-in-time retrieval, and sub-agents (source). langchain — the claim that \"most agent failures are context failures,\" and lance martin's write / select / compress / isolate taxonomy, which became the standard vocabulary for the four things you can do with context. the connection to this kb: context repos are the write and select halves made durable. a context repo is where an agent writes distilled knowledge so future selection is cheap; the llm-wiki pattern is the maintenance loop; and progressive disclosure is the shared mechanism by which every major standard keeps selection token-frugal. the anthropic essay's \"note-taking/memory\" technique is exactly what agent memory systems productize. one research caution worth keeping: verbose boilerplate context can perform worse than none. context files must be concise and contain only what the agent cannot infer — a finding that motivates this kit's one-screen index rule and minimal frontmatter floor (see minimal typing)."
+    },
+    {
+      "path": "kb/topics/context-repo.md",
+      "title": "The context repo",
+      "type": "topic",
+      "tags": [
+        "context-repo",
+        "decoupling",
+        "markdown",
+        "git"
+      ],
+      "blob": "the context repo a durable, versioned knowledge substrate shared by humans and agents — the idea this kb surveys. context-repo decoupling markdown git the context repo a context repo is a version-controlled collection of markdown files that serves as the durable knowledge substrate for both humans and agents: readable without tooling, parseable without sdks, diffable in git, portable across agent stacks. this repo's own kb/ bundle is one. the strongest argument for standalone context repos is the decoupling thesis, put sharpest by prukalpa sankar (2026-07-16): \"the agent layer is becoming disposable, but a company's context is not — yet most tools still bind the two together.\" her essay recounts a company that burned through five agent stacks in twelve months, each migration stranding the context that made the agents useful (source). the pattern converged from several directions in 2025–2026: karpathy's llm-wiki pattern showed an agent can maintain a compounding markdown wiki instead of per-query rag (gist). google's open knowledge format specified it: \"if you can cat a file, you can read okf; if you can git clone a repo, you can ship it\" (spec). memory systems moved toward it — letta rebuilt around git-based \"context repositories\" in feb 2026 (see agent memory). openwiki shipped a reference implementation emitting okf bundles; cerebras published a first-party account of an internal company kb serving 15,000+ queries a day to humans, automations, and agents (postgres-based retrieval over live sources — the rag-shaped counterpoint to the wiki-shaped pattern). the mid-2026 takeaway across the survey: markdown-files-in-git won at every layer — instructions, skills, site maps, bundles, wikis, even memory. what is still missing is the operating layer around the files: discovery, ownership, review — see kb discovery."
+    },
+    {
+      "path": "kb/topics/kb-discovery.md",
+      "title": "KB discovery and the kb-card gap",
+      "type": "topic",
+      "tags": [
+        "kb-card",
+        "discovery",
+        "model-cards",
+        "governance"
+      ],
+      "blob": "kb discovery and the kb-card gap no adopted standard describes a knowledge base the way a model card describes a model — the gap kb-kit's kb-card targets. kb-card discovery model-cards governance kb discovery and the kb-card gap how does an agent (or a team) find a knowledge base, and decide whether to trust it? as of mid-2026, no dedicated, widely adopted \"kb card\" standard exists. that is the open gap in an otherwise converging landscape — and the one kb-kit's repo-root kb-card.md proposes to fill. functional analogs, none sufficient: okf frontmatter plus its root index.md; skill.md metadata; the mcp registry's server.json (~9,650 servers as of 2026-05 — the nearest thing to a discovery standard for agent-accessible knowledge sources); and llms.txt for websites. each describes something adjacent to, but not, a knowledge bundle. mature precedents: model cards (mitchell et al. 2019), data cards, and hugging face's yaml card metadata show the shape works; the eu ai act codifies card-like documentation. kb-kit's card follows the same split — a small human-declared core (name, scope, owner) plus machine-inferred traits (page/type census, freshness, link health) computed by lint. external validation: prukalpa sankar's \"the github for context doesn't exist yet\" (2026-07-16) argues every \"unit of context\" needs a github-like profile — owner, approvers, maintainers, scope, provenance, declared dependencies — and that the missing piece is an operating layer treating context as durable infrastructure (source). her \"profile for a unit of context\" is essentially the kb-card, argued from the enterprise-governance side. governance context: agents.md and skills moved under the linux foundation's agentic ai foundation in dec 2025; mcp has open governance. whether knowledge-bundle formats (okf, llms.txt) — and any kb-card successor — follow into neutral stewardship is an open question this page should track."
+    },
+    {
+      "path": "kb/topics/llm-wiki-pattern.md",
+      "title": "The LLM-wiki pattern",
+      "type": "topic",
+      "tags": [
+        "llm-wiki",
+        "karpathy",
+        "ingest",
+        "lint",
+        "drift"
+      ],
+      "blob": "the llm-wiki pattern karpathy's three-layer, agent-maintained markdown wiki — ingest/query/lint as the loop, drift as the failure mode. llm-wiki karpathy ingest lint drift the llm-wiki pattern karpathy's april 2026 gist described the pattern this kit implements: instead of rag retrieval at query time, \"the llm incrementally builds and maintains a persistent wiki\" — a \"persistent, compounding artifact\" sitting between you and the raw sources (source). three layers: (1) raw sources — immutable, \"the llm reads from them but never modifies them\"; (2) the wiki — llm-generated markdown, \"you read it; the llm writes it\"; (3) the schema — a document (claude.md or agents.md) telling the llm how the wiki is structured and which workflows to follow. this repo's agents.md plays the schema role. three operations: ingest (one source may touch 10–15 wiki pages), query (read the index first, answer with citations, file reusable answers back), and lint (periodic health check for contradictions, stale claims, orphans, gaps). a flat index.md substitutes for rag infrastructure to roughly 100 sources / hundreds of pages. drift is the failure mode. the most substantial practitioner comment (phoebe22222, running a ~4,000-concept production infra-ops wiki) reported that silent staleness from missed cross-reference updates is the top failure — \"the lint pass is not optional\" — and that past a few hundred pages a flat index gives way to hybrid sqlite fts5 + embeddings search. other comment threads converged on verification-status metadata, provenance headers, and git-backed review gates. one gap worth naming: the gist's raw-sources layer is a permanent archive with no queue — \"you drop a new source and tell the llm to process it,\" so what's unprocessed lives in the human's head (or must be recomputed by diffing the collection against log.md). this kit closes that gap by splitting the two roles: kb/inbox/ encodes \"unprocessed\" by location, and ingest moves originals to the raw archive — the g"
+    },
+    {
+      "path": "kb/topics/open-questions.md",
+      "title": "Open questions worth exploring",
+      "type": "topic",
+      "tags": [
+        "governance",
+        "volatility",
+        "multiplayer",
+        "open-questions"
+      ],
+      "blob": "open questions worth exploring unsolved questions in the context-repo space worth further exploration — multiplayer governance, ossifying authority, and living with volatile sources. governance volatility multiplayer open-questions multiplayer mode: who lints? authority: how do you ossify content, and where does it live? volatility: version-controlled distillation over living sources also on the watchlist open questions worth exploring the context repo pattern is young; single-player mode is basically solved and everything past it is frontier. these are the questions this kb is tracking — each could become its own topic page as answers emerge. multiplayer mode: who lints? karpathy's llm-wiki pattern assumes one human and one agent. a team kb needs an answer to whose job is maintenance. emerging candidates: scheduled robot + human gate — openwiki runs updates on a daily schedule and opens a pr; maintenance is automatic, approval is human. the most credible pattern so far, because it makes lint nobody's chore and everybody's review. owning team as editors — the kb-card names an owner; the owner's on-call rotation could include the kb heartbeat. what prukalpa's essay points at: every unit of context carrying owner, approvers, maintainers — the full github-for-code social apparatus (review, codeowners, blame), reused for knowledge. unresolved: does agent-written content get lighter or heavier review than human-written? and can two agents lint concurrently without fighting? authority: how do you ossify content, and where does it live? not all pages are equal — some knowledge is settled and must win on contradiction. prior art: brainkit's golden/ folder (locked context, loaded first, wins conflicts, promoted by an explicit human \"pin this\"), the verification-status metadata (unverified → verified) proposed in the gist's comment threads, and git-level mechanisms (protected paths, codeowners). the open design question: should ossified content live inside the bundle (a kb/go"
+    },
+    {
+      "path": "kb/topics/progressive-disclosure.md",
+      "title": "Progressive disclosure",
+      "type": "topic",
+      "tags": [
+        "progressive-disclosure",
+        "tokens",
+        "indexes"
+      ],
+      "blob": "progressive disclosure the shared mechanism across skills, okf, claude.md, and mcp — load near-zero tokens until knowledge is actually needed. progressive-disclosure tokens indexes progressive disclosure progressive disclosure is the one mechanism every surviving context standard shares: expose a cheap summary layer first, and load the expensive full content only when it is actually needed. it is the survey's second cross-cutting takeaway (after \"markdown-in-git won\"). where it appears: agent skills — a skill.md's yaml name/description costs near-zero tokens until the skill triggers; the instructions and bundled scripts load only then. okf — the spec names progressive disclosure as the explicit purpose of index.md: a directory listing of title - short description bullets that lets an agent navigate without reading every concept. claude.md — the memory hierarchy layers enterprise/project/personal files plus imports, with best practice a lean 80–120 high-signal lines at the top. mcp — servers advertise resource and tool listings; content is fetched per-uri on demand. llms.txt — a root index curating a whole site for llm consumption. this kb applies the same mechanism twice over. every folder carries a one-screen index.md (see underscore index files), and the query workflow starts at the root index, never with a full-tree read. kb-kit extends the mechanism one level up: the repo-root kb-card.md is progressive disclosure for whole knowledge bases — a summary an agent can read before deciding to clone or query the bundle at all. that extension is the subject of kb discovery."
+    },
+    {
+      "path": "docs/taxonomy.md",
+      "title": "What makes a great context repo",
+      "type": null,
+      "tags": [],
+      "blob": "what makes a great context repo 1. scope 2. structure & navigability 3. typing & consistency 4. linkage 5. provenance & trust 6. freshness & maintenance 7. agent-readiness 8. human experience 9. discoverability 10. governance what makes a great context repo a taxonomy of quality for knowledge bases that humans and agents share. use it three ways: as a checklist when building, as a rubric when linting, and as a vocabulary for the kb-card — the card's inferred traits are these dimensions, measured. each dimension has three grades: functional (works), good (compounds), great (discoverable and trustworthy at org scale). scope does the kb know what it is about — and what it is not? functional: a stated topic; content mostly on-topic. good: scope declared in the kb-card; off-scope material is redirected, not accumulated; the boundary is a sentence a new teammate could apply. great: scope is negotiated with neighboring kbs — overlaps are resolved by links to the other kb rather than duplication. structure & navigability can a reader — human or agent — get from the front door to any fact in a few hops? functional: an index.md exists and links to most content. good: progressive disclosure — every folder has a one-screen index; an agent can navigate by reading indexes instead of globbing the tree; folders are navigation while frontmatter type carries meaning. great: multiple deliberate entry paths (index, type overviews, search); no page more than ~3 hops from the root; orphan rate ≈ 0. typing & consistency is like knowledge shaped alike? functional: every page has frontmatter with a type. good: each type has a template that defines it; types were grown from real ingestion needs, not invented up front; status ladders where lifecycle matters. great: the type census is stable and small; an agent told \"add a decision\" produces a page indistinguishable in shape from the existing ones. linkage are relationships explicit? functional: pages link to related pages; links resolve. good"
+    },
+    {
+      "path": "docs/kb-card-spec.md",
+      "title": "kb-card: a model card for knowledge bases",
+      "type": null,
+      "tags": [],
+      "blob": "kb-card: a model card for knowledge bases design rules declared core (frontmatter) inferred traits (lint-owned) body (prose, optional but encouraged) for crawlers progressive discovery kb-card: a model card for knowledge bases a kb-card is a single file, kb-card.md, at the root of a repository that contains a knowledge base. it does for kbs what a model card does for models: lets a human or agent judge scope, ownership, freshness, and trustworthiness without reading the kb — and lets an org-wide crawler index hundreds of kbs by fetching one well-known path per repo. status: draft v0.1, defined by kb-kit. there is no adopted standard for describing kbs (mid-2026); this is a proposal shaped to be crawlable today with nothing but github code search for path:kb-card.md. design rules one file, fixed name, repo root. kb-card.md. discoverability beats configurability. frontmatter is the machine layer; prose is the human layer. the yaml block must stand alone for a crawler; the body may say more. declared vs inferred. humans declare only what tools cannot know (scope, ownership, access). everything measurable — page counts, type census, freshness, link health, taxonomy grades — is inferred by lint and written between html markers. humans never hand-edit the inferred block; aspirational self-grading is exactly the failure mode model cards suffer, and computing the traits avoids it. okf-compatible. the card is itself a valid okf concept (type: kb-card), and unknown keys must be preserved by any tool. declared core (frontmatter) required: recommended: inferred traits (lint-owned) lint rewrites everything between the markers; the shape inside is: yaml inferredat: 2026-07-18 pages: 23 types: {note: 9, source: 6, decision: 3, topic: 5} links: {internal: 141, broken: 0, orphanpages: 1} freshness: {lastingest: 2026-07-16, logentries90d: 14} taxonomygrades: {structure: good, linkage: good, provenance: functional, ...} grades use the taxonomy vocabulary (functional good great), compu"
+    },
+    {
+      "path": "docs/site-guide.md",
+      "title": "Site guide — how the kb-kit site works and how to customize it",
+      "type": null,
+      "tags": [],
+      "blob": "site guide — how the kb-kit site works and how to customize it how the site works local preview customizing hard invariants (do not break these) troubleshooting site guide — how the kb-kit site works and how to customize it this guide is for the humans and agents who maintain a fork's site. the kb content conventions live in agents.md; this file covers only the machinery: the two html pages, the js/css under assets/, the build script, and the pages workflow. how the site works there is no static-site generator and no server. one script turns markdown into json; one single-page app renders everything else on the fly: key consequence: the branch is the site. pages deploys straight from main (settings → pages → source: \"deploy from a branch\" → main, / (root)) — no deploy workflow, by design: the kit targets environments where actions can't publish pages. two things make this work: the root .nojekyll file disables jekyll processing, which would otherwise silently exclude every underscore-prefixed path (kb/index.md, kb/log.md, the folder indexes) from the deployed site — never delete it; assets/data/.json are committed artifacts: run node scripts/build-index.mjs after editing kb/ and commit the result. a ci backstop (.github/workflows/build-index.yml) rebuilds and commits them on main if someone forgets (e.g. web-ui edits), but the site does not depend on it. the pieces file role index.html static marketing/explainer page (no js needed) knowledge-base.html the app shell; mounts #app, loads assets/js/app.js assets/js/config.js repo owner/name detection + fork fallback (edit first) assets/js/router.js #/… hash → route object assets/js/views.js one render function per route; pills, affordances, link rewriting assets/js/search.js substring, multi-term-and, field-weighted scoring assets/js/markdown.js dependency-free md → html renderer (escapes all raw html) assets/css/site.css all styling; design tokens at the top scripts/build-index.mjs markdown → json (node ≥ 18, zero depe"
+    },
+    {
+      "path": "kb-card.md",
+      "title": "kb-card — kb-kit demo knowledge base",
+      "type": "kb-card",
+      "tags": [],
+      "blob": "kb-card — kb-kit demo knowledge base a survey of the context-management and context-repo landscape (mid-2026), shipped as the working demo content of the kb-kit starter kit. what this is what's deliberately out of scope how to contribute caveats kb-card — kb-kit demo knowledge base this card describes the demo kb that ships with kb-kit so the site, search, and skills have something real to work on. when you fork the kit, the setup skill replaces this card with yours. card format: docs/kb-card-spec.md. what this is a curated map of how teams give agents durable context in 2026: the standards (agents.md, agent skills, okf, llms.txt, mcp), the tools (letta, mem0, obsidian-as-vault, claude code memory), and the ideas (context engineering, progressive disclosure, the llm-wiki pattern) — with sources. what's deliberately out of scope model capabilities and benchmarks, prompt-engineering tips, vendor news that doesn't change how context repos are built. how to contribute open an issue or pr, or point your agent at agents.md and use the ingest skill. every page's site view has \"edit\" and \"open issue\" buttons. caveats this landscape moves fast; pages carry source provenance and dates — trust the dates, not the tense of the prose."
+    }
+  ]
+}

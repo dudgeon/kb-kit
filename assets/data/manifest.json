@@ -1,0 +1,1213 @@
+{
+  "generated_at": "2026-07-19T01:55:48.238Z",
+  "repo": {
+    "kb_dir": "kb",
+    "default_branch": "main"
+  },
+  "page_count": 47,
+  "warning_count": 0,
+  "pages": [
+    {
+      "path": "kb/_index.md",
+      "title": "Knowledge base — index",
+      "type": "index",
+      "summary": null,
+      "tags": [],
+      "reserved": true,
+      "frontmatter": {
+        "okf_version": "0.1",
+        "type": "index",
+        "title": "Knowledge base — index"
+      },
+      "headings": [
+        "Start here",
+        "Topics",
+        "Standards",
+        "Tools & systems",
+        "Sources",
+        "Decisions",
+        "Templates"
+      ],
+      "excerpt": "Knowledge base A survey of the context-management and context-repo landscape (mid-2026). What this KB is and who owns it: kb-card.md. How to work here: AGENTS.md. Raw material waiting to be ingested lives in the inbox; originals of processed sources are…",
+      "modified": "2026-07-18T23:56:24.418Z"
+    },
+    {
+      "path": "kb/_log.md",
+      "title": "Knowledge base — change log",
+      "type": "log",
+      "summary": null,
+      "tags": [],
+      "reserved": true,
+      "frontmatter": {
+        "type": "log",
+        "title": "Knowledge base — change log"
+      },
+      "headings": [
+        "2026-07-18"
+      ],
+      "excerpt": "Change log Newest first. Entry format: ## YYYY-MM-DD heading, bulleted changes, each naming the operation (ingest lint setup edit) and the pages touched. 2026-07-18 edit Established the inbox→ingest→archive flow (maintainer directive): inbox/ is the unprocessed queue (presence = waiting), and…",
+      "modified": "2026-07-18T23:57:37.278Z"
+    },
+    {
+      "path": "kb/decisions/_index.md",
+      "title": "Decisions — index",
+      "type": "index",
+      "summary": null,
+      "tags": [],
+      "reserved": true,
+      "frontmatter": {
+        "type": "index",
+        "title": "Decisions — index"
+      },
+      "headings": [],
+      "excerpt": "Decisions Choices made in building this KB/kit, with rationale and rejected options. Decisions are immutable; reversals are new pages linking back. Relative markdown links only - why not wikilinks, why not OKF's absolute form. index.md and log.md - why the…",
+      "modified": "2026-07-18T21:20:46.216Z"
+    },
+    {
+      "path": "kb/decisions/minimal-typing.md",
+      "title": "Decision: minimal typing, grown via the loop",
+      "type": "decision",
+      "summary": "Types start tiny and grow through ingestion and lint; demo-specific types are catalogued so setup can remove them.",
+      "tags": [
+        "types",
+        "templates",
+        "schema"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "decision",
+        "title": "Decision: minimal typing, grown via the loop",
+        "summary": "Types start tiny and grow through ingestion and lint; demo-specific types are catalogued so setup can remove them.",
+        "source": "kb-kit maintainers, 2026-07-18",
+        "date": "2026-07-18",
+        "owner": "kb-kit maintainers",
+        "tags": [
+          "types",
+          "templates",
+          "schema"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Decision: minimal typing, grown via the loop Decision. This KB ships the smallest workable type set — note, source, decision, topic, plus two demo types (standard, tool) — and grows types only when the ingest/lint loop keeps producing pages that…",
+      "modified": "2026-07-18T21:20:46.216Z"
+    },
+    {
+      "path": "kb/decisions/relative-markdown-links.md",
+      "title": "Decision: relative markdown links only",
+      "type": "decision",
+      "summary": "This KB links with plain relative markdown — never wikilinks, never OKF's recommended absolute bundle paths.",
+      "tags": [
+        "linking",
+        "wikilinks",
+        "okf-deviation"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "decision",
+        "title": "Decision: relative markdown links only",
+        "summary": "This KB links with plain relative markdown — never wikilinks, never OKF's recommended absolute bundle paths.",
+        "source": "kb-kit maintainers, 2026-07-18",
+        "date": "2026-07-18",
+        "owner": "kb-kit maintainers",
+        "tags": [
+          "linking",
+          "wikilinks",
+          "okf-deviation"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Decision: relative markdown links only Decision. Every link in this KB is plain relative markdown — label or ../folder/page.md. No [[wikilinks]], no absolute /paths. A [[Name]] gesture from a human is resolved to a relative link before saving. Context. The…",
+      "modified": "2026-07-18T21:20:46.216Z"
+    },
+    {
+      "path": "kb/decisions/underscore-index-files.md",
+      "title": "Decision: _index.md and _log.md",
+      "type": "decision",
+      "summary": "This KB uses underscore-prefixed index and log filenames, deviating from OKF's reserved index.md/log.md.",
+      "tags": [
+        "naming",
+        "index",
+        "okf-deviation"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "decision",
+        "title": "Decision: _index.md and _log.md",
+        "summary": "This KB uses underscore-prefixed index and log filenames, deviating from OKF's reserved index.md/log.md.",
+        "source": "kb-kit maintainers, 2026-07-18",
+        "date": "2026-07-18",
+        "owner": "kb-kit maintainers",
+        "tags": [
+          "naming",
+          "index",
+          "okf-deviation"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Decision: index.md and log.md Decision. This KB's catalog and change-log files are index.md and log.md — not the index.md/log.md names that OKF v0.1 reserves. They serve exactly the OKF-reserved roles: index.md is the progressive-disclosure catalog (bulleted Title - description entries,…",
+      "modified": "2026-07-18T21:20:46.217Z"
+    },
+    {
+      "path": "kb/sources/_index.md",
+      "title": "Sources — index",
+      "type": "index",
+      "summary": null,
+      "tags": [],
+      "reserved": true,
+      "frontmatter": {
+        "type": "index",
+        "title": "Sources — index"
+      },
+      "headings": [],
+      "excerpt": "Sources External artifacts this KB has ingested. Each page: distilled summary, then verbatim ## Key excerpts (never edited in place). Originals that arrived via the inbox are preserved unmodified in the raw archive and linked from their page's raw: frontmatter.…",
+      "modified": "2026-07-18T23:56:31.452Z"
+    },
+    {
+      "path": "kb/sources/anthropic-effective-context-engineering.md",
+      "title": "Anthropic — \"Effective context engineering for AI agents\"",
+      "type": "source",
+      "summary": "The canonical engineering essay — context as a finite resource, and the four working techniques against context rot.",
+      "tags": [
+        "anthropic",
+        "context-engineering",
+        "context-rot"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "source",
+        "title": "Anthropic — \"Effective context engineering for AI agents\"",
+        "summary": "The canonical engineering essay — context as a finite resource, and the four working techniques against context rot.",
+        "source": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+        "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+        "date": "2025-09-29",
+        "status": "processed",
+        "tags": [
+          "anthropic",
+          "context-engineering",
+          "context-rot"
+        ]
+      },
+      "headings": [
+        "Key excerpts"
+      ],
+      "excerpt": "Anthropic — \"Effective context engineering for AI agents\" Anthropic engineering essay, 2025-09-29. The canonical treatment of context engineering as an engineering discipline rather than prompt-writing craft. Core frame: context is a finite resource whose usefulness degrades as the window fills…",
+      "modified": "2026-07-18T21:20:46.217Z"
+    },
+    {
+      "path": "kb/sources/cerebras-kb-blog.md",
+      "title": "Cerebras — \"How We Built Our Knowledge Base\"",
+      "type": "source",
+      "summary": "First-party account of a company-scale KB queried 15,000+ times a day — Postgres-everything retrieval (pgvector + FTS + RRF), LLM distillation of Slack, MCP tools.",
+      "tags": [
+        "cerebras",
+        "company-kb",
+        "retrieval",
+        "slack"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "source",
+        "title": "Cerebras — \"How We Built Our Knowledge Base\"",
+        "summary": "First-party account of a company-scale KB queried 15,000+ times a day — Postgres-everything retrieval (pgvector + FTS + RRF), LLM distillation of Slack, MCP tools.",
+        "source": "https://www.cerebras.ai/blog/how-we-built-our-knowledge-base",
+        "url": "https://www.cerebras.ai/blog/how-we-built-our-knowledge-base",
+        "date": "2026-07-15",
+        "status": "processed",
+        "retrieval": "primary - full article fetched and read 2026-07-18",
+        "tags": [
+          "cerebras",
+          "company-kb",
+          "retrieval",
+          "slack"
+        ]
+      },
+      "headings": [
+        "Architecture (as stated in the article)",
+        "Key excerpts"
+      ],
+      "excerpt": "Cerebras — \"How We Built Our Knowledge Base\" Blog post (2026-07-15) by Isaac Tai, Daniel Kim, and Mike Gao. First-party account of Cerebras Knowledge, an internal KB launched ~3 months earlier and queried more than 15,000 times per day by…",
+      "modified": "2026-07-18T21:29:06.673Z"
+    },
+    {
+      "path": "kb/sources/karpathy-llm-wiki-gist.md",
+      "title": "Karpathy — \"LLM Wiki\" gist",
+      "type": "source",
+      "summary": "The April 2026 idea file defining the agent-maintained compounding markdown wiki — three layers, three operations.",
+      "tags": [
+        "karpathy",
+        "llm-wiki",
+        "gist"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "source",
+        "title": "Karpathy — \"LLM Wiki\" gist",
+        "summary": "The April 2026 idea file defining the agent-maintained compounding markdown wiki — three layers, three operations.",
+        "source": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
+        "url": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
+        "date": "2026-04",
+        "status": "processed",
+        "retrieval": "primary - all quotes byte-verified against the raw gist 2026-07-18",
+        "tags": [
+          "karpathy",
+          "llm-wiki",
+          "gist"
+        ]
+      },
+      "headings": [
+        "Key excerpts"
+      ],
+      "excerpt": "Karpathy — \"LLM Wiki\" gist An \"idea file\" (llm-wiki.md, shared April 2026; ~5k+ stars and 40+ comments as of 2026-07) meant to be pasted to your own agent. Core move: replace per-query RAG with a persistent wiki the LLM builds…",
+      "modified": "2026-07-18T23:56:59.292Z"
+    },
+    {
+      "path": "kb/sources/okf-spec.md",
+      "title": "Google Open Knowledge Format — SPEC.md v0.1",
+      "type": "source",
+      "summary": "The v0.1 draft spec for knowledge bundles — markdown concepts, YAML frontmatter, type required, reserved index.md/log.md.",
+      "tags": [
+        "okf",
+        "spec",
+        "google"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "source",
+        "title": "Google Open Knowledge Format — SPEC.md v0.1",
+        "summary": "The v0.1 draft spec for knowledge bundles — markdown concepts, YAML frontmatter, type required, reserved index.md/log.md.",
+        "source": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md",
+        "url": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md",
+        "date": "2026-06-12",
+        "status": "processed",
+        "tags": [
+          "okf",
+          "spec",
+          "google"
+        ]
+      },
+      "headings": [
+        "Key excerpts"
+      ],
+      "excerpt": "Google Open Knowledge Format — SPEC.md v0.1 v0.1 Draft, published ~2026-06-12, Apache 2.0, in the GoogleCloudPlatform/knowledge-catalog repo (with a Google Cloud blog announcement). Defines the knowledge bundle / concept model, the frontmatter contract (type required, unknown keys preserved), markdown-only linking,…",
+      "modified": "2026-07-18T21:20:46.217Z"
+    },
+    {
+      "path": "kb/sources/openwiki-announcement.md",
+      "title": "Brace Sproul — Introducing OpenWiki",
+      "type": "source",
+      "summary": "Launch of LangChain's agent-maintained wiki CLI (X Article, 2026-07-01), plus its OKF adoption and Brains follow-on.",
+      "tags": [
+        "openwiki",
+        "langchain",
+        "announcement"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "source",
+        "title": "Brace Sproul — Introducing OpenWiki",
+        "summary": "Launch of LangChain's agent-maintained wiki CLI (X Article, 2026-07-01), plus its OKF adoption and Brains follow-on.",
+        "source": "https://github.com/langchain-ai/openwiki",
+        "url": "https://github.com/langchain-ai/openwiki",
+        "date": "2026-07-01",
+        "status": "processed",
+        "tags": [
+          "openwiki",
+          "langchain",
+          "announcement"
+        ]
+      },
+      "headings": [
+        "Key excerpts"
+      ],
+      "excerpt": "Brace Sproul — Introducing OpenWiki X Article by Brace Sproul (Head of Applied AI, LangChain), 2026-07-01, with the repo at github.com/langchain-ai/openwiki (the repo was fetched during research; the X post was reconstructed under the same egress caveat as the other…",
+      "modified": "2026-07-18T21:20:46.217Z"
+    },
+    {
+      "path": "kb/sources/prukalpa-github-for-context.md",
+      "title": "Prukalpa Sankar — \"The GitHub for Context Doesn't Exist Yet\"",
+      "type": "source",
+      "summary": "The decoupling manifesto — agents are becoming disposable, context is not; every unit of context needs a profile.",
+      "tags": [
+        "prukalpa",
+        "decoupling",
+        "governance",
+        "kb-card"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "source",
+        "title": "Prukalpa Sankar — \"The GitHub for Context Doesn't Exist Yet\"",
+        "summary": "The decoupling manifesto — agents are becoming disposable, context is not; every unit of context needs a profile.",
+        "source": "https://contextandchaos.substack.com/p/the-github-for-context-doesnt-exist",
+        "url": "https://contextandchaos.substack.com/p/the-github-for-context-doesnt-exist",
+        "date": "2026-07-16",
+        "status": "processed",
+        "retrieval": "primary - essay fetched and quotes verified 2026-07-18",
+        "tags": [
+          "prukalpa",
+          "decoupling",
+          "governance",
+          "kb-card"
+        ]
+      },
+      "headings": [
+        "Key excerpts"
+      ],
+      "excerpt": "Prukalpa Sankar — \"The GitHub for Context Doesn't Exist Yet\" Essay by Prukalpa Sankar (Atlan co-CEO, \"Context & Chaos\" Substack), published 2026-07-16. Originally reconstructed from search snippets while the Substack was egress-blocked; the essay has since been fetched in full…",
+      "modified": "2026-07-18T21:28:15.630Z"
+    },
+    {
+      "path": "kb/standards/_index.md",
+      "title": "Standards — index",
+      "type": "index",
+      "summary": null,
+      "tags": [],
+      "reserved": true,
+      "frontmatter": {
+        "type": "index",
+        "title": "Standards — index"
+      },
+      "headings": [],
+      "excerpt": "Standards Published specs and conventions in the context landscape, with adoption reality noted honestly on each page. Open Knowledge Format (OKF) - Google's v0.1 knowledge-bundle spec; this KB's format anchor. AGENTS.md - the de facto repo-root instruction file; Linux Foundation…",
+      "modified": "2026-07-18T21:20:46.217Z"
+    },
+    {
+      "path": "kb/standards/agent-skills.md",
+      "title": "Agent Skills (SKILL.md)",
+      "type": "standard",
+      "summary": "Open spec for packaged agent capabilities — YAML metadata plus instructions, loaded via progressive disclosure.",
+      "tags": [
+        "skills",
+        "skill-md",
+        "progressive-disclosure"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "standard",
+        "title": "Agent Skills (SKILL.md)",
+        "summary": "Open spec for packaged agent capabilities — YAML metadata plus instructions, loaded via progressive disclosure.",
+        "source": "https://agentskills.io/",
+        "steward": "Agentic AI Foundation (Linux Foundation); originated by Anthropic",
+        "status_note": "open spec since 2025-12-18; ~40 products support it",
+        "url": "https://agentskills.io/",
+        "tags": [
+          "skills",
+          "skill-md",
+          "progressive-disclosure"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Agent Skills (SKILL.md) A skill is a directory containing a SKILL.md (YAML name/description plus markdown instructions) and optional scripts and templates. Its defining mechanism is progressive disclosure: the metadata costs near-zero tokens until the skill triggers, at which point the…",
+      "modified": "2026-07-18T21:20:46.218Z"
+    },
+    {
+      "path": "kb/standards/agents-md.md",
+      "title": "AGENTS.md",
+      "type": "standard",
+      "summary": "The de facto standard repo-root instruction file for coding agents — convention plus location, no schema.",
+      "tags": [
+        "agents-md",
+        "instructions",
+        "linux-foundation"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "standard",
+        "title": "AGENTS.md",
+        "summary": "The de facto standard repo-root instruction file for coding agents — convention plus location, no schema.",
+        "source": "https://agents.md/",
+        "steward": "Agentic AI Foundation (Linux Foundation), since 2025-12-09",
+        "status_note": "adopted — de facto winner among instruction-file conventions",
+        "url": "https://agents.md/",
+        "tags": [
+          "agents-md",
+          "instructions",
+          "linux-foundation"
+        ]
+      },
+      "headings": [],
+      "excerpt": "AGENTS.md AGENTS.md is a plain-markdown file at a repo root that gives coding agents project instructions. Originated by OpenAI (with Google, Cursor, Factory, and Sourcegraph); stewarded since 2025-12-09 by the Agentic AI Foundation under the Linux Foundation. Adoption reality: it…",
+      "modified": "2026-07-18T21:20:46.218Z"
+    },
+    {
+      "path": "kb/standards/claude-md.md",
+      "title": "CLAUDE.md and the Claude Code memory hierarchy",
+      "type": "standard",
+      "summary": "Anthropic's layered instruction system — enterprise/project/personal files, imports, and agent-written auto memory.",
+      "tags": [
+        "claude-md",
+        "memory-hierarchy",
+        "anthropic"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "standard",
+        "title": "CLAUDE.md and the Claude Code memory hierarchy",
+        "summary": "Anthropic's layered instruction system — enterprise/project/personal files, imports, and agent-written auto memory.",
+        "source": "https://code.claude.com/docs/en/memory",
+        "steward": "Anthropic",
+        "status_note": "product convention (Claude Code), not an open spec; coexists with AGENTS.md",
+        "url": "https://code.claude.com/docs/en/memory",
+        "tags": [
+          "claude-md",
+          "memory-hierarchy",
+          "anthropic"
+        ]
+      },
+      "headings": [],
+      "excerpt": "CLAUDE.md and the Claude Code memory hierarchy CLAUDE.md is Anthropic's instruction-file convention for Claude Code, and it is more layered than AGENTS.md: enterprise, project, and personal CLAUDE.md files are discovered up the directory tree and can import other files. Alongside…",
+      "modified": "2026-07-18T21:20:46.218Z"
+    },
+    {
+      "path": "kb/standards/llms-txt.md",
+      "title": "llms.txt",
+      "type": "standard",
+      "summary": "Root markdown index curating a website's content for LLM consumption — growing fast, but major crawlers still ignore it.",
+      "tags": [
+        "llms-txt",
+        "websites",
+        "indexes"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "standard",
+        "title": "llms.txt",
+        "summary": "Root markdown index curating a website's content for LLM consumption — growing fast, but major crawlers still ignore it.",
+        "source": "https://llmstxt.org/",
+        "steward": "Jeremy Howard / Answer.AI (proposed Sept 2024)",
+        "status_note": "growing adoption, no formal governance body",
+        "url": "https://llmstxt.org/",
+        "tags": [
+          "llms-txt",
+          "websites",
+          "indexes"
+        ]
+      },
+      "headings": [],
+      "excerpt": "llms.txt llms.txt is a markdown file at a website's root that curates the site's content for LLMs — an index of what matters, in a form a model can consume without scraping the whole site. Proposed by Jeremy Howard (Answer.AI)…",
+      "modified": "2026-07-18T21:20:46.218Z"
+    },
+    {
+      "path": "kb/standards/mcp.md",
+      "title": "MCP — Resources and the Registry",
+      "type": "standard",
+      "summary": "The protocol layer for delivering context to agents (Resources) and discovering servers (the official Registry).",
+      "tags": [
+        "mcp",
+        "resources",
+        "registry",
+        "discovery"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "standard",
+        "title": "MCP — Resources and the Registry",
+        "summary": "The protocol layer for delivering context to agents (Resources) and discovering servers (the official Registry).",
+        "source": "https://registry.modelcontextprotocol.io/",
+        "steward": "MCP open governance; July 2026 spec release candidate",
+        "status_note": "protocol widely adopted; Resources least-adopted primitive; Registry in preview since 2025-09-08",
+        "url": "https://registry.modelcontextprotocol.io/",
+        "tags": [
+          "mcp",
+          "resources",
+          "registry",
+          "discovery"
+        ]
+      },
+      "headings": [],
+      "excerpt": "MCP — Resources and the Registry The Model Context Protocol matters to this survey at two points: how context is delivered to agents (Resources) and how knowledge sources are found (the Registry). MCP has open governance, with a July 2026…",
+      "modified": "2026-07-18T21:20:46.218Z"
+    },
+    {
+      "path": "kb/standards/open-knowledge-format.md",
+      "title": "Open Knowledge Format (OKF)",
+      "type": "standard",
+      "summary": "Google's v0.1 draft spec for knowledge bundles — markdown + YAML frontmatter, type as the only required key.",
+      "tags": [
+        "okf",
+        "format",
+        "bundle",
+        "frontmatter"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "standard",
+        "title": "Open Knowledge Format (OKF)",
+        "summary": "Google's v0.1 draft spec for knowledge bundles — markdown + YAML frontmatter, type as the only required key.",
+        "source": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md",
+        "steward": "Google (GoogleCloudPlatform/knowledge-catalog, Apache 2.0)",
+        "status_note": "v0.1 draft, published ~2026-06-12",
+        "url": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md",
+        "tags": [
+          "okf",
+          "format",
+          "bundle",
+          "frontmatter"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Open Knowledge Format (OKF) OKF is the format anchor of this kit. It specifies a knowledge bundle: a directory of markdown files with YAML frontmatter, where type is the only required key. \"Format, not platform\" — no schema registry, no…",
+      "modified": "2026-07-18T21:20:46.218Z"
+    },
+    {
+      "path": "kb/templates/_index.md",
+      "title": "Templates — index",
+      "type": "index",
+      "summary": null,
+      "tags": [],
+      "reserved": true,
+      "frontmatter": {
+        "type": "index",
+        "title": "Templates — index"
+      },
+      "headings": [],
+      "excerpt": "Entity types One file per type; the file both defines the type and serves as its template. Types are grown, not designed: add one only when ingestion keeps producing pages that don't fit. Adding a type = add a file…",
+      "modified": "2026-07-18T21:20:46.218Z"
+    },
+    {
+      "path": "kb/templates/decision.md",
+      "title": "decision",
+      "type": "decision",
+      "summary": "A choice that was made — what, why, what was rejected.",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "decision",
+        "summary": "A choice that was made — what, why, what was rejected."
+      },
+      "headings": [],
+      "excerpt": "decision Capture decisions where they happened, not in slide decks. Frontmatter should carry date and, when known, owner. Body: context, the decision, options rejected and why, and links to affected pages. Decisions are immutable once made — a reversal is…",
+      "modified": "2026-07-18T21:20:46.218Z"
+    },
+    {
+      "path": "kb/templates/note.md",
+      "title": "note",
+      "type": "note",
+      "summary": "Default type — one distilled piece of knowledge, one file.",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "note",
+        "summary": "Default type — one distilled piece of knowledge, one file.",
+        "statuses": [
+          "draft",
+          "solid"
+        ]
+      },
+      "headings": [],
+      "excerpt": "note The default. Use when nothing more specific fits. One topic per file; if a note grows two topics, split it and keep the links. A draft note is a placeholder someone should improve; solid means a human stands behind…",
+      "modified": "2026-07-18T21:20:46.218Z"
+    },
+    {
+      "path": "kb/templates/source.md",
+      "title": "source",
+      "type": "source",
+      "summary": "An external artifact (article, thread, spec, paper) ingested into this KB.",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "source",
+        "summary": "An external artifact (article, thread, spec, paper) ingested into this KB.",
+        "statuses": [
+          "unread",
+          "read",
+          "processed"
+        ]
+      },
+      "headings": [],
+      "excerpt": "source One page per ingested artifact. Frontmatter should carry url and date (of the artifact, not the ingest). Body: a distilled summary first, then a ## Raw or ## Key excerpts section with verbatim material — never edit inside that…",
+      "modified": "2026-07-18T21:20:46.218Z"
+    },
+    {
+      "path": "kb/templates/standard.md",
+      "title": "standard",
+      "type": "standard",
+      "summary": "A published spec or convention (demo type — remove via setup if unneeded).",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "standard",
+        "summary": "A published spec or convention (demo type — remove via setup if unneeded)."
+      },
+      "headings": [],
+      "excerpt": "standard For specs, formats, and conventions. Frontmatter should carry steward (who governs it), statusnote (draft/stable/adopted), and url. Body: what it specifies, adoption reality vs claims, and how it relates to neighboring standards (links).",
+      "modified": "2026-07-18T21:20:46.218Z"
+    },
+    {
+      "path": "kb/templates/tool.md",
+      "title": "tool",
+      "type": "tool",
+      "summary": "A product or system in the landscape (demo type — remove via setup if unneeded).",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "tool",
+        "summary": "A product or system in the landscape (demo type — remove via setup if unneeded)."
+      },
+      "headings": [],
+      "excerpt": "tool For products, platforms, and systems. Frontmatter should carry maker and url. Body: what it does, the idea it embodies (link the topic page), and its relationship to the standards it implements or ignores.",
+      "modified": "2026-07-18T21:20:46.218Z"
+    },
+    {
+      "path": "kb/templates/topic.md",
+      "title": "topic",
+      "type": "topic",
+      "summary": "A concept page synthesizing what this KB knows about one idea.",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "summary": "A concept page synthesizing what this KB knows about one idea."
+      },
+      "headings": [],
+      "excerpt": "topic The synthesis layer: written from multiple sources, linking to each. A topic page answers \"what do we know about X and how sure are we?\" — cite sources inline, surface disagreements between them as content. Update topic pages on…",
+      "modified": "2026-07-18T21:20:46.219Z"
+    },
+    {
+      "path": "kb/tools/_index.md",
+      "title": "Tools & systems — index",
+      "type": "index",
+      "summary": null,
+      "tags": [],
+      "reserved": true,
+      "frontmatter": {
+        "type": "index",
+        "title": "Tools & systems — index"
+      },
+      "headings": [],
+      "excerpt": "Tools & systems Products and systems in the landscape; each page links the idea it embodies and the standards it implements. OpenWiki - LangChain's agent-maintained wiki CLI; first major OKF producer. Letta - MemGPT lineage; Feb 2026 pivot to git-based…",
+      "modified": "2026-07-18T21:20:46.219Z"
+    },
+    {
+      "path": "kb/tools/brainkit.md",
+      "title": "brainkit",
+      "type": "tool",
+      "summary": "\"A second brain for work that compounds\" — a forkable Claude-Code-oriented KB kit whose knowledge folder is a valid OKF vault.",
+      "tags": [
+        "brainkit",
+        "second-brain",
+        "okf",
+        "kit"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "tool",
+        "title": "brainkit",
+        "summary": "\"A second brain for work that compounds\" — a forkable Claude-Code-oriented KB kit whose knowledge folder is a valid OKF vault.",
+        "source": "https://github.com/dudgeon/loop-library",
+        "maker": "dudgeon (kb-kit maintainer; described here neutrally as a public example)",
+        "url": "https://github.com/dudgeon/loop-library",
+        "tags": [
+          "brainkit",
+          "second-brain",
+          "okf",
+          "kit"
+        ]
+      },
+      "headings": [],
+      "excerpt": "brainkit brainkit (v0.3.0, \"contract v2\", shipped in dudgeon/loop-library under dist/brainkit) is a public example of a forkable personal-KB kit — built by this kit's maintainer, described here on the same terms as any other tool in the survey. Tagline: \"A…",
+      "modified": "2026-07-18T21:20:46.219Z"
+    },
+    {
+      "path": "kb/tools/chatgpt-memory.md",
+      "title": "ChatGPT memory (\"Dreaming\")",
+      "type": "tool",
+      "summary": "The largest deployed agent memory system — offline consolidation that updates memories; opaque and non-portable.",
+      "tags": [
+        "chatgpt",
+        "memory",
+        "opaque",
+        "consolidation"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "tool",
+        "title": "ChatGPT memory (\"Dreaming\")",
+        "summary": "The largest deployed agent memory system — offline consolidation that updates memories; opaque and non-portable.",
+        "source": "unverified",
+        "maker": "OpenAI",
+        "url": "unverified",
+        "tags": [
+          "chatgpt",
+          "memory",
+          "opaque",
+          "consolidation"
+        ]
+      },
+      "headings": [],
+      "excerpt": "ChatGPT memory (\"Dreaming\") ChatGPT's memory system is the largest deployed agent memory system, and the philosophical outlier of this survey. Its \"Dreaming V3\" release (2026-06-04) performs offline consolidation — a background process that doesn't merely append memories but updates them…",
+      "modified": "2026-07-18T21:20:46.219Z"
+    },
+    {
+      "path": "kb/tools/duo.md",
+      "title": "duo",
+      "type": "tool",
+      "summary": "A macOS human+agent pairing workspace that defines and implements an OKF-aligned vault format.",
+      "tags": [
+        "duo",
+        "vault",
+        "electron",
+        "okf"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "tool",
+        "title": "duo",
+        "summary": "A macOS human+agent pairing workspace that defines and implements an OKF-aligned vault format.",
+        "source": "https://github.com/dudgeon/duo",
+        "maker": "dudgeon (kb-kit maintainer; described here neutrally as a public example)",
+        "url": "https://github.com/dudgeon/duo",
+        "tags": [
+          "duo",
+          "vault",
+          "electron",
+          "okf"
+        ]
+      },
+      "headings": [],
+      "excerpt": "duo duo is a macOS Electron app — terminal, browser, file tree, and markdown editor in one window, with a duo CLI so the agent acts on what the human sees. It is not itself a vault: it defines and…",
+      "modified": "2026-07-18T21:20:46.219Z"
+    },
+    {
+      "path": "kb/tools/letta.md",
+      "title": "Letta",
+      "type": "tool",
+      "summary": "The MemGPT lineage — self-editing agent memory, rebuilt in Feb 2026 around git-based context repositories.",
+      "tags": [
+        "letta",
+        "memgpt",
+        "memory",
+        "git"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "tool",
+        "title": "Letta",
+        "summary": "The MemGPT lineage — self-editing agent memory, rebuilt in Feb 2026 around git-based context repositories.",
+        "source": "https://www.letta.com/",
+        "maker": "Letta",
+        "url": "https://www.letta.com/",
+        "tags": [
+          "letta",
+          "memgpt",
+          "memory",
+          "git"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Letta Letta is the company behind MemGPT, the OS-inspired approach to agent memory: the agent manages its own memory the way an operating system manages virtual memory, paging information in and out of context and editing its own memory blocks.…",
+      "modified": "2026-07-18T21:20:46.219Z"
+    },
+    {
+      "path": "kb/tools/mem0.md",
+      "title": "Mem0 / OpenMemory",
+      "type": "tool",
+      "summary": "Memory-as-a-service API plus a local-first CLI that ports one memory across agent stacks.",
+      "tags": [
+        "mem0",
+        "openmemory",
+        "memory",
+        "portability"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "tool",
+        "title": "Mem0 / OpenMemory",
+        "summary": "Memory-as-a-service API plus a local-first CLI that ports one memory across agent stacks.",
+        "source": "https://mem0.ai/",
+        "maker": "Mem0",
+        "url": "https://mem0.ai/",
+        "tags": [
+          "mem0",
+          "openmemory",
+          "memory",
+          "portability"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Mem0 / OpenMemory Mem0 offers agent memory as a service: an API for storing and retrieving what an agent should remember, so memory lives outside any single agent's context window or vendor. Its OpenMemory offering extends this local-first: a CLI…",
+      "modified": "2026-07-18T21:20:46.219Z"
+    },
+    {
+      "path": "kb/tools/obsidian.md",
+      "title": "Obsidian (vault-as-agent-KB pattern)",
+      "type": "tool",
+      "summary": "A local vault of plain markdown as agent memory/inbox/KB — Obsidian supplies the human UX, the folder is agent-native.",
+      "tags": [
+        "obsidian",
+        "vault",
+        "local-first",
+        "markdown"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "tool",
+        "title": "Obsidian (vault-as-agent-KB pattern)",
+        "summary": "A local vault of plain markdown as agent memory/inbox/KB — Obsidian supplies the human UX, the folder is agent-native.",
+        "source": "https://obsidian.md/",
+        "maker": "Obsidian",
+        "url": "https://obsidian.md/",
+        "tags": [
+          "obsidian",
+          "vault",
+          "local-first",
+          "markdown"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Obsidian (vault-as-agent-KB pattern) Obsidian itself is a markdown note-taking app; what earns it a page here is the community pattern that went mainstream among practitioners in 2026: a vault of plain markdown on local disk used as an agent's memory,…",
+      "modified": "2026-07-18T21:20:46.219Z"
+    },
+    {
+      "path": "kb/tools/openwiki.md",
+      "title": "OpenWiki",
+      "type": "tool",
+      "summary": "LangChain's CLI for agent-maintained wikis — repo docs or a personal brain, emitted as OKF bundles, kept fresh by CI.",
+      "tags": [
+        "openwiki",
+        "langchain",
+        "okf",
+        "wiki"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "tool",
+        "title": "OpenWiki",
+        "summary": "LangChain's CLI for agent-maintained wikis — repo docs or a personal brain, emitted as OKF bundles, kept fresh by CI.",
+        "source": "https://github.com/langchain-ai/openwiki",
+        "maker": "LangChain (Brace Sproul, Head of Applied AI)",
+        "url": "https://github.com/langchain-ai/openwiki",
+        "tags": [
+          "openwiki",
+          "langchain",
+          "okf",
+          "wiki"
+        ]
+      },
+      "headings": [],
+      "excerpt": "OpenWiki OpenWiki (released 2026-07-01) is the reference open-source implementation of the agent-maintained wiki-as-KB, and the first major producer of Open Knowledge Format bundles. The launch pitch: \"the easiest way to generate and maintain documentation in your codebase, built specifically for…",
+      "modified": "2026-07-18T21:20:46.219Z"
+    },
+    {
+      "path": "kb/topics/_index.md",
+      "title": "Topics — index",
+      "type": "index",
+      "summary": null,
+      "tags": [],
+      "reserved": true,
+      "frontmatter": {
+        "type": "index",
+        "title": "Topics — index"
+      },
+      "headings": [],
+      "excerpt": "Topics Synthesis pages — what this KB knows about each idea, cited to sources. The context repo - the central concept: durable, versioned knowledge shared by humans and agents. Context engineering - the discipline; Karpathy's framing, Anthropic's techniques, LangChain's taxonomy.…",
+      "modified": "2026-07-18T21:20:46.220Z"
+    },
+    {
+      "path": "kb/topics/agent-memory.md",
+      "title": "Agent memory vs. knowledge bases",
+      "type": "topic",
+      "summary": "Memory systems and KBs are merging into context repos; ChatGPT's opaque memory is the philosophical outlier.",
+      "tags": [
+        "memory",
+        "letta",
+        "mem0",
+        "convergence"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "title": "Agent memory vs. knowledge bases",
+        "summary": "Memory systems and KBs are merging into context repos; ChatGPT's opaque memory is the philosophical outlier.",
+        "source": "synthesized from linked sources, 2026-07-18",
+        "tags": [
+          "memory",
+          "letta",
+          "mem0",
+          "convergence"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Agent memory vs. knowledge bases Agent memory systems (what an agent remembers across sessions) and knowledge bases (curated, shared knowledge) started as separate product categories. The mid-2026 signal is that they are merging — into context repos. The clearest evidence…",
+      "modified": "2026-07-18T21:20:46.220Z"
+    },
+    {
+      "path": "kb/topics/context-engineering.md",
+      "title": "Context engineering",
+      "type": "topic",
+      "summary": "The discipline of filling the context window with the right information — the frame that displaced prompt engineering.",
+      "tags": [
+        "context-engineering",
+        "discipline",
+        "terminology"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "title": "Context engineering",
+        "summary": "The discipline of filling the context window with the right information — the frame that displaced prompt engineering.",
+        "source": "synthesized from linked sources, 2026-07-18",
+        "tags": [
+          "context-engineering",
+          "discipline",
+          "terminology"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Context engineering Context engineering is the umbrella discipline this KB's whole subject sits under. Karpathy's June 2025 framing named it: \"the delicate art and science of filling the context window with just the right information\" — and the term displaced…",
+      "modified": "2026-07-18T21:20:46.220Z"
+    },
+    {
+      "path": "kb/topics/context-repo.md",
+      "title": "The context repo",
+      "type": "topic",
+      "summary": "A durable, versioned knowledge substrate shared by humans and agents — the idea this KB surveys.",
+      "tags": [
+        "context-repo",
+        "decoupling",
+        "markdown",
+        "git"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "title": "The context repo",
+        "summary": "A durable, versioned knowledge substrate shared by humans and agents — the idea this KB surveys.",
+        "source": "synthesized from linked sources, 2026-07-18",
+        "tags": [
+          "context-repo",
+          "decoupling",
+          "markdown",
+          "git"
+        ]
+      },
+      "headings": [],
+      "excerpt": "The context repo A context repo is a version-controlled collection of markdown files that serves as the durable knowledge substrate for both humans and agents: readable without tooling, parseable without SDKs, diffable in git, portable across agent stacks. This repo's…",
+      "modified": "2026-07-18T21:28:57.737Z"
+    },
+    {
+      "path": "kb/topics/kb-discovery.md",
+      "title": "KB discovery and the kb-card gap",
+      "type": "topic",
+      "summary": "No adopted standard describes a knowledge base the way a model card describes a model — the gap kb-kit's kb-card targets.",
+      "tags": [
+        "kb-card",
+        "discovery",
+        "model-cards",
+        "governance"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "title": "KB discovery and the kb-card gap",
+        "summary": "No adopted standard describes a knowledge base the way a model card describes a model — the gap kb-kit's kb-card targets.",
+        "source": "synthesized from linked sources, 2026-07-18",
+        "tags": [
+          "kb-card",
+          "discovery",
+          "model-cards",
+          "governance"
+        ]
+      },
+      "headings": [],
+      "excerpt": "KB discovery and the kb-card gap How does an agent (or a team) find a knowledge base, and decide whether to trust it? As of mid-2026, no dedicated, widely adopted \"KB card\" standard exists. That is the open gap in…",
+      "modified": "2026-07-18T21:20:46.220Z"
+    },
+    {
+      "path": "kb/topics/llm-wiki-pattern.md",
+      "title": "The LLM-wiki pattern",
+      "type": "topic",
+      "summary": "Karpathy's three-layer, agent-maintained markdown wiki — ingest/query/lint as the loop, drift as the failure mode.",
+      "tags": [
+        "llm-wiki",
+        "karpathy",
+        "ingest",
+        "lint",
+        "drift"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "title": "The LLM-wiki pattern",
+        "summary": "Karpathy's three-layer, agent-maintained markdown wiki — ingest/query/lint as the loop, drift as the failure mode.",
+        "source": "synthesized from linked sources, 2026-07-18",
+        "tags": [
+          "llm-wiki",
+          "karpathy",
+          "ingest",
+          "lint",
+          "drift"
+        ]
+      },
+      "headings": [],
+      "excerpt": "The LLM-wiki pattern Karpathy's April 2026 gist described the pattern this kit implements: instead of RAG retrieval at query time, \"the LLM incrementally builds and maintains a persistent wiki\" — a \"persistent, compounding artifact\" sitting between you and the raw…",
+      "modified": "2026-07-18T23:56:38.071Z"
+    },
+    {
+      "path": "kb/topics/open-questions.md",
+      "title": "Open questions worth exploring",
+      "type": "topic",
+      "summary": "Unsolved questions in the context-repo space worth further exploration — multiplayer governance, ossifying authority, and living with volatile sources.",
+      "tags": [
+        "governance",
+        "volatility",
+        "multiplayer",
+        "open-questions"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "summary": "Unsolved questions in the context-repo space worth further exploration — multiplayer governance, ossifying authority, and living with volatile sources.",
+        "source": "synthesized from linked sources and maintainer questions, 2026-07-18",
+        "tags": [
+          "governance",
+          "volatility",
+          "multiplayer",
+          "open-questions"
+        ]
+      },
+      "headings": [
+        "Multiplayer mode: who lints?",
+        "Authority: how do you ossify content, and where does it live?",
+        "Volatility: version-controlled distillation over living sources",
+        "Also on the watchlist"
+      ],
+      "excerpt": "Open questions worth exploring The context repo pattern is young; single-player mode is basically solved and everything past it is frontier. These are the questions this KB is tracking — each could become its own topic page as answers emerge.…",
+      "modified": "2026-07-18T21:28:43.165Z"
+    },
+    {
+      "path": "kb/topics/progressive-disclosure.md",
+      "title": "Progressive disclosure",
+      "type": "topic",
+      "summary": "The shared mechanism across skills, OKF, CLAUDE.md, and MCP — load near-zero tokens until knowledge is actually needed.",
+      "tags": [
+        "progressive-disclosure",
+        "tokens",
+        "indexes"
+      ],
+      "reserved": false,
+      "frontmatter": {
+        "type": "topic",
+        "title": "Progressive disclosure",
+        "summary": "The shared mechanism across skills, OKF, CLAUDE.md, and MCP — load near-zero tokens until knowledge is actually needed.",
+        "source": "synthesized from linked sources, 2026-07-18",
+        "tags": [
+          "progressive-disclosure",
+          "tokens",
+          "indexes"
+        ]
+      },
+      "headings": [],
+      "excerpt": "Progressive disclosure Progressive disclosure is the one mechanism every surviving context standard shares: expose a cheap summary layer first, and load the expensive full content only when it is actually needed. It is the survey's second cross-cutting takeaway (after \"markdown-in-git…",
+      "modified": "2026-07-18T21:20:46.220Z"
+    },
+    {
+      "path": "docs/taxonomy.md",
+      "title": "What makes a great context repo",
+      "type": null,
+      "summary": null,
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {},
+      "headings": [
+        "1. Scope",
+        "2. Structure & navigability",
+        "3. Typing & consistency",
+        "4. Linkage",
+        "5. Provenance & trust",
+        "6. Freshness & maintenance",
+        "7. Agent-readiness",
+        "8. Human experience",
+        "9. Discoverability",
+        "10. Governance"
+      ],
+      "excerpt": "What makes a great context repo A taxonomy of quality for knowledge bases that humans and agents share. Use it three ways: as a checklist when building, as a rubric when linting, and as a vocabulary for the kb-card —…",
+      "modified": "2026-07-18T21:20:46.216Z"
+    },
+    {
+      "path": "docs/kb-card-spec.md",
+      "title": "kb-card: a model card for knowledge bases",
+      "type": null,
+      "summary": null,
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {},
+      "headings": [
+        "Design rules",
+        "Declared core (frontmatter)",
+        "Inferred traits (lint-owned)",
+        "Body (prose, optional but encouraged)",
+        "For crawlers",
+        "Progressive discovery"
+      ],
+      "excerpt": "kb-card: a model card for knowledge bases A kb-card is a single file, kb-card.md, at the root of a repository that contains a knowledge base. It does for KBs what a model card does for models: lets a human or…",
+      "modified": "2026-07-18T21:20:46.215Z"
+    },
+    {
+      "path": "docs/site-guide.md",
+      "title": "Site guide — how the kb-kit site works and how to customize it",
+      "type": null,
+      "summary": null,
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {},
+      "headings": [
+        "How the site works",
+        "Local preview",
+        "Customizing",
+        "Hard invariants (do not break these)",
+        "Troubleshooting"
+      ],
+      "excerpt": "Site guide — how the kb-kit site works and how to customize it This guide is for the humans and agents who maintain a fork's site. The KB content conventions live in AGENTS.md; this file covers only the machinery: the…",
+      "modified": "2026-07-19T01:43:41.265Z"
+    },
+    {
+      "path": "kb-card.md",
+      "title": "kb-card — kb-kit demo knowledge base",
+      "type": "kb-card",
+      "summary": "A survey of the context-management and context-repo landscape (mid-2026), shipped as the working demo content of the kb-kit starter kit.",
+      "tags": [],
+      "reserved": false,
+      "frontmatter": {
+        "type": "kb-card",
+        "kb_card_version": "0.1",
+        "name": "kb-kit demo knowledge base",
+        "description": "A survey of the context-management and context-repo landscape (mid-2026), shipped as the working demo content of the kb-kit starter kit.",
+        "scope": "Standards, tools, patterns, and ideas for giving AI agents and humans a shared, versioned knowledge substrate. Out of scope — general AI news, model benchmarks, anything not about context/knowledge management.",
+        "owner": "kb-kit maintainers",
+        "audience": [
+          "product managers",
+          "agent builders",
+          "knowledge engineers"
+        ],
+        "topics": [
+          "context-engineering",
+          "knowledge-bases",
+          "agents",
+          "okf",
+          "agents-md",
+          "skills",
+          "mcp",
+          "memory"
+        ],
+        "access": "public",
+        "license": "MIT",
+        "contact": "GitHub issues on this repository",
+        "entry_points": {
+          "bundle": "kb/_index.md",
+          "site": "https://dudgeon.github.io/kb-kit/knowledge-base.html",
+          "agents": "AGENTS.md"
+        },
+        "established": "2026-07-18"
+      },
+      "headings": [
+        "What this is",
+        "What's deliberately out of scope",
+        "How to contribute",
+        "Caveats"
+      ],
+      "excerpt": "kb-card — kb-kit demo knowledge base This card describes the demo KB that ships with kb-kit so the site, search, and skills have something real to work on. When you fork the kit, the setup skill replaces this card with…",
+      "modified": "2026-07-19T00:00:58.725Z"
+    }
+  ]
+}
