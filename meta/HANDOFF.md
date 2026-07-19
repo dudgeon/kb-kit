@@ -78,7 +78,10 @@ record them in `retrieval:` frontmatter. Do not repeat this.
 > `scripts/lint-kb.mjs` now runs lint's mechanical pass (locally + in
 > CI), and a kb-card interview is QUEUED — prep + question list in
 > [kb-card-interview-prep.md](./kb-card-interview-prep.md); conduct it
-> one question at a time when the maintainer is available.
+> one question at a time when the maintainer is available. Also QUEUED
+> (Q14, ADR 010): build `skills/upgrade/` — diff fork vs upstream
+> `pattern-log.md` entries and judgment-recommend upstream pulls; the
+> ledger + AGENTS.md discipline + setup fork-point anchor already exist.
 
 1. ~~**Browser-verify the site**~~ DONE (locally; re-check on the live
    Pages URL after merging to main).

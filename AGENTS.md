@@ -45,6 +45,8 @@ Write scope and query scope are different:
   - other folders — organized by the KB's owner; folders are navigation,
     frontmatter `type` is meaning.
 - `kb-card.md` — repo-root card describing this KB (see below).
+- `pattern-log.md` — repo-root ledger of changes to the kit MACHINERY
+  (see "Customizing the kit" below).
 - `skills/<name>/SKILL.md` — agent-agnostic skills: `setup`, `ingest`,
   `query`, `lint`.
 
@@ -113,6 +115,21 @@ owning team…); **lint computes the inferred traits** (page/type census,
 freshness, link health). Never hand-edit the inferred block; it sits between
 `<!-- BEGIN kb-card:inferred -->` and `<!-- END kb-card:inferred -->` markers.
 Spec: [docs/kb-card-spec.md](./docs/kb-card-spec.md).
+
+## Customizing the kit
+
+The machinery is yours to customize — but **every machinery change must
+append an entry to [pattern-log.md](./pattern-log.md)** in the same change,
+the way KB edits append to `kb/_log.md`. "Machinery" means anything outside
+`kb/` content: site files, skills, scripts, workflows, this file, plus
+structural conventions. Tag entries `fork |` in a fork (`upstream |` only in
+kb-kit itself) and never edit or remove entries you didn't write.
+
+Why this matters: upstream kb-kit keeps improving after you fork. A planned
+upgrade skill will compare the two pattern logs and recommend, change by
+change, which upstream improvements to pull in — impossible to do safely if
+your customizations aren't on the record (a blind merge would squash them
+and ruin post-fork content).
 
 ## Conduct
 

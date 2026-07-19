@@ -62,6 +62,7 @@ and no login.
 | `kb/` | The knowledge bundle (OKF) — the only place knowledge lives |
 | `kb/inbox/` → `kb/sources/raw/` | The flow in: drop raw material in the inbox (= unprocessed queue); ingest distills it and moves the original to the immutable raw archive |
 | `kb-card.md` | This KB's card: scope, owner, computed health |
+| `pattern-log.md` | Ledger of kit-machinery changes — what a future upgrade skill diffs against upstream |
 | `AGENTS.md` / `CLAUDE.md` | Agent schema file (canonical / shim) |
 | `skills/` | setup · ingest · query · lint |
 | `index.html`, `knowledge-base.html`, `assets/` | The static site |

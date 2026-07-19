@@ -172,6 +172,23 @@ available content — "seems well covered under fair use." The ingest skill's
 flag-before-archiving tripwire was removed; agents archive inbox originals
 unconditionally.
 
+### Q14 — Pattern log + future upgrade skill (2026-07-18, queued directive)
+
+**A (paraphrased from maintainer):** The agent instructions should require
+keeping/adding to a log of changes to the forked *pattern* (the kit
+machinery), so that a future skill can check upstream kb-kit and
+**nondeterministically** (agent judgment, not mechanical merge) recommend to
+a fork owner which subsequent upstream upgrades to pull in. A plain
+rebase/merge is off the table — it would ruin content added post-fork — and
+customizations must never be squashed.
+
+Implementation note: maintainer said "the Claude.md should instruct," but
+per locked Q2 (AGENTS.md canonical, CLAUDE.md thin shim) the instruction
+lives in AGENTS.md, which every CLAUDE.md reader reaches. Mechanism:
+root `pattern-log.md` (`upstream |` entries in kb-kit itself; forks add
+`fork |` entries and a fork-point anchor recorded by setup). The upgrade
+skill itself is QUEUED — see ADR 010 and meta/HANDOFF.md.
+
 ### Pending interview: the kb-card concept (queued 2026-07-18)
 
 Maintainer: "I think we could better explain the kb-card concept — that

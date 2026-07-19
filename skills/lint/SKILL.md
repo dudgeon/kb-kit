@@ -44,6 +44,10 @@ reference:
   a past ingest should have updated.
 - **Contradictions & staleness** — claims newer sources supersede; undated
   time-sensitive claims ("currently", "recently") — propose dating them.
+- **Machinery drift** — machinery files (site, skills, scripts, workflows,
+  AGENTS.md) changed since `pattern-log.md`'s newest entry (check
+  `git log -- <machinery paths>` against the log's top date): propose the
+  missing entries. The upgrade skill depends on this ledger being complete.
 - **Type pressure** — clusters of `note` pages sharing a shape (propose a new
   type) or a type with one lonely page (propose folding it).
 - Present findings as a short report: what was auto-fixed, what's proposed,

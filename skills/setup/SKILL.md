@@ -67,6 +67,12 @@ can grow later via ingest/lint — nothing is final today.
    first page if the owner dictated one.
 3. Reset `kb/_log.md` with a dated `setup` entry recording what was removed
    and which types were installed.
+3b. Append a `fork-point |` anchor entry to `pattern-log.md` (upstream repo
+   URL, upstream commit SHA if known — `git log --oneline -1` before you
+   change anything — and today's date). Keep every existing `upstream |`
+   entry: the future upgrade skill diffs against them. From now on, any
+   machinery customization gets a `fork |` entry (see AGENTS.md →
+   "Customizing the kit").
 4. Update the README title/description to their KB's name, and point them at:
    enabling GitHub Pages (Settings → Pages → Source: **Deploy from a branch**
    → `main`, `/ (root)`; the root `.nojekyll` file must stay) and the ingest
