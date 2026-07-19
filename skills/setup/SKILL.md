@@ -21,6 +21,9 @@ Learn, in roughly this order:
    intel? This drives Step 3's type choices.
 6. GitHub Pages URL if known (`https://<user>.github.io/<repo>/`) for
    `entry_points.site`.
+7. Domain knowledge that lives OUTSIDE this repo — team wikis, dashboards,
+   vendor docs, canonical specs (→ card `external_sources`; a KB points
+   beyond itself for its domain).
 
 ## Step 2 — clear the demo content
 

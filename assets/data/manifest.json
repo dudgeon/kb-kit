@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T01:55:48.000Z",
+  "generated_at": "2026-07-19T02:56:48.000Z",
   "repo": {
     "kb_dir": "kb",
     "default_branch": "main"
@@ -23,6 +23,7 @@
         "Types",
         "Workflows (the loop)",
         "kb-card.md",
+        "Writing for the kit's surfaces",
         "Customizing the kit",
         "Conduct"
       ],
@@ -72,6 +73,7 @@
         "Declared core (frontmatter)",
         "Inferred traits (lint-owned)",
         "Body (prose, optional but encouraged)",
+        "The discovery trajectory (why the card exists)",
         "For crawlers",
         "Progressive discovery"
       ],
@@ -156,7 +158,24 @@
           "site": "https://dudgeon.org/kb-kit/knowledge-base.html",
           "agents": "AGENTS.md"
         },
-        "established": "2026-07-18"
+        "established": "2026-07-18",
+        "external_sources": [
+          {
+            "name": "Google OKF SPEC.md",
+            "url": "https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md",
+            "note": "The knowledge-bundle format this KB conforms to (v0.1, two documented deviations)."
+          },
+          {
+            "name": "Karpathy — llm-wiki.md gist",
+            "url": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
+            "note": "Origin of the ingest/query/lint operating loop this KB runs on."
+          },
+          {
+            "name": "agents.md",
+            "url": "https://agents.md",
+            "note": "The AGENTS.md convention this repo's schema file follows."
+          }
+        ]
       },
       "headings": [
         "What this is",
@@ -165,7 +184,7 @@
         "Caveats"
       ],
       "excerpt": "kb-card — kb-kit demo knowledge base This card describes the demo KB that ships with kb-kit so the site, search, and skills have something real to work on. When you fork the kit, the setup skill replaces this card with…",
-      "modified": "2026-07-19T00:01:51.000Z"
+      "modified": "2026-07-19T02:56:48.000Z"
     },
     {
       "path": "kb/_index.md",
@@ -1270,10 +1289,11 @@
       "reserved": false,
       "frontmatter": {},
       "headings": [
+        "2026-07-19",
         "2026-07-18"
       ],
       "excerpt": "Pattern log — changes to the kit machinery This ledger tracks changes to the pattern — everything that is not KB content: the site, skills, scripts, workflows, schema files, and structural conventions. (kb/log.md tracks knowledge; this file tracks machinery.) Why…",
-      "modified": "2026-07-19T01:55:48.000Z"
+      "modified": "2026-07-19T02:56:48.000Z"
     },
     {
       "path": "skills/ingest/SKILL.md",
@@ -1308,7 +1328,7 @@
         "Close out"
       ],
       "excerpt": "lint — keep the KB compounding instead of rotting Lint proposes; it fixes mechanical problems freely but never deletes or restructures content without approval. Its write scope is kb/ plus exactly one file outside it: the marked inferred block of…",
-      "modified": "2026-07-19T01:55:48.000Z"
+      "modified": "2026-07-19T02:56:48.000Z"
     },
     {
       "path": "skills/query/SKILL.md",

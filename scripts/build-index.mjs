@@ -184,9 +184,17 @@ function parseFrontmatter(block) {
         if (!/^\s/.test(sub)) break; // back to column 0 = new top-level key
         const li = sub.match(/^\s+-\s*(.*)$/);
         const mi = sub.match(/^\s+([A-Za-z0-9_][A-Za-z0-9_.\-]*):\s*(.*)$/);
+        const last = items[items.length - 1];
+        const lastIsObj = last && typeof last === "object" && !Array.isArray(last);
         if (li && mode !== "map") {
           mode = "list";
-          items.push(parseScalar(li[1]));
+          // `- key: value` opens an OBJECT item (e.g. the kb-card's
+          // external_sources entries); a plain `- value` stays a scalar.
+          const inner = li[1].match(/^([A-Za-z0-9_][A-Za-z0-9_.\-]*):\s*(.+)$/);
+          items.push(inner ? { [inner[1]]: parseScalar(inner[2]) } : parseScalar(li[1]));
+        } else if (mi && mode === "list" && lastIsObj) {
+          // Continuation line of the current object item: `  url: …`.
+          last[mi[1]] = parseScalar(mi[2]);
         } else if (mi && mode !== "list") {
           mode = "map";
           map[mi[1]] = parseScalar(mi[2]);

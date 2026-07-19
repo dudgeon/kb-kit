@@ -21,6 +21,27 @@ Rules (see AGENTS.md → "Customizing the kit"):
 - One bullet per coherent change: what changed, which files, and why in a
   clause. Write it in the same commit as the change.
 
+## 2026-07-19
+
+- upstream | Voice rule (ADR 011): all user-facing surfaces are educational
+  and descriptive, never salesy; AGENTS.md's "Writing for the kit's
+  surfaces" section enforces keeping index.html/README current with
+  machinery changes. Files: AGENTS.md, meta/PLAN.md (product principles).
+- upstream | KB home redesigned per maintainer feedback: LIVE search
+  (debounced as-you-type, in-place result updates, silent hash sync — "Enter
+  only" read as broken), "Ways to use this KB" cards (casual browse vs
+  agent/RAG/MCP paths), "How to add knowledge" doors (session "/ingest
+  this", prefilled issue link, GitHub new-file-in-inbox link), old
+  "Start here" cards removed. Files: assets/js/views.js, assets/css/site.css.
+- upstream | Intake channels widened (ADR 012): ingest sweeps scan open
+  GitHub issues alongside kb/inbox/ and serve in-session "/ingest this";
+  lint checks issues when checking the inbox. Files: skills/ingest/SKILL.md,
+  skills/lint/SKILL.md.
+- upstream | kb-card as discovery interface (ADR 013): spec gains
+  `external_sources` + the hub/crawler discovery trajectory; AGENTS.md
+  points agents at the card; setup interviews for external sources. Files:
+  docs/kb-card-spec.md, kb-card.md, AGENTS.md, skills/setup/SKILL.md.
+
 ## 2026-07-18
 
 - upstream | Search index scope widened to the whole repo (maintainer

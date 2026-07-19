@@ -53,6 +53,11 @@ entry_points:
   site: <GitHub Pages URL>    # browsing UI, if any
   agents: AGENTS.md           # the schema file
 established: <YYYY-MM-DD>
+external_sources:             # domain knowledge that lives OUTSIDE this repo
+  - name: <human name>        # (not all knowledge is in GitHub — the KB
+    url: <where it lives>     #  points beyond itself for its domain, and a
+    note: <one line on what it is and why it matters here>  # hub/crawler
+  # …                         #  may index these alongside the KB)
 ```
 
 ## Inferred traits (lint-owned)
@@ -83,6 +88,26 @@ Short sections a first-time visitor wants: **What this is**, **What's
 deliberately out of scope**, **How to contribute**, **Caveats** (known gaps,
 staleness warnings, trust notes).
 
+## The discovery trajectory (why the card exists)
+
+A company ends up with many KB repos: some are part of a team's daily
+routine; others are hard to find and harder to judge. The card is designed
+for the systems that fix this, in three stages:
+
+1. **Manual onboarding** — a user registers a KB repo with an org
+   **context hub**; the hub reads the card, indexes the KB, and makes it
+   searchable. Lint operations can then consider *adjacent* onboarded
+   repos (scope negotiation, cross-KB links, overlap detection).
+2. **Automatic discovery** — a crawler fans out across the company's whole
+   GitHub instance, recognizes KBs by their `kb-card.md`, and pulls them
+   into the hub with no onboarding step at all.
+3. **Beyond GitHub** — `external_sources` on the card points at the
+   domain's knowledge that doesn't live in any repo (wikis, dashboards,
+   vendor docs), so the hub's picture of a domain isn't repo-bound.
+
+Nothing in this kit implements a hub or crawler; the kit's job is to
+guarantee every fork carries the card those systems need.
+
 ## For crawlers
 
 - Find cards: GitHub code search `path:kb-card.md` (org-scoped).
@@ -91,6 +116,7 @@ staleness warnings, trust notes).
 - Rank/filter: `topics`, `access`, `owner`, and inferred `freshness` — a card
   whose `inferred_at` is ancient tells you the KB's lint loop is dead, which
   is usually the answer you needed.
+- Follow: `entry_points` into the KB, `external_sources` beyond it.
 
 ## Progressive discovery
 

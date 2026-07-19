@@ -12,6 +12,16 @@ declared core, repo structure), *propose* that to the owner — non-kb content
 is authoritative and changes to it are governed (see "The agent-managed
 boundary" in AGENTS.md).
 
+Knowledge arrives through three channels; this skill serves all of them:
+
+1. **The current session** (most common): the user has been teaching you
+   something — a discussion, a pasted document, a worked-out decision — and
+   says "ingest this." The session content IS the source; capture it
+   faithfully (attribute to the user + date) before it scrolls away.
+2. **The inbox** — files dropped in `kb/inbox/` (sweep below).
+3. **GitHub issues** — contributors who never clone can open an issue
+   containing or pointing at knowledge; sweeps scan them (below).
+
 0. **Fetch honestly.** If you cannot retrieve the source itself — paywall,
    network block, dead link — and are working from snippets, mirrors, or
    summaries instead, you MUST (a) say so **in your report to the human, up
@@ -56,3 +66,12 @@ still in the inbox is still unprocessed. Archive freely — the maintainer
 has ruled that preserving copies of freely available content in the raw
 archive is fine (fair use); don't stop to ask. Note the sweep in the
 `_log.md` entry.
+
+**A sweep also scans GitHub issues.** List the repo's open issues (`gh
+issue list`) and treat any that contain or point at knowledge as inbox
+items: run steps 0–4 (capture the issue's text/links verbatim; credit the
+issue author and number in `source:`). After ingesting, comment on the
+issue saying what landed where (link the pages) and propose closing it —
+comment-and-close is the issue equivalent of the move-to-raw step, and the
+issue thread remains the permanent original. Issues that are questions or
+bug reports, not knowledge, are out of scope — leave them.

@@ -98,8 +98,11 @@ new one unless the subject is a distinct entity you'd link to from elsewhere.
 - **Ingest** ([skill](./skills/ingest/SKILL.md)) — add a source or fact:
   write/update the affected pages, update every `_index.md` on the path,
   append to `_log.md`. One source may touch many pages; that's the point.
-  Information flows in two ways: handed to an agent directly ("ingest
-  this"), or dropped into `kb/inbox/` for a later "process the inbox" sweep.
+  Information arrives through three channels, one loop: (1) the current
+  session — a user teaches the agent something and says "ingest this";
+  (2) files dropped in `kb/inbox/`; (3) GitHub issues containing or
+  pointing at knowledge. A "process the inbox" sweep scans the inbox AND
+  open issues; un-swept items wait for the next maintainer pass.
 - **Query** ([skill](./skills/query/SKILL.md)) — read `kb/_index.md` first,
   navigate by links, answer with citations (links to KB pages and their
   sources). File genuinely reusable answers back into the KB.
@@ -110,11 +113,36 @@ new one unless the subject is a distinct entity you'd link to from elsewhere.
 ## kb-card.md
 
 The repo-root [kb-card.md](./kb-card.md) describes this KB the way a model
-card describes a model. Humans maintain the small declared core (name, scope,
-owning team…); **lint computes the inferred traits** (page/type census,
-freshness, link health). Never hand-edit the inferred block; it sits between
-`<!-- BEGIN kb-card:inferred -->` and `<!-- END kb-card:inferred -->` markers.
+card describes a model — and it is this KB's **discovery interface**: when
+introducing this KB to another system or agent (an org context hub, a
+crawler, a teammate's agent), hand over the card first. Companies with many
+KB repos find and judge them by their cards (fixed filename, machine-first
+frontmatter, lint-refreshed health). Humans maintain the small declared
+core (name, scope, owning team, `external_sources` — domain-relevant
+references that live outside this repo); **lint computes the inferred
+traits** (page/type census, freshness, link health). Never hand-edit the
+inferred block; it sits between `<!-- BEGIN kb-card:inferred -->` and
+`<!-- END kb-card:inferred -->` markers.
 Spec: [docs/kb-card-spec.md](./docs/kb-card-spec.md).
+
+## Writing for the kit's surfaces
+
+Every user-facing surface — `index.html`, the KB app's copy, the README —
+is **educational and descriptive, never promotional** (maintainer rule; do
+not drift back). Concretely:
+
+- Explain how things work, what the kit is composed of, and which
+  standards/approaches/lineage it follows (OKF, AGENTS.md, Agent Skills,
+  the Karpathy ingest/query/lint loop, model cards → kb-card). Plain
+  statements and real links beat adjectives; no marketing superlatives.
+- Each surface has a role: `index.html` is the kit *explainer*; the KB
+  home (`knowledge-base.html#/`) is the *casual browse-and-search surface*
+  and says so while naming the deeper paths (clone + query skill, pointing
+  an agent at this file, RAG/MCP over the repo contents).
+- **Keep the explainer current**: any change to the kit's machinery,
+  composition, or conventions includes a check that `index.html` and the
+  README still describe reality — same change, same commit, alongside the
+  pattern-log entry.
 
 ## Customizing the kit
 

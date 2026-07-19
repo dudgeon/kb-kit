@@ -389,13 +389,23 @@ a.card:hover { text-decoration: none; border-color: var(--accent); }
 }
 .kb-copy-btn:hover { border-color: var(--accent); }
 
-/* "How knowledge gets in" prose (home) */
+/* Explanatory prose paragraphs on the home view */
 .kb-flow-note {
-  margin: 0;
+  margin: 0 0 0.8rem;
   font-size: 0.92rem;
   color: var(--fg-muted);
   line-height: 1.55;
 }
+
+/* "How to add knowledge" — the three numbered intake doors (home) */
+.kb-doors {
+  margin: 0 0 0.9rem;
+  padding-left: 1.4rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+.kb-doors li { margin-bottom: 0.55rem; }
+.kb-doors li:last-child { margin-bottom: 0; }
 
 .kb-section-label {
   font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em;

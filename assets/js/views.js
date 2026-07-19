@@ -5,10 +5,10 @@
  * WHAT THIS IS
  *   One exported render function per route (see router.js):
  *
- *     renderHome     #/                search box + clone-to-query CTA,
- *                                      type pills, knowledge-flow note,
- *                                      recent pages
- *     renderSearch   #/search?q=…      ranked results
+ *     renderHome     #/                live search + clone-to-query CTA,
+ *                                      type pills, ways-to-use cards,
+ *                                      add-knowledge doors, recent pages
+ *     renderSearch   #/search?q=…      ranked results, live as you type
  *     renderType     #/type/<type>     type definition + all pages of type
  *     renderPage     #/page/<path>     fetch + render one markdown page
  *     renderNotFound anything else
@@ -192,8 +192,19 @@ function resultRow(page) {
   );
 }
 
-/** The search input; navigates to #/search?q=… on Enter. */
-function searchBox(initial = "", autofocus = false) {
+/**
+ * The search input. Search is LIVE: results update as you type (debounced),
+ * because "type and nothing happens until Enter" reads as broken — that was
+ * literal user feedback. Two wirings:
+ *   - home: the first keystroke navigates to #/search?q=… (one route hop);
+ *   - search view: oninput updates results in place — no re-render of the
+ *     input, so focus and the mobile keyboard are never disturbed — and the
+ *     hash is synced silently via history.replaceState (which does not fire
+ *     hashchange, so the router stays out of it).
+ * Enter still works (and is a no-op when results are already live).
+ */
+function searchBox(initial = "", autofocus = false, oninput = null) {
+  let timer = null;
   const input = el("input", {
     class: "kb-search-box",
     type: "search",
@@ -205,8 +216,21 @@ function searchBox(initial = "", autofocus = false) {
         window.location.hash = routes.search(input.value.trim());
       }
     },
+    oninput: oninput
+      ? () => {
+          clearTimeout(timer);
+          timer = setTimeout(() => oninput(input.value), 200);
+        }
+      : null,
   });
-  if (autofocus) queueMicrotask(() => input.focus());
+  if (autofocus) {
+    // Focus with the cursor at the end, so arriving mid-word keeps typing.
+    queueMicrotask(() => {
+      input.focus();
+      const n = input.value.length;
+      try { input.setSelectionRange(n, n); } catch { /* type=search quirks */ }
+    });
+  }
   return input;
 }
 
@@ -266,29 +290,100 @@ function cloneQueryBlock() {
 }
 
 /**
- * "How knowledge gets in" — the flow-in story, on the front door where
- * visitors will actually see it. The mechanics live in kb/inbox/_index.md
- * and the ingest skill; this is the one-paragraph version: inbox (queue) →
- * ingest → distilled pages + archived original + log entry. Location
- * encodes state: in the inbox = unprocessed, in sources/raw = processed.
+ * "Ways to use this KB" — the surface story (maintainer feedback, Q19):
+ * most serious use happens OUTSIDE this site — cloning the repo, pointing
+ * an agent at AGENTS.md, RAG pipelines, MCP — while this page is the quick
+ * browse/search surface for casual use. Say that, with a door per path.
  */
-function knowledgeFlowSection() {
+function waysToUseSection() {
+  const base = repoUrl();
   return [
-    el("div", { class: "kb-section-label" }, "How knowledge gets in"),
+    el("div", { class: "kb-section-label" }, "Ways to use this KB"),
     el(
       "p",
       { class: "kb-flow-note" },
-      "Two doors. Hand material to an agent working in the repo and say ",
-      el("em", {}, "“ingest this”"),
-      " — or drop raw files (notes, links, exports) into the ",
-      el("a", { href: routes.page("kb/inbox/_index.md") }, "inbox"),
-      ", the KB's unprocessed queue, and ask for a sweep later. Either way, the ",
+      "The knowledge base is a GitHub repo of plain markdown; this site is its casual surface — quick browsing and basic search, no clone, no login. Heavier use goes straight at the repo:"
+    ),
+    el(
+      "div",
+      { class: "card-grid" },
+      el(
+        "a",
+        { class: "card", href: routes.page("kb/_index.md") },
+        el("h3", {}, "Browse it here"),
+        el("p", {}, "Start at the KB's own index — the curated map — or the type pills above. Search is keyword-only; results as you type.")
+      ),
+      el(
+        "a",
+        { class: "card", href: routes.page("AGENTS.md") },
+        el("h3", {}, "Work on it with an agent"),
+        el("p", {}, "Clone the repo and point any coding agent at AGENTS.md — it learns the conventions and picks up the setup / ingest / query / lint skills.")
+      ),
+      el(
+        "a",
+        { class: "card", href: base },
+        el("h3", {}, "Feed it to RAG or MCP"),
+        el("p", {}, "Stable raw-markdown paths plus a prebuilt JSON manifest and search index under assets/data/ — fetch from GitHub into a retrieval pipeline, or serve the repo over MCP.")
+      ),
+      el(
+        "a",
+        { class: "card", href: routes.page("kb-card.md") },
+        el("h3", {}, "Judge it first"),
+        el("p", {}, "The kb-card declares scope and ownership and carries lint-computed health — read it before trusting (or onboarding) this KB.")
+      )
+    ),
+  ];
+}
+
+/**
+ * "How to add knowledge" — educational, not descriptive (maintainer
+ * feedback, Q19): each intake door is an instruction with a working link.
+ * Three doors, one loop (ADR 012): session → "/ingest this"; a GitHub
+ * issue; a file in kb/inbox/. Sweeps scan the inbox AND open issues.
+ */
+function addKnowledgeSection() {
+  const base = repoUrl();
+  const issueUrl =
+    `${base}/issues/new?title=${encodeURIComponent("Knowledge: ")}` +
+    `&body=${encodeURIComponent(
+      "Paste or link the knowledge below — a maintainer's next ingest sweep will file it into the KB with provenance.\n\n---\n\n"
+    )}`;
+  const door = (title, ...rest) =>
+    el("li", {}, el("strong", {}, title + " — "), ...rest);
+  return [
+    el("div", { class: "kb-section-label" }, "How to add knowledge"),
+    el(
+      "ol",
+      { class: "kb-doors" },
+      door(
+        "In an agent session (the usual way)",
+        "teach your agent something worth keeping — a decision, a finding, a document — then say ",
+        el("em", {}, "“/ingest this”"),
+        ". It files the knowledge into the right pages, with provenance."
+      ),
+      door(
+        "No clone needed",
+        el("a", { href: issueUrl }, "open an issue"),
+        " and paste or link the material. Issues are an intake queue here."
+      ),
+      door(
+        "Working in the repo",
+        el("a", { href: `${base}/new/main/kb/inbox` }, "add a file to kb/inbox/"),
+        " — any format, no frontmatter needed. The ",
+        el("a", { href: routes.page("kb/inbox/_index.md") }, "inbox"),
+        " is the KB's unprocessed queue."
+      )
+    ),
+    el(
+      "p",
+      { class: "kb-flow-note" },
+      "Un-swept items wait, visibly, for the next pass: the maintainer's agent runs the ",
       el("a", { href: `${repoUrl()}/blob/${repoInfo().branch}/skills/ingest/SKILL.md` }, "ingest skill"),
-      " turns each item into a cited source page, propagates it across every affected page and index, records the change in the ",
+      ", which scans the inbox and open issues, turns each item into a cited source page, propagates it across affected pages and indexes, records it in the ",
       el("a", { href: routes.page("kb/_log.md") }, "log"),
-      ", and moves the original into the ",
+      ", and preserves originals in the ",
       el("a", { href: routes.page("kb/sources/raw/_index.md") }, "raw archive"),
-      " — nothing is deleted, and nothing is searchable here until it has been through that loop."
+      ". Nothing is deleted, and nothing is searchable here until it has been through that loop."
     ),
   ];
 }
@@ -327,63 +422,54 @@ export function renderHome(ctx) {
 
   mount(
     root,
-    searchBox("", true),
+    // First keystroke hops to the search view (results go live there).
+    searchBox("", true, (val) => {
+      if (val.trim()) window.location.hash = routes.search(val.trim());
+    }),
     cloneQueryBlock(),
     typePills.length
       ? [el("div", { class: "kb-section-label" }, "Browse by type"),
          el("div", { class: "pill-row" }, typePills)]
       : null,
-    el("div", { class: "kb-section-label" }, "Start here"),
-    el(
-      "div",
-      { class: "card-grid" },
-      el(
-        "a",
-        { class: "card", href: routes.page("kb/_index.md") },
-        el("h3", {}, "Start at the index"),
-        el("p", {}, "The KB's own front door — the curated map of everything it knows.")
-      ),
-      el(
-        "a",
-        { class: "card", href: routes.page("kb/templates/_index.md") },
-        el("h3", {}, "Browse the types"),
-        el("p", {}, "Every entity type, defined by its template.")
-      ),
-      el(
-        "a",
-        { class: "card", href: routes.page("kb-card.md") },
-        el("h3", {}, "Read the kb-card"),
-        el("p", {}, "What this KB is about, who owns it, and what's out of scope.")
-      )
-    ),
-    knowledgeFlowSection(),
+    waysToUseSection(),
+    addKnowledgeSection(),
     recent.length
       ? [el("div", { class: "kb-section-label" }, "Recently updated"), recent.map(resultRow)]
       : el("p", { class: "kb-loading" }, "No content pages yet — the KB is waiting for its first ingest."),
   );
 }
 
-/** #/search?q=… — ranked keyword results. */
+/** #/search?q=… — ranked keyword results, updating live as you type. */
 export function renderSearch(ctx, route) {
   const { root, manifest, searchEntries, summaryByPath } = ctx;
-  const q = route.query || "";
-  document.title = `${q ? q + " — " : ""}search — ${CONFIG.siteTitle}`;
-
-  const results = search(q, searchEntries, summaryByPath);
   const pageByPath = new Map(manifest.pages.map((p) => [p.path, p]));
 
-  mount(
-    root,
-    searchBox(q, !q),
-    el("div", { class: "kb-section-label" },
-      q ? `${results.length} result${results.length === 1 ? "" : "s"} for “${q}”` : "Type to search"),
-    results.length
-      ? results.map(({ entry }) => resultRow(pageByPath.get(entry.path) || entry))
-      : q
-        ? el("p", { class: "kb-loading" },
-            "Nothing matched. Try fewer or shorter terms — search needs every term to appear somewhere on the page.")
-        : null
-  );
+  // The results live in their own container so typing swaps ONLY this node —
+  // the input above it is never re-rendered (keeps focus + mobile keyboard).
+  const resultsWrap = el("div", { class: "kb-results" });
+
+  const update = (rawQ) => {
+    const q = (rawQ || "").trim();
+    document.title = `${q ? q + " — " : ""}search — ${CONFIG.siteTitle}`;
+    // Keep the URL shareable without re-triggering the router:
+    // replaceState changes the hash silently (no hashchange event).
+    history.replaceState(null, "", routes.search(q));
+    const results = search(q, searchEntries, summaryByPath);
+    mount(
+      resultsWrap,
+      el("div", { class: "kb-section-label" },
+        q ? `${results.length} result${results.length === 1 ? "" : "s"} for “${q}”` : "Type to search — results appear as you type"),
+      results.length
+        ? results.map(({ entry }) => resultRow(pageByPath.get(entry.path) || entry))
+        : q
+          ? el("p", { class: "kb-loading" },
+              "Nothing matched. Try fewer or shorter terms — search needs every term to appear somewhere on the page.")
+          : null
+    );
+  };
+
+  mount(root, searchBox(route.query || "", true, update), resultsWrap);
+  update(route.query || "");
 }
 
 /** #/type/<type> — the type's template definition + all pages of that type. */
