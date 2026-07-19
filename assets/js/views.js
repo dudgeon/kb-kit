@@ -302,7 +302,7 @@ function waysToUseSection() {
     el(
       "p",
       { class: "kb-flow-note" },
-      "The knowledge base is a GitHub repo of plain markdown; this site is its casual surface — quick browsing and basic search, no clone, no login. Heavier use goes straight at the repo:"
+      "This site is the casual surface — no clone, no login. Heavier use goes straight at the repo:"
     ),
     el(
       "div",
@@ -420,8 +420,30 @@ export function renderHome(ctx) {
     .sort((a, b) => (b.modified || "").localeCompare(a.modified || ""))
     .slice(0, RECENT_COUNT);
 
+  // Masthead: WHO this KB is, from the kb-card's declared frontmatter —
+  // forks get their own name/description here for free — plus one sentence
+  // saying what this page is. Brief on purpose; the card carries the rest.
+  const card = manifest.pages.find((p) => p.path === "kb-card.md");
+  const kbName = card?.frontmatter?.name || CONFIG.siteTitle;
+  const kbDesc = card?.frontmatter?.description || card?.summary || "";
+
   mount(
     root,
+    el(
+      "header",
+      { class: "kb-masthead" },
+      el("h1", {}, kbName),
+      kbDesc ? el("p", { class: "kb-masthead-desc" }, kbDesc) : null,
+      el(
+        "p",
+        { class: "kb-flow-note" },
+        "This is the knowledge base's home — a browsable, searchable view of a ",
+        el("a", { href: repoUrl() }, "GitHub repo of plain markdown"),
+        ". Read and search here without cloning; details on the KB itself are on the ",
+        el("a", { href: routes.page("kb-card.md") }, "kb-card"),
+        "."
+      )
+    ),
     // First keystroke hops to the search view (results go live there).
     searchBox("", true, (val) => {
       if (val.trim()) window.location.hash = routes.search(val.trim());
@@ -531,7 +553,10 @@ export async function renderPage(ctx, route) {
   try {
     // Relative fetch: the deployed artifact is the whole repo, so the .md
     // file sits next to knowledge-base.html at exactly this path.
-    const res = await fetch(path);
+    // no-cache = always revalidate: without it, browser heuristic caching
+    // can serve a stale page long after the content changed (cheap on
+    // Pages, which answers conditional requests with 304s).
+    const res = await fetch(path, { cache: "no-cache" });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     raw = await res.text();
   } catch (err) {

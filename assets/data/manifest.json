@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T10:38:44.000Z",
+  "generated_at": "2026-07-19T10:43:30.000Z",
   "repo": {
     "kb_dir": "kb",
     "default_branch": "main"
@@ -28,7 +28,7 @@
         "Conduct"
       ],
       "excerpt": "AGENTS.md — how to work in this knowledge base This file is the schema for this repo's knowledge base (KB): it tells any agent how the KB is structured, what the conventions are, and which workflows to follow. It is…",
-      "modified": "2026-07-19T10:38:44.000Z"
+      "modified": "2026-07-19T10:43:30.000Z"
     },
     {
       "path": "CLAUDE.md",
@@ -40,7 +40,7 @@
       "frontmatter": {},
       "headings": [],
       "excerpt": "CLAUDE.md Canonical agent instructions live in AGENTS.md — read that file and follow it. This shim exists so every tool finds its way there. If you are working on the kb-kit project itself (not using it as a knowledge base),…",
-      "modified": "2026-07-18T15:02:44.000Z"
+      "modified": "2026-07-19T10:43:30.000Z"
     },
     {
       "path": "README.md",
@@ -69,11 +69,11 @@
       "reserved": false,
       "frontmatter": {},
       "headings": [
+        "The discovery trajectory (where this is going)",
         "Design rules",
         "Declared core (frontmatter)",
         "Inferred traits (lint-owned)",
         "Body (prose, optional but encouraged)",
-        "The discovery trajectory (why the card exists)",
         "For crawlers",
         "Progressive discovery"
       ],
@@ -1293,7 +1293,7 @@
         "2026-07-18"
       ],
       "excerpt": "Pattern log — changes to the kit machinery This ledger tracks changes to the pattern — everything that is not KB content: the site, skills, scripts, workflows, schema files, and structural conventions. (kb/log.md tracks knowledge; this file tracks machinery.) Why…",
-      "modified": "2026-07-19T10:38:44.000Z"
+      "modified": "2026-07-19T10:43:30.000Z"
     },
     {
       "path": "skills/ingest/SKILL.md",
@@ -1363,7 +1363,7 @@
         "Step 4 — write their kb-card and finish"
       ],
       "excerpt": "setup — turn the demo into their KB You are onboarding a new knowledge-base owner, probably a product manager, possibly non-technical. Be conversational; ask one question at a time; never assume git fluency. Step 1 — interview Learn, in roughly…",
-      "modified": "2026-07-19T10:38:44.000Z"
+      "modified": "2026-07-19T10:43:30.000Z"
     },
     {
       "path": "index.html",

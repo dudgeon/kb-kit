@@ -23,6 +23,15 @@ Rules (see AGENTS.md → "Customizing the kit"):
 
 ## 2026-07-19
 
+- upstream | KB home gains a masthead: the KB's name + description read
+  from the kb-card's declared frontmatter (forks inherit automatically),
+  plus one orienting sentence. Renderer fence bug fixed: fences now follow
+  the CommonMark length rule (a ````-wrapped example no longer swallows
+  every later heading — the kb-card spec's tail sections were invisible);
+  page fetches use cache:"no-cache" so content updates can't serve stale.
+  kb-card spec restructured: the multi-KB problem and discovery trajectory
+  now LEAD the document. Files: assets/js/views.js, assets/js/markdown.js,
+  assets/css/site.css, docs/kb-card-spec.md.
 - upstream | Instruction layers reconciled (ADR 014): root AGENTS.md is
   user/fork-facing (adds "Forking, and life after the fork"; tone section
   moved out; setup tailors it per fork); meta/AGENTS.md created as the
