@@ -80,3 +80,8 @@ can grow later via ingest/lint — nothing is final today.
    enabling GitHub Pages (Settings → Pages → Source: **Deploy from a branch**
    → `main`, `/ (root)`; the root `.nojekyll` file must stay) and the ingest
    skill for their first real source.
+5. **Tailor AGENTS.md** to what the interview decided: it should describe
+   *this* KB (its folder set, its typing philosophy, its external sources),
+   not the upstream demo. Log the tailoring as a `fork |` entry in
+   `pattern-log.md`. AGENTS.md is the file every future agent reads first —
+   onboarding isn't done until it tells the truth.

@@ -23,6 +23,11 @@ Rules (see AGENTS.md → "Customizing the kit"):
 
 ## 2026-07-19
 
+- upstream | Instruction layers reconciled (ADR 014): root AGENTS.md is
+  user/fork-facing (adds "Forking, and life after the fork"; tone section
+  moved out; setup tailors it per fork); meta/AGENTS.md created as the
+  canonical build-layer doc (meta/CLAUDE.md now a shim). Files: AGENTS.md,
+  CLAUDE.md, skills/setup/SKILL.md (+ meta/, not shipped).
 - upstream | Voice rule (ADR 011): all user-facing surfaces are educational
   and descriptive, never salesy; AGENTS.md's "Writing for the kit's
   surfaces" section enforces keeping index.html/README current with

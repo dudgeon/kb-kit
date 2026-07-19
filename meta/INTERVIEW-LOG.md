@@ -260,6 +260,20 @@ GitHub — a KB should, for its domain, point to relevant external sources,
 and those references can be added to the kb-card too. → ADR 013; spec +
 demo card updated; interview-prep doc updated (parts of Q2/Q5 now answered).
 
+### Q21 — Reconcile the two instruction layers (2026-07-19)
+
+**A (maintainer):** Root AGENTS.md = descriptive about the project, useful
+for users: how to fork, how to use post-fork; augmented and improved
+through onboarding skills. meta/AGENTS.md + CLAUDE.md twin = for building
+and changing the core kit: recent feedback on writing tone etc.; orients
+the agent to the documents and build processes/infra including PRDs, ADRs,
+pending todos. → ADR 014. Root AGENTS.md gained a "Forking, and life after
+the fork" section and shed the tone section (one-line voice floor remains
+in Conduct); meta/AGENTS.md created as the canonical build doc (document
+map, tone rule, load-bearing decisions, infra, working agreements);
+meta/CLAUDE.md reduced to a shim; setup skill now tailors root AGENTS.md
+during onboarding and logs it as a `fork |` pattern entry.
+
 ### Pending interview: the kb-card concept (queued 2026-07-18)
 
 Maintainer: "I think we could better explain the kb-card concept — that

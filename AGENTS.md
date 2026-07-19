@@ -14,8 +14,22 @@ else is machinery: a static browsing site (`index.html`,
 (`docs/`), and — in the upstream starter kit only — `meta/`, which holds
 files about *building the kit itself* and is not part of any forked KB.
 
-If you are in a fresh fork that still contains the demo content, run the
-[setup skill](./skills/setup/SKILL.md) first.
+## Forking, and life after the fork
+
+kb-kit is designed to be forked ("Use this template" or Fork on GitHub):
+
+1. **Enable Pages**: Settings → Pages → Source: *Deploy from a branch* →
+   `main`, `/ (root)`. Keep the root `.nojekyll` file — without it Pages
+   drops every `_index.md`.
+2. **Run the [setup skill](./skills/setup/SKILL.md)**: it interviews the new
+   owner, clears the demo content, installs the entity types they actually
+   need, writes their `kb-card.md`, and records the fork point in
+   `pattern-log.md`. Setup also **tailors this file** — the interview's
+   answers (folder set, types, external sources) should be reflected here,
+   so AGENTS.md keeps describing *this* KB, not the demo.
+3. **Then just run the loop** (Workflows below): teach an agent things and
+   say "ingest this"; ask questions with the query skill; lint on a cadence.
+   Humans who never clone use the site, GitHub issues, and the inbox.
 
 ## The agent-managed boundary
 
@@ -125,25 +139,6 @@ inferred block; it sits between `<!-- BEGIN kb-card:inferred -->` and
 `<!-- END kb-card:inferred -->` markers.
 Spec: [docs/kb-card-spec.md](./docs/kb-card-spec.md).
 
-## Writing for the kit's surfaces
-
-Every user-facing surface — `index.html`, the KB app's copy, the README —
-is **educational and descriptive, never promotional** (maintainer rule; do
-not drift back). Concretely:
-
-- Explain how things work, what the kit is composed of, and which
-  standards/approaches/lineage it follows (OKF, AGENTS.md, Agent Skills,
-  the Karpathy ingest/query/lint loop, model cards → kb-card). Plain
-  statements and real links beat adjectives; no marketing superlatives.
-- Each surface has a role: `index.html` is the kit *explainer*; the KB
-  home (`knowledge-base.html#/`) is the *casual browse-and-search surface*
-  and says so while naming the deeper paths (clone + query skill, pointing
-  an agent at this file, RAG/MCP over the repo contents).
-- **Keep the explainer current**: any change to the kit's machinery,
-  composition, or conventions includes a check that `index.html` and the
-  README still describe reality — same change, same commit, alongside the
-  pattern-log entry.
-
 ## Customizing the kit
 
 The machinery is yours to customize — but **every machinery change must
@@ -166,9 +161,13 @@ and ruin post-fork content).
 - Never edit raw quoted source material — including anything in
   `kb/sources/raw/`; corrections go alongside, attributed.
 - Naming: one topic per file, lowercase-hyphenated filenames.
+- User-facing copy (site pages, README) stays educational and descriptive —
+  explain how things work; never promotional language.
 - After editing `kb/`, run `node scripts/build-index.mjs` and commit the
   regenerated `assets/data/*.json` with your change — the site deploys
   straight from the branch, so the committed JSON is what search serves.
   (A CI workflow rebuilds it on `main` as a backstop if you forget.)
 - `meta/` (upstream kit development only) is out of bounds for KB workflows;
-  see [meta/CLAUDE.md](./meta/CLAUDE.md) when working *on the kit itself*.
+  when working *on the kit itself* — changing machinery, docs, or site —
+  read [meta/AGENTS.md](./meta/AGENTS.md) first (build processes, PRD,
+  ADRs, tone rules, pending work).

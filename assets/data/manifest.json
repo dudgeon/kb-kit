@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T02:56:48.000Z",
+  "generated_at": "2026-07-19T10:38:44.000Z",
   "repo": {
     "kb_dir": "kb",
     "default_branch": "main"
@@ -17,18 +17,18 @@
       "frontmatter": {},
       "headings": [
         "What this repo is",
+        "Forking, and life after the fork",
         "The agent-managed boundary",
         "Layout",
         "Format: OKF with two documented deviations",
         "Types",
         "Workflows (the loop)",
         "kb-card.md",
-        "Writing for the kit's surfaces",
         "Customizing the kit",
         "Conduct"
       ],
       "excerpt": "AGENTS.md — how to work in this knowledge base This file is the schema for this repo's knowledge base (KB): it tells any agent how the KB is structured, what the conventions are, and which workflows to follow. It is…",
-      "modified": "2026-07-19T01:55:48.000Z"
+      "modified": "2026-07-19T10:38:44.000Z"
     },
     {
       "path": "CLAUDE.md",
@@ -78,7 +78,7 @@
         "Progressive discovery"
       ],
       "excerpt": "kb-card: a model card for knowledge bases A kb-card is a single file, kb-card.md, at the root of a repository that contains a knowledge base. It does for KBs what a model card does for models: lets a human or…",
-      "modified": "2026-07-18T15:02:44.000Z"
+      "modified": "2026-07-19T10:38:44.000Z"
     },
     {
       "path": "docs/site-guide.md",
@@ -184,7 +184,7 @@
         "Caveats"
       ],
       "excerpt": "kb-card — kb-kit demo knowledge base This card describes the demo KB that ships with kb-kit so the site, search, and skills have something real to work on. When you fork the kit, the setup skill replaces this card with…",
-      "modified": "2026-07-19T02:56:48.000Z"
+      "modified": "2026-07-19T10:38:44.000Z"
     },
     {
       "path": "kb/_index.md",
@@ -1293,7 +1293,7 @@
         "2026-07-18"
       ],
       "excerpt": "Pattern log — changes to the kit machinery This ledger tracks changes to the pattern — everything that is not KB content: the site, skills, scripts, workflows, schema files, and structural conventions. (kb/log.md tracks knowledge; this file tracks machinery.) Why…",
-      "modified": "2026-07-19T02:56:48.000Z"
+      "modified": "2026-07-19T10:38:44.000Z"
     },
     {
       "path": "skills/ingest/SKILL.md",
@@ -1308,7 +1308,7 @@
       },
       "headings": [],
       "excerpt": "ingest — one source in, many pages touched Read the root AGENTS.md conventions first. The unit of work is: capture verbatim → distill → propagate → record. Ingest writes only inside kb/; if a source implies a change outside it…",
-      "modified": "2026-07-19T01:44:01.000Z"
+      "modified": "2026-07-19T10:38:44.000Z"
     },
     {
       "path": "skills/lint/SKILL.md",
@@ -1328,7 +1328,7 @@
         "Close out"
       ],
       "excerpt": "lint — keep the KB compounding instead of rotting Lint proposes; it fixes mechanical problems freely but never deletes or restructures content without approval. Its write scope is kb/ plus exactly one file outside it: the marked inferred block of…",
-      "modified": "2026-07-19T02:56:48.000Z"
+      "modified": "2026-07-19T10:38:44.000Z"
     },
     {
       "path": "skills/query/SKILL.md",
@@ -1363,7 +1363,7 @@
         "Step 4 — write their kb-card and finish"
       ],
       "excerpt": "setup — turn the demo into their KB You are onboarding a new knowledge-base owner, probably a product manager, possibly non-technical. Be conversational; ask one question at a time; never assume git fluency. Step 1 — interview Learn, in roughly…",
-      "modified": "2026-07-19T01:55:48.000Z"
+      "modified": "2026-07-19T10:38:44.000Z"
     },
     {
       "path": "index.html",
