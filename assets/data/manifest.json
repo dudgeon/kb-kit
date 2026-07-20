@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T11:41:58.000Z",
+  "generated_at": "2026-07-20T02:00:36.000Z",
   "repo": {
     "kb_dir": "kb",
     "default_branch": "main"
@@ -58,7 +58,7 @@
         "License"
       ],
       "excerpt": "kb-kit A forkable starter kit for building knowledge bases that humans and AI agents share. Made for product teams — you don't need to be an engineer to own a great context repo. 🌐 How it works · 📚 Browse…",
-      "modified": "2026-07-19T01:55:48.000Z"
+      "modified": "2026-07-20T02:00:36.000Z"
     },
     {
       "path": "docs/kb-card-spec.md",
@@ -96,7 +96,7 @@
         "Troubleshooting"
       ],
       "excerpt": "Site guide — how the kb-kit site works and how to customize it This guide is for the humans and agents who maintain a fork's site. The KB content conventions live in AGENTS.md; this file covers only the machinery: the…",
-      "modified": "2026-07-19T01:44:01.000Z"
+      "modified": "2026-07-20T02:00:36.000Z"
     },
     {
       "path": "docs/taxonomy.md",
@@ -1293,7 +1293,7 @@
         "2026-07-18"
       ],
       "excerpt": "Pattern log — changes to the kit machinery This ledger tracks changes to the pattern — everything that is not KB content: the site, skills, scripts, workflows, schema files, and structural conventions. (kb/log.md tracks knowledge; this file tracks machinery.) Why…",
-      "modified": "2026-07-19T11:41:58.000Z"
+      "modified": "2026-07-20T02:00:36.000Z"
     },
     {
       "path": "skills/ingest/SKILL.md",
@@ -1375,7 +1375,7 @@
       "frontmatter": {},
       "headings": [],
       "excerpt": "kb-kit — a template repository for context repos kb-kit AN OPEN PATTERN FOR CONTEXT REPOS Demo KB Taxonomy kb-card spec Source ↗ A template repository for context repos A knowledge base your team and your agents share — plain markdown,…",
-      "modified": "2026-07-18T21:48:29.000Z"
+      "modified": "2026-07-20T02:00:36.000Z"
     },
     {
       "path": "knowledge-base.html",
@@ -1387,7 +1387,7 @@
       "frontmatter": {},
       "headings": [],
       "excerpt": "Knowledge base — kb-kit kb KNOWLEDGE BASE About the kit Index kb-card Loading the knowledge base… rendered client-side from plain markdown · · built with kb-kit",
-      "modified": "2026-07-18T21:48:29.000Z"
+      "modified": "2026-07-20T02:00:36.000Z"
     }
   ]
 }
