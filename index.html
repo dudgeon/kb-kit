@@ -1,24 +1,26 @@
 <!doctype html>
 <!--
-  index.html — the kb-kit marketing / explainer page (site root)
-  ==============================================================
+  index.html — the kb-kit explainer page (site root)
+  ==================================================
 
   WHAT THIS IS
     The front door of a kb-kit fork's GitHub Pages site. Pure static HTML +
-    the shared stylesheet — NO JavaScript is required for this page, no
-    external fonts, no CDNs; it renders under a strict CSP. The audience is
-    product managers and team leads who have never heard of a "context repo".
+    the shared stylesheet — no JavaScript, no external fonts, no CDNs; it
+    renders under a strict CSP. Voice per ADR 011: educational and
+    descriptive — explain how the kit works and what lineage it follows;
+    show real artifacts (a KB page, the file tree, the commands) instead
+    of feature cards.
 
   HOW IT FITS
-    - Styles: assets/css/site.css (sections 1–4). Brand colors and fonts
-      are CSS custom properties at the top of that file — change them there,
-      not here.
+    - Styles: assets/css/site.css (sections 1-4). Brand colors and fonts
+      are CSS custom properties at the top of that file — change them
+      there, not here.
     - The live KB browser is the sibling page knowledge-base.html; deep KB
       links use its hash routes (#/page/…, #/type/…).
 
   SAFE TO CUSTOMIZE (forks: make this page yours)
-    - All copy. After forking, this page should sell YOUR knowledge base,
-      not kb-kit — the setup skill will prompt you to rewrite the hero.
+    - All copy. After forking, this page should describe YOUR knowledge
+      base — the setup skill will prompt you to rewrite the hero.
     - Replace github.com/dudgeon/kb-kit links with your repo.
     - Reorder/remove sections; they're independent <section> blocks.
 
@@ -31,230 +33,191 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>kb-kit — your team's knowledge, ready for agents</title>
-  <meta name="description" content="A forkable starter kit for context repos: a knowledge base your team and your AI agents read, write, and trust — plain markdown, GitHub Pages, no servers.">
+  <title>kb-kit — a template repository for context repos</title>
+  <meta name="description" content="A knowledge base your team and your agents share — plain markdown, versioned in git. Fork kb-kit and the practical parts of a Karpathy-style LLM wiki are already built.">
   <meta name="color-scheme" content="light dark">
   <link rel="stylesheet" href="assets/css/site.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23fafaf7'/%3E%3Crect x='14' y='14' width='72' height='72' fill='none' stroke='%2316181d' stroke-width='8'/%3E%3Ctext x='50' y='66' font-family='monospace' font-size='44' font-weight='bold' text-anchor='middle' fill='%2316181d'%3Ekb%3C/text%3E%3C/svg%3E">
 </head>
 <body>
 
-  <!-- ============================================================ -->
-  <!-- Header                                                        -->
-  <!-- ============================================================ -->
   <header class="site-header">
     <div class="inner">
-      <a class="brand" href="index.html">📚 kb-kit</a>
+      <a class="brand" href="index.html">kb-kit</a>
+      <span class="brand-note">AN OPEN PATTERN FOR CONTEXT REPOS</span>
       <nav aria-label="Site">
-        <a href="knowledge-base.html#/">Browse the KB</a>
+        <a href="knowledge-base.html#/">Demo KB</a>
         <a href="knowledge-base.html#/page/docs/taxonomy.md">Taxonomy</a>
         <a href="knowledge-base.html#/page/docs/kb-card-spec.md">kb-card spec</a>
-        <a href="https://github.com/dudgeon/kb-kit" rel="noopener">GitHub</a>
+        <a class="ext" href="https://github.com/dudgeon/kb-kit" rel="noopener">Source ↗</a>
       </nav>
     </div>
   </header>
 
   <!-- ============================================================ -->
-  <!-- Hero                                                          -->
+  <!-- Hero: what this is, with a real KB page as the artifact       -->
   <!-- ============================================================ -->
   <section class="mk-hero">
     <div class="inner">
-      <span class="mk-kicker">A forkable starter kit for context repos</span>
-      <h1>Your team's knowledge,<br>ready for agents.</h1>
-      <p class="tagline">
-        kb-kit is a knowledge base that humans and AI agents share: plain
-        markdown in a GitHub repo, browsable by your team, readable by any
-        agent you point at it. Fork it, run one setup conversation, and start
-        filing what your team knows.
-      </p>
-      <div class="cta-row">
-        <a class="btn btn-primary" href="knowledge-base.html#/">See the live demo KB</a>
-        <a class="btn" href="https://github.com/dudgeon/kb-kit" rel="noopener">Fork on GitHub</a>
+      <div>
+        <span class="mk-kicker">A template repository for context repos</span>
+        <h1>A knowledge base your team and your agents share — plain markdown, versioned in git.</h1>
+        <p class="tagline">
+          More teams are keeping a knowledge repo: a versioned folder of
+          markdown that people browse and agents maintain.
+          <a href="knowledge-base.html#/page/kb/topics/llm-wiki-pattern.md">Karpathy's
+          LLM-wiki pattern</a> — an agent that ingests, answers with
+          citations, and lints for rot — is a great starting point for most
+          of them.
+        </p>
+        <p class="tagline">
+          kb-kit makes starting one easy. Fork it and the practical parts
+          are already built: markdown rendering on GitHub Pages, basic
+          search, starter skills for <code>setup · ingest · query · lint</code>,
+          and an <a href="knowledge-base.html#/page/AGENTS.md">AGENTS.md</a>
+          so any coding agent knows the conventions.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="knowledge-base.html#/">Browse the demo KB</a>
+          <span class="cmd-inline">$ gh repo fork dudgeon/kb-kit</span>
+        </div>
+        <p class="mk-lineage">
+          follows:
+          <a href="knowledge-base.html#/page/kb/standards/open-knowledge-format.md">OKF v0.1</a> ·
+          <a href="knowledge-base.html#/page/kb/standards/agents-md.md">AGENTS.md</a> ·
+          <a href="knowledge-base.html#/page/kb/standards/agent-skills.md">Agent Skills</a> ·
+          <a href="knowledge-base.html#/page/kb/topics/llm-wiki-pattern.md">Karpathy's LLM-wiki loop</a> ·
+          MIT
+        </p>
+      </div>
+      <div class="mk-artifact" aria-hidden="true">
+        <div class="shadow-card"></div>
+        <div class="mk-card">
+          <div class="mk-card-head">
+            <span class="path">kb/topics/llm-wiki-pattern.md</span>
+            <span class="pill pill-type-topic">topic</span>
+          </div>
+          <div class="mk-card-fm">
+            <div><span class="key">type:</span> topic</div>
+            <div><span class="key">summary:</span> An agent-maintained wiki — ingest, query, lint.</div>
+            <div><span class="key">sources:</span> [karpathy-llm-wiki-gist]</div>
+            <div><span class="key">updated:</span> 2026-07-14</div>
+          </div>
+          <div class="mk-card-body">
+            <strong>The LLM-wiki pattern</strong>
+            <p>Karpathy's sketch: knowledge as a wiki that an agent writes
+            and prunes, where every page cites where it came from —</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================ -->
-  <!-- Why now                                                       -->
-  <!-- ============================================================ -->
-  <section class="mk-section mk-section-alt">
-    <div class="inner">
-      <h2>Why now</h2>
-      <p class="lead">
-        Every quarter brings a better model, a new agent framework, a new
-        assistant in your tools. All of it is disposable. The one input that
-        keeps compounding is the thing most teams never write down:
-        <strong>context</strong> — what you've decided, what you've learned,
-        what "done" means here.
-      </p>
-      <blockquote class="mk-quote" style="margin-top:2.5rem">
-        Performance is <span class="accent">intelligence × context</span>.
-        The models keep getting smarter on their own.
-        The context is on you.
-      </blockquote>
-      <div class="mk-grid">
-        <div class="card">
-          <h3>Agents are disposable</h3>
-          <p>The agent you use today will be replaced in six months. Anything
-          you invest in a single tool's memory is stranded when you switch.</p>
-        </div>
-        <div class="card">
-          <h3>Context is durable</h3>
-          <p>Decisions, definitions, sources, and rationale age slowly. Kept
-          as plain files in git, they outlive every tool that reads them.</p>
-        </div>
-        <div class="card">
-          <h3>Shared beats siloed</h3>
-          <p>An agent's private memory helps one person. A knowledge base in
-          a repo helps every teammate and every agent — the same files, the
-          same truth.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================ -->
-  <!-- What a context repo is                                        -->
+  <!-- How it works                                                  -->
   <!-- ============================================================ -->
   <section class="mk-section">
     <div class="inner">
-      <h2>What's a context repo?</h2>
-      <p class="lead">
-        A git repository whose product is knowledge. Each page is a markdown
-        file with a little structured metadata (its type, a one-line summary,
-        where the claim came from). An index gives it a front door; a change
-        log gives it a heartbeat; templates keep like knowledge shaped alike.
-      </p>
-      <div class="mk-grid">
-        <div class="card">
+      <div class="rule-label">How it works</div>
+      <div class="mk-rows">
+        <div class="mk-row">
+          <span class="num">01</span>
           <h3>Humans read it</h3>
-          <p>On GitHub, in this site's built-in browser, or in an editor like
-          Obsidian — it's just markdown with links.</p>
+          <p>On GitHub, in the site's built-in browser, or in an editor like
+          Obsidian — every page is markdown with relative links. Nothing
+          needs kb-kit to stay readable.</p>
         </div>
-        <div class="card">
+        <div class="mk-row">
+          <span class="num">02</span>
           <h3>Agents work it</h3>
-          <p>An <code style="font-size:0.85em">AGENTS.md</code> schema file tells any agent the
-          conventions, and skills define the workflows: <em>ingest</em> new
-          knowledge, <em>query</em> with citations, <em>lint</em> for rot.</p>
+          <p>AGENTS.md tells any agent the conventions; the skills define
+          the workflows. Ingest files new material into typed pages, query
+          answers with citations, lint checks for rot.</p>
         </div>
-        <div class="card">
+        <div class="mk-row">
+          <span class="num">03</span>
           <h3>Git governs it</h3>
-          <p>Every claim has an author, a date, and a diff. Contributions are
-          pull requests. The audit trail is the version history you already
-          trust for code.</p>
+          <p>Every claim has an author, a date, and a diff. Contributions
+          are pull requests; the audit trail is the version history you
+          already trust for code.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================ -->
-  <!-- What the kit includes                                         -->
+  <!-- What a fork contains                                          -->
   <!-- ============================================================ -->
   <section class="mk-section mk-section-alt">
-    <div class="inner">
-      <h2>What's in the kit</h2>
-      <p class="lead">Everything a team needs on day one — and nothing that
-      needs a server, a database, or a subscription.</p>
-      <div class="mk-grid">
-        <div class="card">
-          <h3>An OKF-based structure</h3>
-          <p>A <code style="font-size:0.85em">kb/</code> bundle following the Open Knowledge
-          Format: typed markdown pages, a progressive-disclosure index, a
-          change log, and grow-as-you-go templates.</p>
-        </div>
-        <div class="card">
-          <h3>Four agent skills</h3>
-          <p><strong>setup</strong> (interview-driven fork personalization),
-          <strong>ingest</strong>, <strong>query</strong>, and
-          <strong>lint</strong> — agent-agnostic instructions any assistant
-          can follow.</p>
-        </div>
-        <div class="card">
-          <h3>A kb-card</h3>
-          <p>A model-card for your knowledge base: scope, owner, freshness,
-          and health in one standard file that org crawlers — and curious
-          humans — can find and judge at a glance.</p>
-        </div>
-        <div class="card">
-          <h3>This site</h3>
-          <p>A zero-build GitHub Pages site: this page plus a search-forward
-          KB browser that renders your markdown live. One GitHub Action keeps
-          the search index fresh on every push.</p>
+    <div class="inner mk-split">
+      <div>
+        <h2>What a fork contains</h2>
+        <p class="lead">The whole kit is readable in one sitting — no build
+        tools, no servers, nothing hidden. The demo content is a real survey
+        of the context-management landscape, so everything works before you
+        change a line.</p>
+      </div>
+      <div class="mk-tree">
+        <div class="mk-tree-head"><span>your-team/your-kb</span><span>main</span></div>
+        <div class="mk-tree-body">
+          <div class="row"><span>kb/</span><span class="why">the only place knowledge lives</span></div>
+          <div class="sub">├─ topics/ · decisions/ · sources/ · tools/ · templates/</div>
+          <div class="row"><span class="sub">├─ _index.md</span><span class="why">the front door</span></div>
+          <div class="row"><span class="sub">└─ _log.md</span><span class="why">the change history</span></div>
+          <div class="row gap"><span>skills/</span><span class="why">workflows any agent can follow</span></div>
+          <div class="sub">└─ setup · ingest · query · lint</div>
+          <div class="row gap"><span>AGENTS.md</span><span class="why">the schema any agent reads</span></div>
+          <div class="row"><span>kb-card.md</span><span class="why">your KB's model card</span></div>
+          <div class="row"><span>index.html · knowledge-base.html</span><span class="why">this site, zero-build</span></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================ -->
-  <!-- How to fork in 5 minutes                                      -->
+  <!-- Starting a fork                                               -->
   <!-- ============================================================ -->
   <section class="mk-section">
-    <div class="inner">
-      <h2>Fork it in five minutes</h2>
-      <p class="lead">No build tools, no npm install, no configuration files
-      to learn. GitHub does the hosting; your agent does the setup.</p>
-      <ol class="mk-steps">
-        <li>
-          <h3>Fork the repo</h3>
-          <p>Hit <strong>Fork</strong> on
-          <a href="https://github.com/dudgeon/kb-kit" rel="noopener">github.com/dudgeon/kb-kit</a>
-          and give it a name your team will recognize.</p>
-        </li>
-        <li>
-          <h3>Turn on Pages</h3>
-          <p>In your fork: <strong>Settings → Pages → Build and deployment →
-          Source: Deploy from a branch</strong>, then pick
-          <strong><code>main</code></strong> and <strong>/ (root)</strong>.
-          That single toggle is the entire deployment setup — no Actions
-          required, so it works on locked-down enterprise configs too.</p>
-        </li>
-        <li>
-          <h3>Push</h3>
-          <p>Any push to <code>main</code> publishes your site at
-          <code>https://&lt;you&gt;.github.io/&lt;repo&gt;/</code>. The
-          search index ships as committed files; your agent refreshes them
-          when it edits the KB (a CI backstop catches anything missed).</p>
-        </li>
-        <li>
-          <h3>Run the setup skill with any agent</h3>
-          <p>Open the repo with your coding agent (Claude Code, Cursor,
-          Copilot — anything that reads files) and say
-          <em>“run the setup skill”</em>. It interviews you about your team's
-          scope, clears the demo content, and writes your kb-card.</p>
-        </li>
-        <li>
-          <h3>Start ingesting</h3>
-          <p>Paste a doc, a decision, or a link and say <em>“ingest
-          this.”</em> The agent files it into typed pages, updates the index,
-          and logs the change. Your KB has begun.</p>
-        </li>
-      </ol>
+    <div class="inner mk-split">
+      <div>
+        <h2>Starting a fork</h2>
+        <p class="lead">GitHub does the hosting — Pages deploys straight
+        from the branch, so it works on locked-down enterprise configs too.
+        The setup skill interviews you, clears the demo content, and writes
+        your kb-card.</p>
+      </div>
+      <div class="terminal" role="img" aria-label="Four steps: fork the repo, enable Pages, run the setup skill, ingest">
+        <div><span class="dim">$</span> gh repo fork dudgeon/kb-kit <span class="dim"># 1 — your copy</span></div>
+        <div><span class="dim">·</span> Settings → Pages → deploy from main <span class="dim"># 2 — the whole deployment</span></div>
+        <div><span class="dim">$</span> claude <span class="hl">"run the setup skill"</span> <span class="dim"># 3 — makes it yours</span></div>
+        <div><span class="dim">$</span> claude <span class="hl">"ingest this doc"</span> <span class="dim"># 4 — repeat forever</span></div>
+      </div>
     </div>
   </section>
 
   <!-- ============================================================ -->
-  <!-- Taxonomy teaser                                               -->
+  <!-- Taxonomy                                                      -->
   <!-- ============================================================ -->
   <section class="mk-section mk-section-alt">
     <div class="inner">
       <h2>What makes a context repo <em>great</em>?</h2>
       <p class="lead">
-        The kit ships with a ten-dimension taxonomy of KB quality — each
+        The kit ships with a ten-dimension taxonomy of KB quality, each
         graded functional → good → great. It's a checklist while you build,
-        a rubric when the lint skill runs, and the vocabulary of your
-        kb-card.
+        the rubric the lint skill grades against, and the vocabulary of
+        your kb-card.
       </p>
       <ol class="mk-dims">
-        <li><b>Scope</b> — <span>knows what it's about, and what it's not</span></li>
-        <li><b>Structure</b> — <span>front door to any fact in a few hops</span></li>
-        <li><b>Typing</b> — <span>like knowledge shaped alike</span></li>
-        <li><b>Linkage</b> — <span>relationships made explicit</span></li>
-        <li><b>Provenance</b> — <span>every claim traceable to a source</span></li>
-        <li><b>Freshness</b> — <span>compounds instead of decaying</span></li>
-        <li><b>Agent-readiness</b> — <span>useful to a cold agent in one session</span></li>
-        <li><b>Human experience</b> — <span>value without cloning a repo</span></li>
-        <li><b>Discoverability</b> — <span>findable and judgeable from outside</span></li>
-        <li><b>Governance</b> — <span>clear who decides, with an audit trail</span></li>
+        <li><b>Scope</b> <span>knows what it's about, and what it's not</span></li>
+        <li><b>Structure</b> <span>front door to any fact in a few hops</span></li>
+        <li><b>Typing</b> <span>like knowledge shaped alike</span></li>
+        <li><b>Linkage</b> <span>relationships made explicit</span></li>
+        <li><b>Provenance</b> <span>every claim traceable to a source</span></li>
+        <li><b>Freshness</b> <span>compounds instead of decaying</span></li>
+        <li><b>Agent-readiness</b> <span>useful to a cold agent in one session</span></li>
+        <li><b>Human experience</b> <span>value without cloning a repo</span></li>
+        <li><b>Discoverability</b> <span>findable and judgeable from outside</span></li>
+        <li><b>Governance</b> <span>clear who decides, with an audit trail</span></li>
       </ol>
       <p style="margin-top:1.5rem">
         <a class="btn" href="knowledge-base.html#/page/docs/taxonomy.md">Read the full taxonomy</a>
@@ -262,26 +225,8 @@
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- Final CTA                                                     -->
-  <!-- ============================================================ -->
-  <section class="mk-section" style="text-align:center">
-    <div class="inner">
-      <h2>See it working</h2>
-      <p class="lead" style="margin:0 auto 1.5rem">
-        The demo KB is a real survey of the context-management landscape —
-        browse it, search it, click a frontmatter pill.
-      </p>
-      <div class="cta-row" style="display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap">
-        <a class="btn btn-primary" href="knowledge-base.html#/">Open the knowledge base</a>
-        <a class="btn" href="knowledge-base.html#/page/docs/kb-card-spec.md">The kb-card spec</a>
-        <a class="btn" href="https://github.com/dudgeon/kb-kit" rel="noopener">Star / fork on GitHub</a>
-      </div>
-    </div>
-  </section>
-
   <footer class="site-footer">
-    kb-kit · MIT licensed · plain markdown, GitHub Pages, zero servers ·
+    kb-kit · MIT · plain markdown, GitHub Pages, zero servers ·
     <a href="https://github.com/dudgeon/kb-kit" rel="noopener">source</a>
   </footer>
 
