@@ -62,6 +62,22 @@ record them in `retrieval:` frontmatter. Do not repeat this.
 
 ## Suggested next tasks (roughly in order)
 
+> **Update 2026-07-19 (redesign session):** the field-manual site redesign
+> landed and merged to `main` ([PR #3](https://github.com/dudgeon/kb-kit/pull/3),
+> ADR 015) — index.html rewritten to explainer voice, site.css restyled
+> (paper/ink/drafting-green, glyph pills), knowledge-base.html header/
+> favicon, docs+README currency, JSON rebuilt. No JS behavior changed. An
+> independent 4-dimension review caught a pre-commit sequencing bug (JSON
+> rebuilt before the doc-prose edits finished → fixed) and 8 pre-existing
+> non-regressions (see "Discovered but not fixed" above). **The forward
+> plan for the remaining backlog now lives in [NEXT.md](./NEXT.md)** —
+> reserved-type glyphs + dead-CSS cleanup (do first), the educational
+> KB-home from mockup 3a, a setup-skill dry run, the `upgrade` skill
+> (ADR 010), and the queued kb-card interview, each with approach/files/
+> open decisions and a recommended sequence. **Post-merge TODO:** verify
+> the live Pages URL (https://dudgeon.github.io/kb-kit/) renders the new
+> design and serves the fresh search index.
+
 > **Update 2026-07-18 (local agent):** tasks 1–3 and 6 are DONE — site
 > browser-verified (all routes, search, dark mode, mobile, 404s; two site
 > fixes landed: root index now links folder indexes, renderer skips
