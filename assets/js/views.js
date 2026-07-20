@@ -175,8 +175,8 @@ function makeResolvers(pagePath) {
 
 /** One result row (used by search + type + recent listings). */
 function resultRow(page) {
-  // Markdown pages render inside the app; the indexed HTML pages (marketing
-  // page, this shell) are real pages — link straight to them.
+  // Markdown pages render inside the app; the indexed HTML pages (the
+  // explainer page, this shell) are real pages — link straight to them.
   const href = page.path.endsWith(".md") ? routes.page(page.path) : page.path;
   return el(
     "a",

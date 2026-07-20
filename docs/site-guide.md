@@ -45,7 +45,7 @@ where Actions can't publish Pages. Two things make this work:
 
 | File | Role |
 | --- | --- |
-| `index.html` | static marketing/explainer page (no JS needed) |
+| `index.html` | static explainer page (no JS needed) |
 | `knowledge-base.html` | the app shell; mounts `#app`, loads `assets/js/app.js` |
 | `assets/js/config.js` | repo owner/name detection + fork fallback (**edit first**) |
 | `assets/js/router.js` | `#/…` hash → route object |
@@ -83,12 +83,11 @@ GitHub links (Edit / History / Open an issue) use the `CONFIG` fallback in
 ### Colors, branding, typography
 
 Everything visual flows from the CSS custom properties in **section 1 of
-[assets/css/site.css](../assets/css/site.css)**: accent colors, surfaces,
-per-type pill tints, fonts, radii, layout widths. Light and dark are the
-same token names — dark overrides live in one
-`@media (prefers-color-scheme: dark)` block. Change tokens, not component
-rules, and both themes stay coherent. Header brand text and nav links are
-plain HTML near the top of each `.html` file.
+[assets/css/site.css](../assets/css/site.css)**: the accent color, surfaces,
+fonts, radius, layout widths. Light and dark are the same token names —
+dark overrides live in one `@media (prefers-color-scheme: dark)` block.
+Change tokens, not component rules, and both themes stay coherent. Header
+brand text and nav links are plain HTML near the top of each `.html` file.
 
 ### Adding a view
 
@@ -112,8 +111,8 @@ which docs outside `kb/` are included — is configured at the top of
 
 Site-side, a new type mostly just works: type pills, `#/type/<type>` views,
 and search pick it up from the manifest. The one optional edit is a pill
-tint — add a `--type-<name>` token pair and a `.pill-type-<name>` rule in
-`site.css`; unknown types fall back to the default pill color.
+glyph — add a `.pill-type-<name>::before { content: "…"; }` rule in
+`site.css`; unknown types render as a plain monochrome pill with no glyph.
 
 ## Hard invariants (do not break these)
 

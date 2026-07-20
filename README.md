@@ -4,7 +4,7 @@
 agents share.** Made for product teams — you don't need to be an engineer to
 own a great context repo.
 
-🌐 **[Marketing & guide site](https://dudgeon.github.io/kb-kit/index.html)** ·
+🌐 **[How it works](https://dudgeon.github.io/kb-kit/index.html)** ·
 📚 **[Browse the demo knowledge base](https://dudgeon.github.io/kb-kit/knowledge-base.html)**
 
 ## What this is

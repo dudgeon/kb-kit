@@ -23,6 +23,20 @@ Rules (see AGENTS.md → "Customizing the kit"):
 
 ## 2026-07-19
 
+- upstream | Site redesign landed: index.html rewritten and site.css
+  restyled to the "field manual" visual system (paper/ink/drafting-green,
+  square corners, hard-offset shadows, mono structural labels, monochrome
+  type pills with per-type glyphs replacing the old color-tinted pills);
+  knowledge-base.html header/favicon updated to match. Selected via a
+  claude.ai/design review project (direction 1a + 2a structure + 3b copy
+  voice) — see ADR 015. No JS changed (views.js/router.js/search.js/
+  markdown.js/config.js/app.js byte-identical); the KB app's behavior is
+  unchanged, only its presentation. docs/site-guide.md's pill-customization
+  section and README.md's site-link label updated for currency; a stray
+  "marketing page" comment in assets/js/views.js corrected. Files:
+  index.html, knowledge-base.html, assets/css/site.css, assets/js/views.js
+  (comment only), docs/site-guide.md, README.md, assets/data/*.json
+  (rebuilt), meta/adr/015-field-manual-visual-system.md.
 - upstream | CI fix: build-index's git-derived dates require a full-depth
   checkout — on the default shallow clone every file's `modified` collapsed
   to the tip commit's date, re-breaking determinism and scrambling

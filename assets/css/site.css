@@ -2,36 +2,36 @@
  * ======================================================================
  *
  * WHAT THIS IS
- *   All styling for index.html (the marketing page) and
+ *   All styling for index.html (the explainer page) and
  *   knowledge-base.html (the KB browser app). No preprocessor, no
  *   framework, no external fonts — a system font stack and hand-written
  *   CSS so any agent (or human) can read and edit it directly.
+ *
+ * THE SYSTEM ("field manual")
+ *   Paper-toned background, near-black ink, one drafting-green accent.
+ *   The monospace stack does the structural work: labels, metadata,
+ *   frontmatter keys, section headings. Corners are square (--radius: 0);
+ *   shadows are hard offsets, not blurs. Section labels are small mono
+ *   caps over a 1px ink rule.
  *
  * HOW IT'S ORGANIZED
  *   1. Design tokens (CSS custom properties) — colors, spacing, type.
  *      CHANGE YOUR BRAND HERE and everything downstream follows.
  *   2. Base / reset
  *   3. Shared components: header, footer, pills, cards, buttons
- *   4. Marketing page (index.html) sections — .mk-*
+ *   4. Explainer page (index.html) sections — .mk-*
  *   5. KB app (knowledge-base.html) views — .kb-*
  *   6. Rendered-markdown styles — .md-body
  *
  * THEMING
  *   Light is the default; dark overrides live in ONE
  *   `@media (prefers-color-scheme: dark)` block right after the tokens.
- *   To force a theme, copy the dark token block into `:root` (or add a
- *   [data-theme] hook). Never hard-code colors below section 1 — always
- *   use var(--…) so both themes keep working.
- *
- * SAFE TO CUSTOMIZE
- *   - Every token in section 1 (colors, radii, fonts, max-widths).
- *   - Component paddings/typography.
+ *   Never hard-code colors below section 1 — always use var(--…).
  *
  * WILL BREAK THINGS
  *   - Renaming classes the JS creates (.pill, .card, .kb-*, .md-body …)
  *     without updating assets/js/views.js to match.
- *   - Removing the dark-mode token block (dark users get light colors on
- *     dark OS chrome).
+ *   - Removing the dark-mode token block.
  */
 
 /* ==================================================================== */
@@ -39,74 +39,79 @@
 /* ==================================================================== */
 
 :root {
-  /* Brand accent — used for links, buttons, highlights. */
-  --accent:        #2563eb;   /* primary accent (blue) */
-  --accent-strong: #1d4ed8;   /* hover / active accent */
-  --accent-soft:   #dbeafe;   /* soft accent background (pills, highlights) */
+  /* Brand accent — one hue, used sparingly: labels, links, annotations. */
+  --accent:        oklch(0.48 0.10 155);  /* drafting green */
+  --accent-strong: oklch(0.40 0.09 155);  /* hover / active */
+  --accent-soft:   oklch(0.94 0.03 155);  /* soft accent background */
 
   /* Surfaces */
-  --bg:            #ffffff;   /* page background */
-  --bg-alt:        #f6f8fa;   /* alternate sections, cards, code blocks */
-  --border:        #d9dee3;   /* hairlines and card borders */
+  --bg:            #fafaf7;   /* paper */
+  --bg-elev:       #ffffff;   /* cards, inputs, artifacts sitting on paper */
+  --bg-alt:        #efede6;   /* alternate sections */
+  --border:        #d8d6cd;   /* hairlines */
+  --border-dark:   #b9b7ac;   /* pill and control borders */
 
   /* Text */
-  --fg:            #1a202c;   /* primary text */
-  --fg-muted:      #57606a;   /* secondary text (summaries, captions) */
+  --fg:            #16181d;   /* ink */
+  --fg-muted:      #494840;   /* body secondary */
+  --fg-faint:      #6b6a63;   /* metadata, captions, mono labels */
+
+  /* Terminal blocks (clone-to-query, fork steps) */
+  --term-bg:       #1c1e22;
+  --term-fg:       #c9cdd4;
+  --term-dim:      #6b7280;
+  --term-accent:   oklch(0.75 0.10 155);
 
   /* Semantic */
-  --warn-bg:       #fff8e6;   /* warning boxes (missing manifest, 404) */
-  --warn-border:   #e6c26e;
+  --warn-bg:       #f7f0dd;
+  --warn-border:   #cbb26a;
 
-  /* Type-pill palette: each KB entity type gets a tint. Types not listed
-     fall back to --accent-soft. Add a pair per custom type. */
-  --type-note:     #ddf4ff;  --type-note-fg:     #0a5db0;
-  --type-topic:    #e6f4e6;  --type-topic-fg:    #1a7f37;
-  --type-source:   #fff1e5;  --type-source-fg:   #bc4c00;
-  --type-decision: #f3e8ff;  --type-decision-fg: #6e40c9;
-  --type-standard: #ffe7f1;  --type-standard-fg: #bf3989;
-  --type-tool:     #e7f6f8;  --type-tool-fg:     #036a75;
+  /* Type pills are monochrome; each type gets a glyph (section 3), not a
+     tint. The --type-* pairs remain as hooks: set them and add a
+     .pill-type-<type> rule if your fork wants tinted types back. */
 
   /* Typography — system stack: zero network requests, native feel. */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
                "Liberation Mono", monospace;
 
   /* Layout */
   --max-width: 46rem;       /* prose measure for pages and the app */
-  --max-width-wide: 66rem;  /* marketing sections and card grids */
-  --radius: 8px;
-  --radius-pill: 999px;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --max-width-wide: 64rem;  /* explainer sections */
+  --radius: 0;              /* square corners are part of the system */
+  --radius-pill: 0;
+  --shadow: 3px 3px 0 rgba(22, 24, 29, 0.08);  /* hard offset, no blur */
 
-  color-scheme: light dark;   /* let form controls/scrollbars follow theme */
+  color-scheme: light dark;
 }
 
 /* Dark theme: only tokens change; every rule below inherits the swap. */
 @media (prefers-color-scheme: dark) {
   :root {
-    --accent:        #6ea8fe;
-    --accent-strong: #8fbcff;
-    --accent-soft:   #1b3a63;
+    --accent:        oklch(0.72 0.10 155);
+    --accent-strong: oklch(0.80 0.10 155);
+    --accent-soft:   oklch(0.30 0.05 155);
 
-    --bg:            #0d1117;
-    --bg-alt:        #161b22;
-    --border:        #30363d;
+    --bg:            #14161a;
+    --bg-elev:       #1b1e23;
+    --bg-alt:        #1c1f24;
+    --border:        #32363d;
+    --border-dark:   #4a4f57;
 
-    --fg:            #e6edf3;
-    --fg-muted:      #9198a1;
+    --fg:            #e7e6df;
+    --fg-muted:      #b6b4a9;
+    --fg-faint:      #8e8d83;
+
+    --term-bg:       #101216;
+    --term-fg:       #c9cdd4;
+    --term-dim:      #6b7280;
+    --term-accent:   oklch(0.75 0.10 155);
 
     --warn-bg:       #2a2410;
     --warn-border:   #6e5a1e;
 
-    --type-note:     #0d3155;  --type-note-fg:     #79c0ff;
-    --type-topic:    #12341a;  --type-topic-fg:    #7ee787;
-    --type-source:   #3d2107;  --type-source-fg:   #ffa657;
-    --type-decision: #2b1a47;  --type-decision-fg: #d2a8ff;
-    --type-standard: #42162c;  --type-standard-fg: #ff9bce;
-    --type-tool:     #05303a;  --type-tool-fg:     #76e3ea;
-
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -128,17 +133,31 @@ body {
 }
 
 a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
+a:hover { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 3px; }
 
 img { max-width: 100%; height: auto; }
 
 code, pre, kbd { font-family: var(--font-mono); }
 
-/* Visually hidden but readable by screen readers (skip links, labels). */
+h1, h2, h3 { text-wrap: pretty; }
+
 .visually-hidden {
   position: absolute; width: 1px; height: 1px;
   margin: -1px; padding: 0; overflow: hidden;
   clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Small mono label over an ink rule — the system's section marker.
+   Used standalone on the explainer and by .kb-section-label. */
+.rule-label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  border-bottom: 1px solid var(--fg);
+  padding-bottom: 0.45rem;
 }
 
 /* ==================================================================== */
@@ -154,55 +173,75 @@ code, pre, kbd { font-family: var(--font-mono); }
 .site-header .inner {
   max-width: var(--max-width-wide);
   margin: 0 auto;
-  padding: 0.65rem 1rem;
+  padding: 0.75rem 1rem;
   display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
 }
 .site-header .brand {
-  font-weight: 700; font-size: 1.05rem; color: var(--fg);
+  font-family: var(--font-mono);
+  font-weight: 700; font-size: 0.875rem;
+  color: var(--fg);
+  border: 1.5px solid var(--fg);
+  padding: 0.15rem 0.5rem;
 }
-.site-header .brand:hover { text-decoration: none; color: var(--accent); }
-.site-header nav { display: flex; gap: 1rem; margin-left: auto; flex-wrap: wrap; }
-.site-header nav a { color: var(--fg-muted); font-size: 0.92rem; }
+.site-header .brand:hover { text-decoration: none; color: var(--bg); background: var(--fg); }
+.site-header .brand-note {
+  font-family: var(--font-mono);
+  font-size: 0.66rem; letter-spacing: 0.06em;
+  color: var(--fg-faint);
+}
+.site-header nav { display: flex; gap: 1.4rem; margin-left: auto; flex-wrap: wrap; }
+.site-header nav a {
+  font-family: var(--font-mono);
+  font-size: 0.69rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--fg-muted);
+}
 .site-header nav a:hover { color: var(--accent); text-decoration: none; }
+.site-header nav a.ext { color: var(--accent); }
 
 /* --- Footer -------------------------------------------------------- */
 .site-footer {
   border-top: 1px solid var(--border);
   margin-top: 4rem;
-  padding: 1.5rem 1rem;
-  color: var(--fg-muted);
-  font-size: 0.85rem;
+  padding: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.02em;
+  color: var(--fg-faint);
   text-align: center;
 }
+.site-footer a { color: var(--accent); }
 
 /* --- Pills ---------------------------------------------------------- */
-/* Pills render frontmatter: type, tags, and other fields. Clickable
-   pills (type/tags) are <a>; inert ones are <span>. */
+/* Monochrome chips; a glyph per type replaces the old per-type tints.
+   Clickable pills (type/tags) are <a>; inert ones are <span>. */
 .pill {
   display: inline-block;
-  padding: 0.15rem 0.65rem;
-  border-radius: var(--radius-pill);
-  font-size: 0.78rem;
-  line-height: 1.5;
-  background: var(--accent-soft);
-  color: var(--accent-strong);
-  border: 1px solid transparent;
+  padding: 0.1rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  background: var(--bg-elev);
+  color: var(--fg);
+  border: 1px solid var(--border-dark);
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-a.pill:hover { text-decoration: none; filter: brightness(0.95); border-color: currentColor; }
-.pill .pill-key { opacity: 0.75; font-weight: 400; }
-.pill-inert { background: var(--bg-alt); color: var(--fg-muted); border-color: var(--border); }
+a.pill:hover { text-decoration: none; border-color: var(--fg); }
+.pill .pill-key { color: var(--fg-faint); font-weight: 400; }
+.pill-inert { background: transparent; color: var(--fg-faint); border-color: var(--border); }
 
-/* Per-type tints (see tokens). views.js sets class="pill pill-type-<type>". */
-.pill-type-note     { background: var(--type-note);     color: var(--type-note-fg); }
-.pill-type-topic    { background: var(--type-topic);    color: var(--type-topic-fg); }
-.pill-type-source   { background: var(--type-source);   color: var(--type-source-fg); }
-.pill-type-decision { background: var(--type-decision); color: var(--type-decision-fg); }
-.pill-type-standard { background: var(--type-standard); color: var(--type-standard-fg); }
-.pill-type-tool     { background: var(--type-tool);     color: var(--type-tool-fg); }
+/* Type glyphs. Add a rule per custom type your fork defines. */
+.pill-type-note::before,     .pill-type-topic::before,
+.pill-type-source::before,   .pill-type-decision::before,
+.pill-type-standard::before, .pill-type-tool::before { color: var(--accent); }
+.pill-type-note::before     { content: "◦ "; }
+.pill-type-topic::before    { content: "● "; }
+.pill-type-source::before   { content: "→ "; }
+.pill-type-decision::before { content: "◆ "; }
+.pill-type-standard::before { content: "§ "; }
+.pill-type-tool::before     { content: "▲ "; }
 
 .pill-row { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
 
@@ -210,16 +249,15 @@ a.pill:hover { text-decoration: none; filter: brightness(0.95); border-color: cu
 .card {
   display: block;
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg);
+  background: var(--bg-elev);
   padding: 1rem 1.1rem;
   color: inherit;
   transition: border-color 0.12s ease;
 }
-a.card:hover { text-decoration: none; border-color: var(--accent); }
-.card h3 { margin: 0 0 0.3rem; font-size: 1rem; color: var(--accent); }
-.card p { margin: 0.25rem 0 0; font-size: 0.88rem; color: var(--fg-muted); }
-.card .card-path { font-family: var(--font-mono); font-size: 0.72rem; color: var(--fg-muted); }
+a.card:hover { text-decoration: none; border-color: var(--fg); }
+.card h3 { margin: 0 0 0.3rem; font-size: 0.95rem; color: var(--fg); }
+.card p { margin: 0.25rem 0 0; font-size: 0.85rem; color: var(--fg-muted); }
+.card .card-path { font-family: var(--font-mono); font-size: 0.72rem; color: var(--fg-faint); }
 
 .card-grid {
   display: grid;
@@ -230,269 +268,362 @@ a.card:hover { text-decoration: none; border-color: var(--accent); }
 /* --- Buttons -------------------------------------------------------- */
 .btn {
   display: inline-block;
-  padding: 0.55rem 1.2rem;
-  border-radius: var(--radius);
+  padding: 0.55rem 1.15rem;
   font-weight: 600;
-  font-size: 0.95rem;
-  border: 1px solid var(--accent);
-  color: var(--accent);
+  font-size: 0.85rem;
+  border: 1.5px solid var(--fg);
+  color: var(--fg);
   background: transparent;
 }
-.btn:hover { text-decoration: none; background: var(--accent-soft); }
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { background: var(--accent-strong); color: #fff; }
-@media (prefers-color-scheme: dark) {
-  .btn-primary { color: #0d1117; }
-  .btn-primary:hover { color: #0d1117; }
+.btn:hover { text-decoration: none; color: var(--fg); background: var(--bg-alt); }
+.btn-primary { background: var(--fg); color: var(--bg); }
+.btn-primary:hover { background: var(--fg); color: var(--bg); opacity: 0.85; }
+
+/* Inline mono command shown beside a button ("$ gh repo fork …"). */
+.cmd-inline { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent); }
+
+/* --- Terminal block ------------------------------------------------- */
+.terminal {
+  background: var(--term-bg);
+  color: var(--term-fg);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 2;
+  padding: 1.1rem 1.35rem;
+  overflow-x: auto;
 }
+.terminal .dim { color: var(--term-dim); }
+.terminal .hl  { color: var(--term-accent); }
 
 /* --- Notices (empty states, errors, build hints) -------------------- */
 .notice {
   background: var(--warn-bg);
   border: 1px solid var(--warn-border);
-  border-radius: var(--radius);
   padding: 0.9rem 1.1rem;
   font-size: 0.92rem;
 }
 .notice code { background: transparent; }
 
 /* ==================================================================== */
-/* 4. MARKETING PAGE (index.html) — .mk-*                                */
+/* 4. EXPLAINER PAGE (index.html) — .mk-*                                */
 /* ==================================================================== */
 
-.mk-section { padding: 3.5rem 1rem; }
+.mk-section { padding: 3.25rem 1rem; }
 .mk-section .inner { max-width: var(--max-width-wide); margin: 0 auto; }
 .mk-section-alt { background: var(--bg-alt); }
-.mk-section h2 { font-size: 1.6rem; margin: 0 0 0.5rem; letter-spacing: -0.01em; }
-.mk-section .lead { color: var(--fg-muted); max-width: 42rem; margin-top: 0; }
+.mk-section h2 { font-size: 1.35rem; margin: 0 0 0.5rem; letter-spacing: -0.01em; }
+.mk-section .lead { color: var(--fg-muted); font-size: 0.88rem; max-width: 42rem; margin-top: 0; line-height: 1.6; }
 
-/* Hero */
-.mk-hero { padding: 5rem 1rem 4rem; text-align: center; }
-.mk-hero .inner { max-width: 44rem; margin: 0 auto; }
-.mk-hero h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin: 0 0 1rem;
-}
-.mk-hero .tagline { font-size: 1.15rem; color: var(--fg-muted); margin: 0 auto 2rem; max-width: 36rem; }
-.mk-hero .cta-row { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
 .mk-kicker {
-  display: inline-block; margin-bottom: 1rem;
-  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+  display: block; margin-bottom: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.69rem; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--accent);
 }
 
-/* Three-up feature/step grids */
-.mk-grid {
-  display: grid; gap: 1rem; margin-top: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+/* Hero: text column + artifact column. */
+.mk-hero { padding: 3.5rem 1rem 3.25rem; }
+.mk-hero .inner {
+  max-width: var(--max-width-wide); margin: 0 auto;
+  display: grid; grid-template-columns: 1.05fr 1fr; gap: 3.25rem;
+  align-items: center;
 }
-.mk-grid .card h3 { color: var(--fg); font-size: 1.02rem; }
+@media (max-width: 56rem) { .mk-hero .inner { grid-template-columns: 1fr; } }
+.mk-hero h1 {
+  font-size: clamp(1.7rem, 3.4vw, 2.35rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.1rem;
+}
+.mk-hero .tagline {
+  font-size: 0.91rem; line-height: 1.65;
+  color: var(--fg-muted); margin: 0 0 0.9rem;
+}
+.mk-hero .tagline code { font-size: 0.82em; }
+.mk-hero .cta-row { display: flex; gap: 0.9rem; align-items: center; flex-wrap: wrap; margin: 1.5rem 0 1rem; }
+.mk-lineage {
+  font-family: var(--font-mono);
+  font-size: 0.69rem; letter-spacing: 0.02em;
+  color: var(--fg-faint);
+}
+.mk-lineage a { color: var(--fg-faint); text-decoration: underline; text-underline-offset: 3px; }
+.mk-lineage a:hover { color: var(--accent); }
 
-/* Numbered fork steps */
-.mk-steps { counter-reset: step; list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 1rem; }
-.mk-steps li {
-  counter-increment: step;
-  border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 1rem 1.1rem 1rem 3.4rem; position: relative; background: var(--bg);
+/* The frontmatter card artifact (hero): a real KB page, slightly rotated,
+   over a blank offset card. */
+.mk-artifact { position: relative; min-height: 18rem; }
+.mk-artifact .shadow-card {
+  position: absolute; top: 1.4rem; right: -0.4rem;
+  width: 92%; height: 15rem;
+  background: var(--bg-elev); border: 1px solid var(--border-dark);
+  transform: rotate(1.6deg);
 }
-.mk-steps li::before {
-  content: counter(step);
-  position: absolute; left: 1rem; top: 1rem;
-  width: 1.7rem; height: 1.7rem; border-radius: 50%;
-  background: var(--accent); color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 0.9rem;
+.mk-card {
+  position: absolute; top: 0; left: 0.4rem; width: 96%;
+  background: var(--bg-elev);
+  border: 1px solid var(--fg);
+  transform: rotate(-1deg);
+  box-shadow: var(--shadow);
 }
-@media (prefers-color-scheme: dark) { .mk-steps li::before { color: #0d1117; } }
-.mk-steps h3 { margin: 0 0 0.25rem; font-size: 1rem; }
-.mk-steps p { margin: 0; font-size: 0.9rem; color: var(--fg-muted); }
-.mk-steps code { background: var(--bg-alt); padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.85em; }
+.mk-card-head {
+  display: flex; gap: 0.5rem; align-items: center;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--fg);
+}
+.mk-card-head .path { font-family: var(--font-mono); font-size: 0.66rem; color: var(--fg-faint); }
+.mk-card-head .pill { margin-left: auto; }
+.mk-card-fm {
+  padding: 0.8rem 1.05rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem; line-height: 1.8;
+  color: var(--fg-muted);
+  border-bottom: 1px solid var(--border);
+}
+.mk-card-fm .key { color: var(--accent); }
+.mk-card-body { padding: 0.8rem 1.05rem 1rem; }
+.mk-card-body strong { display: block; font-size: 0.91rem; margin-bottom: 0.3rem; color: var(--fg); }
+.mk-card-body p { margin: 0; font-size: 0.75rem; line-height: 1.65; color: var(--fg-faint); }
 
-/* Big pull-quote line */
-.mk-quote {
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
-  font-weight: 600; letter-spacing: -0.01em;
-  text-align: center; max-width: 38rem; margin: 0 auto;
-  border: 0; padding: 0;
+/* Numbered hairline rows ("how it works"). */
+.mk-rows { margin-top: 0.5rem; }
+.mk-row {
+  display: grid; grid-template-columns: 3.5rem 12.5rem 1fr; gap: 0 1.25rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+  align-items: baseline;
 }
-.mk-quote .accent { color: var(--accent); }
+@media (max-width: 40rem) { .mk-row { grid-template-columns: 3rem 1fr; } .mk-row p { grid-column: 2; } }
+.mk-row .num { font-family: var(--font-mono); font-size: 0.81rem; color: var(--accent); }
+.mk-row h3 { margin: 0; font-size: 0.91rem; }
+.mk-row p { margin: 0; font-size: 0.85rem; color: var(--fg-muted); line-height: 1.55; }
 
-/* Taxonomy dimension list (compact two-column) */
-.mk-dims { columns: 2; column-gap: 2rem; margin: 1.5rem 0 0; padding: 0 0 0 1.2rem; font-size: 0.95rem; }
-.mk-dims li { margin-bottom: 0.4rem; break-inside: avoid; }
-.mk-dims li b { color: var(--fg); }
+/* Annotated file tree ("what a fork contains"). */
+.mk-tree {
+  border: 1px solid var(--border-dark);
+  background: var(--bg-elev);
+}
+.mk-tree-head {
+  display: flex; justify-content: space-between;
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono); font-size: 0.69rem; color: var(--fg-faint);
+}
+.mk-tree-body { padding: 0.9rem 1rem; font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.9; }
+.mk-tree-body .row { display: flex; justify-content: space-between; gap: 1rem; }
+.mk-tree-body .sub { color: var(--fg-muted); }
+.mk-tree-body .why { color: var(--accent); font-size: 0.66rem; text-align: right; }
+.mk-tree-body .gap { margin-top: 0.4rem; }
+
+/* Two-column split used by tree + terminal sections: lead left, artifact right. */
+.mk-split {
+  display: grid; grid-template-columns: 17.5rem 1fr; gap: 2.5rem;
+  align-items: start;
+}
+@media (max-width: 52rem) { .mk-split { grid-template-columns: 1fr; } }
+
+/* Taxonomy dimension rows (two-column on wide screens). */
+.mk-dims {
+  list-style: none; margin: 1.5rem 0 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0 2.75rem;
+}
+@media (max-width: 44rem) { .mk-dims { grid-template-columns: 1fr; } }
+.mk-dims li {
+  display: flex; gap: 0.9rem; align-items: baseline;
+  border-top: 1px solid var(--border);
+  padding: 0.7rem 0;
+  font-size: 0.85rem;
+}
+.mk-dims li b { color: var(--fg); min-width: 8.5rem; font-size: 0.88rem; }
 .mk-dims li span { color: var(--fg-muted); }
-@media (max-width: 40rem) { .mk-dims { columns: 1; } }
 
 /* ==================================================================== */
 /* 5. KB APP (knowledge-base.html) — .kb-*                               */
 /* ==================================================================== */
 
-/* The app shell: one column, comfortable prose measure. */
 .kb-main {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 1.5rem 1rem 3rem;
+  padding: 1.75rem 1rem 3rem;
 }
 .kb-main-wide { max-width: var(--max-width-wide); }
 
-/* Home masthead — eyebrow / name / description / dotted meta row */
+/* Home masthead — eyebrow / name / description / mono meta row */
 .kb-masthead {
-  margin: 0.4rem 0 1.4rem;
-  padding-bottom: 1.1rem;
-  border-bottom: 1px solid var(--border);
+  margin: 0.4rem 0 1.6rem;
+  padding-bottom: 1.3rem;
+  border-bottom: 1px solid var(--fg);
 }
 .kb-eyebrow {
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em;
+  font-family: var(--font-mono);
+  font-size: 0.69rem; font-weight: 500; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--accent);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.55rem;
 }
 .kb-masthead h1 {
-  margin: 0 0 0.35rem;
-  font-size: 1.7rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  margin: 0 0 0.4rem;
+  font-size: 1.8rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 .kb-masthead-desc {
-  margin: 0 0 0.7rem;
-  font-size: 1.02rem;
+  margin: 0 0 0.85rem;
+  font-size: 0.91rem;
+  line-height: 1.6;
   color: var(--fg-muted);
-  max-width: 38rem;          /* keep the measure readable, not full-bleed */
+  max-width: 38rem;
 }
 .kb-meta-row {
-  display: flex; flex-wrap: wrap; gap: 0.45rem;
-  font-size: 0.83rem;
-  color: var(--fg-muted);
+  display: flex; flex-wrap: wrap; gap: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.69rem;
+  color: var(--fg-faint);
 }
-.kb-meta-row .dot { color: var(--border); }
+.kb-meta-row a { color: var(--accent); }
+.kb-meta-row .dot { display: none; }  /* mono gap does the separating */
 
 /* Home search box */
 .kb-search-box {
   width: 100%;
-  font-size: 1.1rem;
-  padding: 0.8rem 1rem;
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.75rem 0.95rem;
+  border: 1.5px solid var(--fg);
+  border-radius: 0;
+  background: var(--bg-elev);
   color: var(--fg);
 }
-.kb-search-box:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+.kb-search-box::placeholder { color: var(--fg-faint); }
+.kb-search-box:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
 
-/* Honest-search note + clone-to-query command (home, under the search box) */
+/* Honest-search note + clone-to-query command */
 .kb-search-note {
   margin: 0.7rem 0 0.5rem;
-  font-size: 0.88rem;
-  color: var(--fg-muted);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--fg-faint);
 }
-.kb-clone-block {
-  display: flex;
-  align-items: stretch;
-  gap: 0.5rem;
-}
+.kb-clone-block { display: flex; align-items: stretch; gap: 0.5rem; }
 .kb-clone-block pre {
   flex: 1;
   margin: 0;
-  padding: 0.6rem 0.8rem;
-  background: var(--bg-alt);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow-x: auto;             /* long command scrolls, never wraps oddly */
+  padding: 0.6rem 0.85rem;
+  background: var(--term-bg);
+  border: 0;
+  overflow-x: auto;
 }
 .kb-clone-block code {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--fg);
+  font-size: 0.72rem;
+  color: var(--term-fg);
   white-space: pre;
 }
 .kb-copy-btn {
   flex: none;
-  padding: 0 0.9rem;
-  font: inherit;
-  font-size: 0.85rem;
-  color: var(--accent);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  padding: 0 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  background: var(--bg-elev);
+  border: 1px solid var(--border-dark);
   cursor: pointer;
 }
-.kb-copy-btn:hover { border-color: var(--accent); }
+.kb-copy-btn:hover { border-color: var(--fg); color: var(--fg); }
 
 /* Explanatory prose paragraphs on the home view */
 .kb-flow-note {
   margin: 0 0 0.8rem;
-  font-size: 0.92rem;
-  color: var(--fg-muted);
-  line-height: 1.55;
+  font-size: 0.81rem;
+  color: var(--fg-faint);
+  line-height: 1.6;
 }
+.kb-flow-note a { color: var(--accent); }
 
-/* "How to add knowledge" — the three numbered intake doors (home) */
+/* "How to add knowledge" — numbered intake doors */
 .kb-doors {
+  counter-reset: door;
+  list-style: none;
   margin: 0 0 0.9rem;
-  padding-left: 1.4rem;
-  font-size: 0.95rem;
-  line-height: 1.55;
+  padding: 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
 }
-.kb-doors li { margin-bottom: 0.55rem; }
-.kb-doors li:last-child { margin-bottom: 0; }
+.kb-doors li {
+  counter-increment: door;
+  position: relative;
+  padding: 0.75rem 0 0.75rem 2.1rem;
+  border-bottom: 1px solid var(--border);
+}
+.kb-doors li:last-child { border-bottom: 0; }
+.kb-doors li::before {
+  content: "0" counter(door);
+  position: absolute; left: 0; top: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+}
 
 .kb-section-label {
-  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.07em;
-  text-transform: uppercase; color: var(--fg-muted);
-  margin: 2rem 0 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--fg-faint);
+  border-bottom: 1px solid var(--fg);
+  padding-bottom: 0.45rem;
+  margin: 2.25rem 0 0.85rem;
 }
 
-/* Result rows (search + type listings) */
+/* Result rows (search + type + recent listings) */
 .kb-result {
   display: block;
-  padding: 0.8rem 0.2rem;
+  padding: 0.85rem 0.2rem;
   border-bottom: 1px solid var(--border);
   color: inherit;
 }
 .kb-result:hover { text-decoration: none; background: var(--bg-alt); }
-.kb-result .r-title { color: var(--accent); font-weight: 600; }
-.kb-result .r-summary { font-size: 0.88rem; color: var(--fg-muted); margin: 0.15rem 0 0; }
-.kb-result .r-path { font-family: var(--font-mono); font-size: 0.72rem; color: var(--fg-muted); }
+.kb-result .r-title { color: var(--fg); font-weight: 600; font-size: 0.95rem; }
+.kb-result:hover .r-title { color: var(--accent-strong); }
+.kb-result .r-summary { font-size: 0.81rem; color: var(--fg-muted); margin: 0.2rem 0 0; }
+.kb-result .r-path { font-family: var(--font-mono); font-size: 0.66rem; color: var(--fg-faint); margin-top: 0.2rem; }
 
 /* Page view header: title + pills + affordance bar */
 .kb-page-header { margin-bottom: 1.5rem; }
-.kb-page-header h1 { margin: 0 0 0.6rem; font-size: 1.9rem; letter-spacing: -0.02em; line-height: 1.2; }
+.kb-page-header h1 { margin: 0.3rem 0 0.7rem; font-size: 1.8rem; letter-spacing: -0.02em; line-height: 1.15; }
 .kb-affordances {
-  display: flex; flex-wrap: wrap; gap: 0.3rem 1rem;
-  margin-top: 0.8rem; padding-top: 0.7rem;
+  display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem;
+  margin-top: 0.9rem; padding-top: 0.65rem;
   border-top: 1px solid var(--border);
-  font-size: 0.83rem;
+  font-family: var(--font-mono);
+  font-size: 0.69rem;
+  letter-spacing: 0.03em;
 }
-.kb-affordances a { color: var(--fg-muted); }
+.kb-affordances a { color: var(--fg-faint); }
 .kb-affordances a:hover { color: var(--accent); }
 
 /* Type view: the template definition rendered above the listing */
 .kb-type-def {
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: var(--radius);
-  background: var(--bg-alt);
+  border: 1px solid var(--border-dark);
+  background: var(--bg-elev);
   padding: 0.4rem 1.2rem;
   margin: 1.2rem 0 2rem;
   font-size: 0.93rem;
+  box-shadow: var(--shadow);
 }
 
 /* Loading indicator */
-.kb-loading { color: var(--fg-muted); padding: 2rem 0; }
+.kb-loading { color: var(--fg-faint); font-family: var(--font-mono); font-size: 0.78rem; padding: 2rem 0; }
 
 /* ==================================================================== */
 /* 6. RENDERED MARKDOWN — .md-body                                       */
-/*    Applied to output of assets/js/markdown.js (page + type views).    */
 /* ==================================================================== */
 
 .md-body { line-height: 1.65; }
-.md-body h1 { font-size: 1.7rem; margin: 1.6em 0 0.5em; letter-spacing: -0.02em; }
+.md-body h1 { font-size: 1.6rem; margin: 1.6em 0 0.5em; letter-spacing: -0.02em; }
 .md-body h2 {
-  font-size: 1.35rem; margin: 1.6em 0 0.5em;
-  padding-bottom: 0.25em; border-bottom: 1px solid var(--border);
+  font-size: 1.25rem; margin: 1.6em 0 0.5em;
+  padding-bottom: 0.3em; border-bottom: 1px solid var(--border);
 }
-.md-body h3 { font-size: 1.12rem; margin: 1.4em 0 0.4em; }
+.md-body h3 { font-size: 1.08rem; margin: 1.4em 0 0.4em; }
 .md-body h4, .md-body h5, .md-body h6 { font-size: 1rem; margin: 1.2em 0 0.4em; }
 .md-body > :first-child { margin-top: 0; }
 
@@ -503,31 +634,34 @@ a.card:hover { text-decoration: none; border-color: var(--accent); }
 .md-body code {
   background: var(--bg-alt);
   border: 1px solid var(--border);
-  border-radius: 4px;
   padding: 0.1em 0.35em;
   font-size: 0.85em;
 }
 .md-body pre {
   background: var(--bg-alt);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
   padding: 0.9rem 1.1rem;
-  overflow-x: auto;           /* wide code scrolls inside, never the page */
+  overflow-x: auto;
   font-size: 0.85rem;
   line-height: 1.5;
 }
 .md-body pre code { background: transparent; border: 0; padding: 0; font-size: inherit; }
 
 .md-body blockquote {
-  border-left: 3px solid var(--border);
+  border-left: 2px solid var(--accent);
   padding: 0.1rem 1rem;
   color: var(--fg-muted);
 }
 
 .md-body hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
 
-/* Tables scroll horizontally inside their own wrapper (added by markdown.js). */
 .md-table-wrap { overflow-x: auto; margin: 0 0 1em; }
 .md-body table { border-collapse: collapse; font-size: 0.9rem; width: 100%; margin: 0; }
 .md-body th, .md-body td { border: 1px solid var(--border); padding: 0.45rem 0.7rem; text-align: left; }
-.md-body th { background: var(--bg-alt); }
+.md-body th {
+  background: var(--bg-alt);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}

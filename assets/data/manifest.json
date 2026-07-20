@@ -57,7 +57,7 @@
         "Design lineage",
         "License"
       ],
-      "excerpt": "kb-kit A forkable starter kit for building knowledge bases that humans and AI agents share. Made for product teams — you don't need to be an engineer to own a great context repo. 🌐 Marketing & guide site · 📚…",
+      "excerpt": "kb-kit A forkable starter kit for building knowledge bases that humans and AI agents share. Made for product teams — you don't need to be an engineer to own a great context repo. 🌐 How it works · 📚 Browse…",
       "modified": "2026-07-19T01:55:48.000Z"
     },
     {
@@ -1367,14 +1367,14 @@
     },
     {
       "path": "index.html",
-      "title": "kb-kit — your team's knowledge, ready for agents",
+      "title": "kb-kit — a template repository for context repos",
       "type": null,
       "summary": null,
       "tags": [],
       "reserved": false,
       "frontmatter": {},
       "headings": [],
-      "excerpt": "kb-kit — your team's knowledge, ready for agents 📚 kb-kit Browse the KB Taxonomy kb-card spec GitHub A forkable starter kit for context repos Your team's knowledge, ready for agents. kb-kit is a knowledge base that humans and AI agents…",
+      "excerpt": "kb-kit — a template repository for context repos kb-kit AN OPEN PATTERN FOR CONTEXT REPOS Demo KB Taxonomy kb-card spec Source ↗ A template repository for context repos A knowledge base your team and your agents share — plain markdown,…",
       "modified": "2026-07-18T21:48:29.000Z"
     },
     {
@@ -1386,7 +1386,7 @@
       "reserved": false,
       "frontmatter": {},
       "headings": [],
-      "excerpt": "Knowledge base — kb-kit 📚 Knowledge base About the kit Index kb-card Loading the knowledge base… Rendered client-side from plain markdown · · built with kb-kit",
+      "excerpt": "Knowledge base — kb-kit kb KNOWLEDGE BASE About the kit Index kb-card Loading the knowledge base… rendered client-side from plain markdown · · built with kb-kit",
       "modified": "2026-07-18T21:48:29.000Z"
     }
   ]
